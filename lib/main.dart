@@ -1,5 +1,5 @@
-import './router/route-const.dart';
 import 'package:flutter/material.dart';
+
 import './router/router.dart';
 
 void main() {
