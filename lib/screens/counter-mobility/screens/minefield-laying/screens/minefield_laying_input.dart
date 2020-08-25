@@ -54,7 +54,6 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Density", labelText: "Density"),
-                  keyboardType: TextInputType.number,
                   onSaved: (val) => setState(
                     () => _minefieldLaying.density =
                         _minefieldLaying.convertToFraction(val),
@@ -117,6 +116,15 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   keyboardType: TextInputType.number,
                   onSaved: (val) => setState(() => _minefieldLaying
                       .noOfAssistedByInfantryPlatoon = double.parse(val)),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Trip Wire of Mixed Cluster",
+                    labelText: "Trip Wire of Mixed Cluster (%)",
+                  ),
+                  keyboardType: TextInputType.number,
+                  onSaved: (val) => setState(() => _minefieldLaying
+                      .percentageOfTripWire = double.parse(val)),
                 ),
                 DropDownFormField(
                   titleText: 'Type of Anti Tank Mine',
@@ -208,6 +216,40 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   },
                   textField: 'display',
                   valueField: 'value',
+                ),
+                ListTile(
+                  title: Text(
+                    "First Light: ${_minefieldLaying.firstLight.format(context)}",
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_down),
+                  onTap: () async {
+                    TimeOfDay t = await showTimePicker(
+                      context: context,
+                      initialTime: _minefieldLaying.firstLight,
+                    );
+                    if (t != null) {
+                      setState(() {
+                        _minefieldLaying.firstLight = t;
+                      });
+                    }
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    "Last Light: ${_minefieldLaying.lastLight.format(context)}",
+                  ),
+                  trailing: Icon(Icons.keyboard_arrow_down),
+                  onTap: () async {
+                    TimeOfDay t = await showTimePicker(
+                      context: context,
+                      initialTime: _minefieldLaying.lastLight,
+                    );
+                    if (t != null) {
+                      setState(() {
+                        _minefieldLaying.lastLight = t;
+                      });
+                    }
+                  },
                 ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
