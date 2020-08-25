@@ -1,3 +1,4 @@
+import '../models/moon_lit.dart';
 import 'package:flutter/material.dart';
 
 import '../models/minefield_laying.dart';
@@ -18,280 +19,314 @@ class MinefieldLayingOutput extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                alignment: Alignment.topLeft,
+                alignment: Alignment.center,
                 child: Text(
-                  'Calculation',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  'SUMMARY OF THE MINIFIED LAYING CALCULATION',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
-                padding: EdgeInsets.only(left: 20),
+                margin: EdgeInsets.only(left: 10),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text('Number of Strips: '),
-                        Text(_minefieldLaying.numberOfStrips.toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Number of Cluster Per Strip: '),
-                        Text(
-                          _minefieldLaying.numberOfClusterPerStrip.toString(),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Mines',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Anti Tank Mines: '),
-                        Text(_minefieldLaying.antiTankMines.toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Anti Personnel Mines: '),
-                        Text(_minefieldLaying.antiPersonnelMines.toString()),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Store Calculation',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Long Pickets: '),
-                        Text(_minefieldLaying.longPicket.toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Short Pickets: '),
-                        Text(
-                          _minefieldLaying.shortPicket.toString(),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Barbed Wire: '),
-                        Text(_minefieldLaying.barbedWire.toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Perimeter Sign Posting: '),
-                        Text(
-                          _minefieldLaying.perimeterSignPosting.toString(),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Tracing Tape: '),
-                        Text(
-                          _minefieldLaying.tracingTape.toString(),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Transport',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Anti Tank Mines: '),
-                        Text(_minefieldLaying.totalLorryForAntiTankMine
-                            .toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Anti Personnel Mines: '),
-                        Text(_minefieldLaying.totalLorryForAntiPersonnelMine
-                            .toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('Perimeter Fencing: '),
-                        Text(
-                          _minefieldLaying.totalLorryForStores.toString(),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text('For Personnel: '),
-                        Text(
-                          _minefieldLaying.totalLorryForPersonnel.toString(),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                alignment: Alignment.topLeft,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Transport required for manpower',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '1. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                            ),
+                          ),
+                          Text(
+                            'Strips',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
-                    Text(
-                        "(1) ${_minefieldLaying.totalLorryForPersonnel}x 3-ton lorry"),
-                    Text("(2) 1x 1/4-ton jeep"),
-                    Text("(3) 1x 1-ton pick up"),
-                    Text("(4) 1x Ambulance"),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Time Required: ',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(_minefieldLaying
-                            .timeRequired.timeRequiredInMinutes),
-                      ],
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "a. Number of Strips = ${_minefieldLaying.numberOfStrips}",
+                          ),
+                          Text(
+                            "b. Number of Anti-Tank Strips = ${_minefieldLaying.numberOfAntiTankStrips}",
+                          ),
+                          Text(
+                            "c. Number of Mixed Strips = ${_minefieldLaying.numberOfMixedStrip.ceil()}",
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Summary',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Start Time: '),
-                        Text(_minefieldLaying
-                            .hourFormat(_minefieldLaying.lastLight)),
-                        Text(' hours D-Day'),
-                      ],
+                    SizedBox(
+                      height: 10,
                     ),
-                    Row(
-                      children: [
-                        Text('Completion Time: '),
-                        Text(_minefieldLaying.timeRequired.completionTime)
-                      ],
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '2. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'Mines',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text('Total Anti Tank Mines: '),
-                        Text(_minefieldLaying.totalLorryForAntiTankMine
-                            .toString()),
-                      ],
+                    SizedBox(
+                      height: 10,
                     ),
-                    Row(
-                      children: [
-                        Text('Total Anti Personnel Mines: '),
-                        Text(_minefieldLaying.totalLorryForAntiPersonnelMine
-                            .toString()),
-                      ],
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "a. Number of Anti-Tank Mines = ${_minefieldLaying.antiTankMines}",
+                          ),
+                          Text(
+                            "b. Number of Anti-Personnel Mines = ${_minefieldLaying.antiPersonnelMines}",
+                          ),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text('Transport Required: '),
-                        Text((_minefieldLaying.totalLorryForPersonnel +
-                                _minefieldLaying.totalLorryForAntiTankMine +
-                                _minefieldLaying
-                                    .totalLorryForAntiPersonnelMine +
-                                _minefieldLaying.totalLorryForStores)
-                            .toString()),
-                      ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '3. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'Stores',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "a. Long Pickets = ${_minefieldLaying.longPicket}",
+                          ),
+                          Text(
+                            "b. Short Pickets = ${_minefieldLaying.shortPicket}",
+                          ),
+                          Text(
+                            "c. Barbed Wire = ${_minefieldLaying.barbedWire}",
+                          ),
+                          Text(
+                            "d. Perimeter Sign Posting = ${_minefieldLaying.perimeterSignPosting}",
+                          ),
+                          Text(
+                            "e. Tracing Tape = ${_minefieldLaying.tracingTape}",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '4. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'Transport',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "a. For Anti-Tank Mines = ${_minefieldLaying.totalLorryForAntiTankMine}x 3-ton lorry",
+                          ),
+                          Text(
+                            "b. For Anti-Personnel Mines = ${_minefieldLaying.totalLorryForAntiPersonnelMine}x 3-ton lorry",
+                          ),
+                          Text(
+                            "c. For Perimeter Fencing = ${_minefieldLaying.totalLorryForStores}x 3-ton lorry",
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("d. For Personnel = "),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${_minefieldLaying.totalLorryForPersonnel}x 3-ton lorry",
+                                  ),
+                                  Text("1x 1/4-ton Jeep"),
+                                  Text("1x 1-ton pickup"),
+                                  Text("1x Ambulance"),
+                                ],
+                              )
+                            ],
+                          ),
+                          Text(
+                            "e. Total 3-ton Require = ${(_minefieldLaying.totalLorryForPersonnel + _minefieldLaying.totalLorryForAntiTankMine + _minefieldLaying.totalLorryForAntiPersonnelMine + _minefieldLaying.totalLorryForStores)}",
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("f. Total Other Vehicles Require = "),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("1x 1/4-ton Jeep"),
+                                  Text("1x 1-ton pickup"),
+                                  Text("1x Ambulance"),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '5. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'Time',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "a. Start Time = ${_minefieldLaying.hourFormat(_minefieldLaying.lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == _minefieldLaying.dDay).title})",
+                          ),
+                          Text(
+                            "b. Completion Time = ${_minefieldLaying.timeRequired.completionTime}",
+                          ),
+                          Text(
+                            "c. Total Time Require = ${_minefieldLaying.timeRequired.timeRequiredInMinutes}",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text(
+                            '6. ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'Layout of Conventional Minefield',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Image.asset(
+                        'assets/images/minefield_layout.jpg',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ],
                 ),

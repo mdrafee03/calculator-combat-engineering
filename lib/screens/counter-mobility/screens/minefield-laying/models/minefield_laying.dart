@@ -46,6 +46,10 @@ class MinefieldLaying {
     return (density / standardDensity).toDouble().toDoubleAsPrecision().ceil();
   }
 
+  int get numberOfAntiTankStrips {
+    return (numberOfStrips - numberOfMixedStrip).ceil();
+  }
+
   int get numberOfClusterPerStrip {
     return (Fraction.fromDouble(frontage) * standardDensity)
         .toDouble()
