@@ -18,7 +18,8 @@ class CounterMobility extends StatelessWidget {
           children: [
             Button(context, 'Minefield Laying', minefieldLayingInput),
             SizedBox(height: 10),
-            Button(context, 'Reserve Demolition of a Bridge', counterMobility),
+            Button(
+                context, 'Reserve Demolition of a Bridge', reserveDemolition),
             SizedBox(height: 10),
             Button(context, 'Anti-tank ditch', counterMobility),
             SizedBox(height: 10),
