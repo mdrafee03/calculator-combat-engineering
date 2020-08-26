@@ -26,6 +26,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
