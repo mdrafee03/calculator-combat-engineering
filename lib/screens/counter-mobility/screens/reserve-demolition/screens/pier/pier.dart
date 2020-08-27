@@ -20,7 +20,7 @@ class Pier extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Shaped Charge', shapedPierInput),
             SizedBox(height: 10),
-            Button(context, 'Pier Footing Charge', counterMobility),
+            Button(context, 'Pier Footing Charge', footingPierInput),
           ],
         ),
       ),

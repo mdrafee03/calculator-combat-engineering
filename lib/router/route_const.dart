@@ -11,3 +11,5 @@ const String boreholePierInput = '/reserve-demolition/pier/borehole';
 const String boreholePierOutput = '/reserve-demolition/pier/borehole/output';
 const String shapedPierInput = '/reserve-demolition/pier/shaped';
 const String shapedPierOutput = '/reserve-demolition/pier/shaped/output';
+const String footingPierInput = '/reserve-demolition/pier/footing';
+const String footingPierOutput = '/reserve-demolition/pier/footing/output';
