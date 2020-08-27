@@ -63,13 +63,36 @@ class BoreholePierOutput extends StatelessWidget {
                       "d. Depth of hole = ${_borehole.depthOfHole}''",
                     ),
                     Text(
-                      "e. Depth of explosive to be filled = ${_borehole.depthOfExplosiveToBeFilled}''",
+                      "e. Distance Between Rows = ${_borehole.depthOfHole}''",
                     ),
                     Text(
-                      "f. Dia of borehole = ${_borehole.diaOfBorehole}''",
+                      "f. Depth of explosive to be filled = ${_borehole.depthOfExplosiveToBeFilled}''",
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "g. Dia of borehole",
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              for (int i = 0;
+                                  i <
+                                      _borehole
+                                          .chargeRequiredOneHole["dias"].length;
+                                  i++)
+                                Text(
+                                    "${String.fromCharCode(97 + i)}. ${_borehole.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_borehole.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     Text(
-                      "g. Charge required in one hole = ${_borehole.chargeRequiredOneHole.toStringAsFixed(2)} oz PE",
+                      "g. Charge required in one hole = ${_borehole.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,

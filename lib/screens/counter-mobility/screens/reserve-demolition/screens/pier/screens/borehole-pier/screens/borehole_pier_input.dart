@@ -70,7 +70,6 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
                     setState(() {
                       _borehole.typeOfBoreholePier = value;
                       _borehole.row = value.row;
-                      _borehole.isBoth = value.isBoth;
                     });
                   },
                   textField: 'display',

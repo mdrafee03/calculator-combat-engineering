@@ -1,6 +1,3 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/pier.dart';
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole_pier/screens/borehole_pier_input.dart';
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole_pier/screens/borehole_pier_output.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/counter-mobility/counter_mobility.dart';
@@ -11,6 +8,9 @@ import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_l
 import '../screens/counter-mobility/screens/reserve-demolition/reserve_demolition.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/screens/abutment_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/screens/abutment_output.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/pier.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_input.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_output.dart';
 import './route_const.dart';
 
 class Router {

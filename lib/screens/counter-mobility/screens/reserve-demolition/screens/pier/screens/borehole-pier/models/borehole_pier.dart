@@ -1,4 +1,3 @@
-import './borehole_depth_pier.dart';
 import './borehole_pier_type.dart';
 
 class BoreholePier {
@@ -6,7 +5,6 @@ class BoreholePier {
   double thickness;
   BoreholePierType typeOfBoreholePier;
   int row;
-  bool isBoth;
   int noOfPier;
 
   int get noOfHolesPerRow {
@@ -14,7 +12,7 @@ class BoreholePier {
   }
 
   int get totalNoOfholes {
-    if (isBoth) {
+    if (typeOfBoreholePier.id == "4") {
       return noOfHolesPerRow * (row * 2) - row;
     } else {
       return noOfHolesPerRow * row - (row ~/ 2);
@@ -22,38 +20,41 @@ class BoreholePier {
   }
 
   int get depthOfHole {
-    return ((2 * thickness / 3) * 12).ceil();
+    if (typeOfBoreholePier.id == "4") {
+      return (thickness / 2 * 12).ceil();
+    } else {
+      return ((2 * thickness / 3) * 12).ceil();
+    }
   }
 
   int get depthOfExplosiveToBeFilled {
     return (depthOfHole / 2).ceil();
   }
 
-  double get diaOfBorehole {
-    return typesOfBoreHoleDepthPier
-        .firstWhere((element) =>
-            depthOfHole > element.range[0] && depthOfHole <= element.range[1])
-        .dia;
-  }
-
-  double get chargeRequiredOneHole {
+  Map get chargeRequiredOneHole {
+    List<Map<String, dynamic>> dias = [];
     double charge = 0;
     if (depthOfHole > 40) {
       charge += (40 - depthOfHole.toDouble() / 2) * 2.5;
+      dias.add({"dia": 2, "depth": (40 - depthOfHole / 2)});
       if (depthOfHole > 60) {
         charge += 20 * 2;
+        dias.add({"dia": 1.75, "depth": 20});
         charge += (depthOfHole - 60) * 1.5;
+        dias.add({"dia": 1.5, "depth": (depthOfHole - 60)});
       } else {
         charge += (depthOfHole - 40) * 2;
+        dias.add({"dia": 1.75, "depth": (depthOfHole - 40)});
       }
     } else {
       charge = depthOfHole / 2 * 2.5;
+      dias.add({"dia": 2, "depth": depthOfHole / 2});
     }
-    return charge;
+    return {"dias": dias, "charge": charge};
   }
 
   double get totalChargeRequiredOnePier {
-    return totalNoOfholes * chargeRequiredOneHole / 16;
+    return totalNoOfholes * chargeRequiredOneHole["charge"] / 16;
   }
 
   double get totalAmountForAllPiers {
