@@ -1,6 +1,6 @@
-import 'package:combat_engineering/router/route_const.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../router/route_const.dart';
 import '../../../../shared/widgets/button.dart';
 
 class ReserveDemolition extends StatelessWidget {
@@ -18,8 +18,7 @@ class ReserveDemolition extends StatelessWidget {
           children: [
             Button(context, 'Abutment (Masonry/Concrete)', abutmentInput),
             SizedBox(height: 10),
-            Button(context, 'Pier (Masonry/Concrete/RCC/Steel)',
-                reserveDemolition),
+            Button(context, 'Pier (Masonry/Concrete/RCC/Steel)', pier),
             SizedBox(height: 10),
             Button(context, 'Span/ Roadway', counterMobility),
             SizedBox(height: 10),

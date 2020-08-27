@@ -1,3 +1,6 @@
+import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/pier.dart';
+import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole_pier/screens/borehole_pier_input.dart';
+import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole_pier/screens/borehole_pier_output.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/counter-mobility/counter_mobility.dart';
@@ -21,6 +24,9 @@ class Router {
       reserveDemolition: (BuildContext ctx) => ReserveDemolition(),
       abutmentInput: (BuildContext ctx) => AbutmentInput(),
       abutmentOutput: (BuildContext ctx) => AbutmentOutput(),
+      pier: (BuildContext ctx) => Pier(),
+      boreholePierInput: (BuildContext ctx) => BoreholePierInput(),
+      boreholePierOutput: (BuildContext ctx) => BoreholePierOutput(),
     };
   }
 }

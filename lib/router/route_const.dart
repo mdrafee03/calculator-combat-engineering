@@ -6,3 +6,6 @@ const String minefieldLayingOutput = '/minefield-laying/output';
 const String reserveDemolition = '/reserve-demolition';
 const String abutmentInput = '/reserve-demolition/abutment';
 const String abutmentOutput = '/reserve-demolition/abutment/output';
+const String pier = '/reserve-demolition/pier';
+const String boreholePierInput = '/reserve-demolition/pier/borehole';
+const String boreholePierOutput = '/reserve-demolition/pier/borehole/output';
