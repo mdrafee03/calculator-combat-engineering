@@ -92,13 +92,13 @@ class BoreholePierOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "g. Charge required in one hole = ${_borehole.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
+                      "h. Charge required in one hole = ${_borehole.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "h. Total Charge required in one pier",
+                          "i. Total Charge required in one pier",
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,7 @@ class BoreholePierOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "i. Total amount of charge required = ${_borehole.totalAmountForAllPiers.toStringAsFixed(2)} lb",
+                      "j. Total amount of charge required = ${_borehole.totalAmountForAllPiers.toStringAsFixed(2)} lb",
                     ),
                   ],
                 ),

@@ -11,6 +11,8 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/pier.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_output.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_input.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_output.dart';
 import './route_const.dart';
 
 class Router {
@@ -27,6 +29,8 @@ class Router {
       pier: (BuildContext ctx) => Pier(),
       boreholePierInput: (BuildContext ctx) => BoreholePierInput(),
       boreholePierOutput: (BuildContext ctx) => BoreholePierOutput(),
+      shapedPierInput: (BuildContext ctx) => ShapedPierInput(),
+      shapedPierOutput: (BuildContext ctx) => ShapedPierOutput(),
     };
   }
 }
