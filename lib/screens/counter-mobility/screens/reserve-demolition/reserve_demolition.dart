@@ -20,7 +20,7 @@ class ReserveDemolition extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Pier (Masonry/Concrete/RCC/Steel)', pier),
             SizedBox(height: 10),
-            Button(context, 'Span/ Roadway', counterMobility),
+            Button(context, 'Span/ Roadway', spanRoadwayInput),
             SizedBox(height: 10),
             Button(context, 'Beam/ Girder', counterMobility),
             SizedBox(height: 10),
