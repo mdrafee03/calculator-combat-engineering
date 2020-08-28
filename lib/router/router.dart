@@ -1,3 +1,5 @@
+import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/roadway/screens/roadway_input.dart';
+import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/roadway/screens/roadway_output.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/counter-mobility/counter_mobility.dart';
@@ -39,6 +41,8 @@ class Router {
       footingPierOutput: (BuildContext ctx) => FootingPierOutput(),
       spanBeamGirderInput: (BuildContext ctx) => SpanBeamGirderInput(),
       spanBeamGirderOutput: (BuildContext ctx) => SpanBeamGirderOutput(),
+      roadwayInput: (BuildContext ctx) => RoadwayInput(),
+      roadwayOutput: (BuildContext ctx) => RoadwayOutput(),
     };
   }
 }

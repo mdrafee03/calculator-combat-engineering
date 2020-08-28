@@ -16,3 +16,5 @@ const String footingPierOutput = '/reserve-demolition/pier/footing/output';
 const String spanBeamGirderInput = '/reserve-demolition/span-beam-girder';
 const String spanBeamGirderOutput =
     '/reserve-demolition/span-beam-girder/output';
+const String roadwayInput = '/reserve-demolition/roadway';
+const String roadwayOutput = '/reserve-demolition/roadway/output';
