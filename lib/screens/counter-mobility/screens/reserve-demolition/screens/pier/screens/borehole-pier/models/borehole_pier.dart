@@ -1,4 +1,5 @@
 import './borehole_pier_type.dart';
+import './borehole_pier_calc.dart';
 
 class BoreholePier {
   double width;
@@ -6,6 +7,9 @@ class BoreholePier {
   BoreholePierType typeOfBoreholePier;
   int row;
   int noOfPier;
+
+  int totalTime;
+  double totalCharge;
 
   int get noOfHolesPerRow {
     return (width / 3).round();
@@ -31,36 +35,68 @@ class BoreholePier {
     return (depthOfHole / 2).ceil();
   }
 
-  Map get chargeRequiredOneHole {
-    List<Map<String, dynamic>> dias = [];
-    double time = 0;
-    double charge = 0;
+  List<BoreholePierCalc> get chargeAndTimeCalucation {
+    List<BoreholePierCalc> chargesNTimes = [];
     if (depthOfHole > 40) {
-      charge += (40 - depthOfHole.toDouble() / 2) * 2.5;
-      time += charge * 5 / 12;
-      dias.add({"dia": 2, "depth": (40 - depthOfHole / 2)});
+      chargesNTimes.add(
+        new BoreholePierCalc(
+          dia: 2,
+          depth: 40 - depthOfHole / 2,
+          timeDepth: 40,
+          time: 7 * 40 / 12,
+          charge: (40 - depthOfHole.toDouble() / 2) * 2.5,
+        ),
+      );
       if (depthOfHole > 60) {
-        charge += 20 * 2;
-        time += (20 * 2) * 6 / 12;
-        dias.add({"dia": 1.75, "depth": 20});
-        charge += (depthOfHole - 60) * 1.5;
-        time += ((depthOfHole - 60) * 1.5) * 7 / 12;
-        dias.add({"dia": 1.5, "depth": (depthOfHole - 60)});
+        chargesNTimes.add(
+          new BoreholePierCalc(
+            dia: 1.75,
+            depth: 20,
+            timeDepth: 20,
+            time: 6 * 20 / 12,
+            charge: 20.0 * 2,
+          ),
+        );
+        chargesNTimes.add(
+          new BoreholePierCalc(
+            dia: 1.5,
+            depth: (depthOfHole - 60).toDouble(),
+            timeDepth: (depthOfHole - 60).toDouble(),
+            time: (5 * (depthOfHole - 60) / 12),
+            charge: (depthOfHole - 60) * 1.5,
+          ),
+        );
       } else {
-        charge += (depthOfHole - 40) * 2;
-        time += ((depthOfHole - 40) * 2) * 6 / 12;
-        dias.add({"dia": 1.75, "depth": (depthOfHole - 40)});
+        chargesNTimes.add(
+          new BoreholePierCalc(
+            dia: 1.75,
+            depth: (depthOfHole.toDouble() - 40),
+            timeDepth: (depthOfHole.toDouble() - 40),
+            time: (6 * (depthOfHole.toDouble() - 40) / 12),
+            charge: (depthOfHole.toDouble() - 40) * 2,
+          ),
+        );
       }
     } else {
-      charge += depthOfHole / 2 * 2.5;
-      time += charge * 5 / 12;
-      dias.add({"dia": 2, "depth": depthOfHole / 2});
+      chargesNTimes.add(
+        new BoreholePierCalc(
+          dia: 2,
+          depth: depthOfHole / 2,
+          timeDepth: depthOfHole.toDouble(),
+          time: 7 * depthOfHole.toDouble() / 12,
+          charge: (depthOfHole.toDouble() / 2) * 2.5,
+        ),
+      );
     }
-    return {"dias": dias, "charge": charge, "time": time.ceil()};
+    totalTime =
+        chargesNTimes.fold(0, (value, element) => value + element.time).ceil();
+    totalCharge =
+        chargesNTimes.fold(0, (value, element) => value + element.charge);
+    return chargesNTimes;
   }
 
   double get totalChargeRequiredOnePier {
-    return totalNoOfholes * chargeRequiredOneHole["charge"] / 16;
+    return totalNoOfholes * totalCharge / 16;
   }
 
   double get totalAmountForAllPiers {

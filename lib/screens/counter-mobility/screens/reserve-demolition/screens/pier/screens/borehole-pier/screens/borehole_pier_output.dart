@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/borehole_pier.dart';
+import '../../../../../../../../../shared//models/timeHelper.dart';
 
 class BoreholePierOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -84,19 +85,17 @@ class BoreholePierOutput extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               for (int i = 0;
-                                  i <
-                                      _model
-                                          .chargeRequiredOneHole["dias"].length;
+                                  i < _model.chargeAndTimeCalucation.length;
                                   i++)
                                 Text(
-                                    "${String.fromCharCode(97 + i)}. ${_model.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_model.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
+                                    "${String.fromCharCode(97 + i)}. ${_model.chargeAndTimeCalucation[i].dia}'' dia borehole to be made for ${_model.chargeAndTimeCalucation[i].depth}'' depth of hole")
                             ],
                           ),
                         ),
                       ],
                     ),
                     Text(
-                      "h. Charge required in one hole = ${_model.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
+                      "h. Charge required in one hole = ${_model.totalCharge} oz PE",
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,69 +147,18 @@ class BoreholePierOutput extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "a. No of holes require one row = ${_model.noOfHolesPerRow} Nos",
-                    ),
-                    Text(
-                      "b. No of rows = ${_model.row} Nos",
-                    ),
-                    Text(
-                      "c. Total no of holes = ${_model.totalNoOfholes} Nos",
-                    ),
-                    Text(
-                      "d. Depth of hole = ${_model.depthOfHole}''",
-                    ),
-                    Text(
-                      "e. Distance Between Rows = ${_model.depthOfHole}''",
-                    ),
-                    Text(
-                      "f. Depth of explosive to be filled = ${_model.depthOfExplosiveToBeFilled}''",
-                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "g. Dia of borehole",
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              for (int i = 0;
-                                  i <
-                                      _model
-                                          .chargeRequiredOneHole["dias"].length;
-                                  i++)
-                                Text(
-                                    "${String.fromCharCode(97 + i)}. ${_model.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_model.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
-                            ],
-                          ),
-                        ),
+                        for (int i = 0;
+                            i < _model.chargeAndTimeCalucation.length;
+                            i++)
+                          Text(
+                              "${String.fromCharCode(97 + i)}. For making ${_model.chargeAndTimeCalucation[i].timeDepth}'' inch hole needs = ${_model.chargeAndTimeCalucation[i].time.toStringAsFixed(2)}'' minute")
                       ],
                     ),
                     Text(
-                      "h. Total time required = ${_model.chargeRequiredOneHole["time"]} min",
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "i. Total Charge required in one pier",
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                " = ${(_model.totalChargeRequiredOnePier * 16).toStringAsFixed(2)} oz"),
-                            Text(
-                                " = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb")
-                          ],
-                        )
-                      ],
-                    ),
-                    Text(
-                      "j. Total amount of charge required = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb",
+                      "Total time required = ${TimeHelper.minuteFormat(_model.totalTime.toInt())}",
                     ),
                   ],
                 ),
