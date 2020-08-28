@@ -8,7 +8,7 @@ class ShapedPierOutput extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    final ShapedPier _shaped = ModalRoute.of(context).settings.arguments;
+    final ShapedPier _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
@@ -51,16 +51,22 @@ class ShapedPierOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Dia of one column, d = ${_shaped.dia}'",
+                      "a. Method of Attack = hayrick (Shaped Charge)",
                     ),
                     Text(
-                      "b. Circumference of one pier = ${_shaped.circumferencePerPier.toStringAsFixed(2)}''",
+                      "b. Dia of one column, d = ${_model.dia}'",
                     ),
                     Text(
-                      "c. No of hayricks required = ${_shaped.noOfHyricks} Nos",
+                      "c. Circumference of one pier = ${_model.circumferencePerPier.toStringAsFixed(2)}''",
                     ),
                     Text(
-                      "d. Total no of hayricks required = ${_shaped.totalNoOfHyrics} Nos",
+                      "d. No of hayricks required = ${_model.noOfHyricks} Nos",
+                    ),
+                    Text(
+                      "e. Total no of hayricks required = ${_model.totalNoOfHyrics} Nos",
+                    ),
+                    Text(
+                      "f. Time required = ${_model.totalTimeRequired} Platoon hr",
                     ),
                   ],
                 ),

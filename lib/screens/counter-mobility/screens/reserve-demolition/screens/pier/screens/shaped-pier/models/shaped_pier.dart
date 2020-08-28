@@ -13,4 +13,8 @@ class ShapedPier {
   int get totalNoOfHyrics {
     return noOfHyricks * noOfPier;
   }
+
+  int get totalTimeRequired {
+    return (noOfPier * 4 / 4).ceil();
+  }
 }
