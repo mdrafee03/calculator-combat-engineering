@@ -158,7 +158,7 @@ class BoreholePierOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "Total time required = ${TimeHelper.minuteFormat(_model.totalTime.toInt())}",
+                      "Total time required = ${TimeHelper.minuteFormat(_model.totalTimeRequired)}",
                     ),
                   ],
                 ),

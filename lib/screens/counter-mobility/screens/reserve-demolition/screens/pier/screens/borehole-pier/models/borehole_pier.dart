@@ -99,6 +99,10 @@ class BoreholePier {
     return totalNoOfholes * totalCharge / 16;
   }
 
+  int get totalTimeRequired {
+    return (totalTime * totalNoOfholes / 2).ceil();
+  }
+
   double get totalAmountForAllPiers {
     return noOfPier * totalChargeRequiredOnePier;
   }
