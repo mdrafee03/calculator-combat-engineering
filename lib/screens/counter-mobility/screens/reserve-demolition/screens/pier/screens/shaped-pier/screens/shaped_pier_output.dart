@@ -65,8 +65,24 @@ class ShapedPierOutput extends StatelessWidget {
                     Text(
                       "e. Total no of hayricks required = ${_model.totalNoOfHyrics} Nos",
                     ),
-                    Text(
-                      "f. Time required = ${_model.totalTimeRequired} Platoon hr",
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "f. Time required ",
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "= ${_model.totalTimeRequiredPerSection} section hours ",
+                            ),
+                            Text(
+                              "= ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hr",
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
