@@ -28,6 +28,14 @@ class Abutment {
     return 2 * craterDia(n) / 3;
   }
 
+  double get timeRequiredPerSection {
+    return 2 * craterNo / 3;
+  }
+
+  int get timeRequiredByPlatoon {
+    return (timeRequiredPerSection / 4).ceil();
+  }
+
   List<double> chargesDepth(int n) {
     return [3 * distanceFromFace(n)[0] / 2, 3 * distanceFromFace(n)[1] / 2];
   }

@@ -7,7 +7,7 @@ class AbutmentOutput extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    final Abutment _abutment = ModalRoute.of(context).settings.arguments;
+    final Abutment _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: appbar,
         body: SingleChildScrollView(
@@ -41,16 +41,17 @@ class AbutmentOutput extends StatelessWidget {
                         TableRow(
                           children: [
                             TableCell(
-                              child: Text(
-                                'No of Charge',
-                                textAlign: TextAlign.center,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 2.0),
+                                child: Text(
+                                  'No of Charge',
+                                ),
                               ),
                             ),
                             for (int i = 1; i < 6; i++)
                               TableCell(
                                 child: Text(
                                   i.toString(),
-                                  textAlign: TextAlign.center,
                                 ),
                               ),
                           ],
@@ -68,7 +69,7 @@ class AbutmentOutput extends StatelessWidget {
                             for (int i = 1; i < 6; i++)
                               TableCell(
                                 child: Text(
-                                    _abutment.craterDia(i).toStringAsFixed(2)),
+                                    _model.craterDia(i).toStringAsFixed(2)),
                               )
                           ],
                         ),
@@ -82,7 +83,7 @@ class AbutmentOutput extends StatelessWidget {
                             ),
                             for (int i = 1; i < 6; i++)
                               TableCell(
-                                child: Text(_abutment
+                                child: Text(_model
                                     .weightOfCharges(i)
                                     .toStringAsFixed(2)),
                               )
@@ -98,7 +99,7 @@ class AbutmentOutput extends StatelessWidget {
                             ),
                             for (int i = 1; i < 6; i++)
                               TableCell(
-                                child: Text(_abutment
+                                child: Text(_model
                                     .totalExclusive(i)
                                     .toStringAsFixed(2)),
                               )
@@ -118,7 +119,7 @@ class AbutmentOutput extends StatelessWidget {
                             for (int i = 1; i < 6; i++)
                               TableCell(
                                   child: Text(
-                                      "${_abutment.distanceFromFace(i)[0].toStringAsFixed(2)} - ${_abutment.distanceFromFace(i)[1].toStringAsFixed(2)}")),
+                                      "${_model.distanceFromFace(i)[0].toStringAsFixed(2)} - ${_model.distanceFromFace(i)[1].toStringAsFixed(2)}")),
                           ],
                         ),
                         TableRow(
@@ -131,7 +132,7 @@ class AbutmentOutput extends StatelessWidget {
                             ),
                             for (int i = 1; i < 6; i++)
                               TableCell(
-                                child: Text(_abutment
+                                child: Text(_model
                                     .spacingOfCharges(i)
                                     .toStringAsFixed(2)),
                               ),
@@ -148,7 +149,7 @@ class AbutmentOutput extends StatelessWidget {
                             for (int i = 1; i < 6; i++)
                               TableCell(
                                   child: Text(
-                                      "${_abutment.chargesDepth(i)[0].toStringAsFixed(2)} - ${_abutment.chargesDepth(i)[1].toStringAsFixed(2)}")),
+                                      "${_model.chargesDepth(i)[0].toStringAsFixed(2)} - ${_model.chargesDepth(i)[1].toStringAsFixed(2)}")),
                           ],
                         ),
                       ],
@@ -160,8 +161,9 @@ class AbutmentOutput extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: Row(
                         children: [
+                          Text('1. '),
                           Text(
-                            'Result',
+                            'Summary of Calculation',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
@@ -170,6 +172,59 @@ class AbutmentOutput extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("a. Type of Attack = Mined Charge"),
+                          Text(
+                            "b. Type of target = ${typesOfTarget.firstWhere((target) => target["value"] == _model.targetFactor)['type']}",
+                          ),
+                          Text(
+                            "c. Total Explosive Require = ${_model.totalExclusive(_model.craterNo).toStringAsFixed(2)} lbs",
+                          ),
+                          Text("d. Total no of craters = 5"),
+                          Text(
+                            "e. Crater Dia = ${_model.craterDia(_model.craterNo).toStringAsFixed(2)} ft",
+                          ),
+                          Text(
+                            "f. Distance from face = ${_model.distanceFromFace(_model.craterNo)[0].toStringAsFixed(2)} - ${_model.distanceFromFace(_model.craterNo)[1].toStringAsFixed(2)} ft = ${((_model.distanceFromFace(_model.craterNo)[0] + _model.distanceFromFace(_model.craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
+                          ),
+                          Text(
+                            "g. Spacing of Charges = ${_model.spacingOfCharges(_model.craterNo).toStringAsFixed(2)} ft",
+                          ),
+                          Text(
+                            "h. Depth of Charges = ${_model.chargesDepth(_model.craterNo)[0].toStringAsFixed(2)} - ${_model.chargesDepth(_model.craterNo)[1].toStringAsFixed(2)} ft = ${((_model.chargesDepth(_model.craterNo)[0] + _model.chargesDepth(_model.craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text('2. '),
+                          Text(
+                            'Time Requirement',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       padding: EdgeInsets.only(left: 20),
                       alignment: Alignment.topLeft,
@@ -177,23 +232,35 @@ class AbutmentOutput extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "a. Type of target = ${typesOfTarget.firstWhere((target) => target["value"] == _abutment.targetFactor)['type']}",
+                              "a. For 3 craters time Requirement 2 section hours."),
+                          Text(
+                            "b. For ${_model.craterNo} craters time required = ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hour",
                           ),
                           Text(
-                            "b. Total Explosive Require = ${_abutment.totalExclusive(_abutment.craterNo).toStringAsFixed(2)} lbs",
-                          ),
-                          Text("c. Total no of craters = 5"),
-                          Text(
-                            "d. Crater Dia = ${_abutment.craterDia(_abutment.craterNo).toStringAsFixed(2)} ft",
+                            "c. For 1 section ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hour will be required",
                           ),
                           Text(
-                            "e. Distance from face = ${_abutment.distanceFromFace(_abutment.craterNo)[0].toStringAsFixed(2)} - ${_abutment.distanceFromFace(_abutment.craterNo)[1].toStringAsFixed(2)} ft = ${((_abutment.distanceFromFace(_abutment.craterNo)[0] + _abutment.distanceFromFace(_abutment.craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
-                          ),
+                              "d. Time Requirement by a platoon = ${_model.timeRequiredByPlatoon} Platoon hour"),
                           Text(
-                            "e. Spacing of Charges = ${_abutment.spacingOfCharges(_abutment.craterNo).toStringAsFixed(2)} ft",
+                            "    (Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
                           ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      child: Row(
+                        children: [
+                          Text('3. '),
                           Text(
-                            "e. Depth of Charges = ${_abutment.chargesDepth(_abutment.craterNo)[0].toStringAsFixed(2)} - ${_abutment.chargesDepth(_abutment.craterNo)[1].toStringAsFixed(2)} ft = ${((_abutment.chargesDepth(_abutment.craterNo)[0] + _abutment.chargesDepth(_abutment.craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
+                            'Placement of Cahrge',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                decoration: TextDecoration.underline),
                           ),
                         ],
                       ),
