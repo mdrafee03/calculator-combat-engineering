@@ -44,7 +44,7 @@ class SpanBeamGirder {
     return noOfSpans * timeManpower.time * timeManpower.manpower;
   }
 
-  int get totalTimeRequired {
-    return (timeRequiredPerSection / 4).ceil();
+  double get totalTimeRequired {
+    return (timeRequiredPerSection / 4);
   }
 }

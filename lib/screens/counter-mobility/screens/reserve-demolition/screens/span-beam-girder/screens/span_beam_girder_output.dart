@@ -78,7 +78,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
                               "= ${_model.timeRequiredPerSection} hrs for a section",
                             ),
                             Text(
-                              "= ${_model.totalTimeRequired} platoon hours",
+                              "= ${_model.totalTimeRequired.toStringAsFixed(2)} platoon hours",
                             ),
                           ],
                         )
