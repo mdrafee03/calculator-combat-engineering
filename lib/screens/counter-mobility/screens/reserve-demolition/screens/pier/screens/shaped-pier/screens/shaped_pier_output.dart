@@ -78,7 +78,7 @@ class ShapedPierOutput extends StatelessWidget {
                               "= ${_model.totalTimeRequiredPerSection} section hours ",
                             ),
                             Text(
-                              "= ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hr",
+                              "= ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours",
                             ),
                           ],
                         ),

@@ -18,3 +18,4 @@ const String spanBeamGirderOutput =
     '/reserve-demolition/span-beam-girder/output';
 const String roadwayInput = '/reserve-demolition/roadway';
 const String roadwayOutput = '/reserve-demolition/roadway/output';
+const String reserveDemolitionSummary = '/reserve-demolition/summary';

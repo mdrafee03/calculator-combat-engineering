@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import '../../summary/models/reserve_demolition_summary.dart';
+
 class Abutment {
   double width;
   double targetFactor;
@@ -17,7 +19,9 @@ class Abutment {
   }
 
   double totalExclusive(int n) {
-    return n * weightOfCharges(n);
+    double charge = n * weightOfCharges(n);
+    ReserveDemolitionSummary.abutmentCharge = charge;
+    return charge;
   }
 
   List<double> distanceFromFace(int n) {
@@ -32,8 +36,11 @@ class Abutment {
     return 2 * craterNo / 3;
   }
 
-  int get timeRequiredByPlatoon {
-    return (timeRequiredPerSection / 4).ceil();
+  double get timeRequiredByPlatoon {
+    double time =
+        (timeRequiredPerSection / 4) >= 1 ? (timeRequiredPerSection / 4) : 1;
+    ReserveDemolitionSummary.abutmentTime = time;
+    return time;
   }
 
   List<double> chargesDepth(int n) {

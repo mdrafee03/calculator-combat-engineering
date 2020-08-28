@@ -1,5 +1,6 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/roadway/models/roadway.dart';
 import 'package:flutter/material.dart';
+
+import '../models/roadway.dart';
 
 class RoadwayOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -74,7 +75,7 @@ class RoadwayOutput extends StatelessWidget {
                       "h. Total no of Road crater = ${_model.totalRoadCrater} Nos",
                     ),
                     Text(
-                      "i. Amount of charge required = ${_model.totalCharge} Nos",
+                      "i. Amount of charge required = ${_model.totalCharge.toStringAsFixed(2)} lb PE",
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,

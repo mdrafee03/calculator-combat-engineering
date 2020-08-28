@@ -24,8 +24,10 @@ class FootingPier {
     return thickness * 12;
   }
 
-  int get totalTimeRequired {
+  double get totalTimeRequired {
     int timePerSection = width <= 20 ? 2 : 3;
-    return (noOfPier * timePerSection / 4).ceil();
+    return (noOfPier * timePerSection / 4) >= 1
+        ? (noOfPier * timePerSection / 4)
+        : 1;
   }
 }

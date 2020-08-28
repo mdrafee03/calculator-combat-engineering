@@ -1,5 +1,6 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/abutment/models/abutment.dart';
 import 'package:flutter/material.dart';
+
+import '../models/abutment.dart';
 
 class AbutmentOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -256,7 +257,7 @@ class AbutmentOutput extends StatelessWidget {
                         children: [
                           Text('3. '),
                           Text(
-                            'Placement of Cahrge',
+                            'Placement of Charge',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,

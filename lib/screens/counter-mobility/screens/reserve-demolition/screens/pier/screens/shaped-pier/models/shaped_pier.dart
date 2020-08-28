@@ -19,6 +19,8 @@ class ShapedPier {
   }
 
   double get totalTimeRequired {
-    return (totalTimeRequiredPerSection / 4);
+    return (totalTimeRequiredPerSection / 4) >= 1
+        ? (totalTimeRequiredPerSection / 4)
+        : 1;
   }
 }

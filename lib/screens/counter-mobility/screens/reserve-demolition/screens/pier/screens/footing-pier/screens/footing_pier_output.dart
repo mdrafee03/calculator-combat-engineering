@@ -82,7 +82,7 @@ class FootingPierOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                        "e. Total Time Required = ${_footing.totalTimeRequired} Platoon hour")
+                        "e. Total Time Required = ${_footing.totalTimeRequired.toStringAsFixed(2)} Platoon hours")
                   ],
                 ),
               ),
