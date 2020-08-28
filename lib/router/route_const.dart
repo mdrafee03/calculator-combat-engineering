@@ -13,5 +13,6 @@ const String shapedPierInput = '/reserve-demolition/pier/shaped';
 const String shapedPierOutput = '/reserve-demolition/pier/shaped/output';
 const String footingPierInput = '/reserve-demolition/pier/footing';
 const String footingPierOutput = '/reserve-demolition/pier/footing/output';
-const String spanRoadwayInput = '/reserve-demolition/span-roadway';
-const String spanRoadwayOutput = '/reserve-demolition/span-roadway/output';
+const String spanBeamGirderInput = '/reserve-demolition/span-beam-girder';
+const String spanBeamGirderOutput =
+    '/reserve-demolition/span-beam-girder/output';

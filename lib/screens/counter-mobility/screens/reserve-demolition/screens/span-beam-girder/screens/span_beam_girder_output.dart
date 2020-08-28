@@ -1,13 +1,14 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/span-roadway/models/span_roadway.dart';
 import 'package:flutter/material.dart';
 
-class SpanRoadwayOutput extends StatelessWidget {
+import '../models/span_beam_girder.dart';
+
+class SpanBeamGirderOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
-    title: Text('Demolition of Span or Roadway Result'),
+    title: Text('Demolition of Span, Beam and Girder Result'),
   );
   @override
   Widget build(BuildContext context) {
-    final SpanRoadway _model = ModalRoute.of(context).settings.arguments;
+    final SpanBeamGirder _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
@@ -18,7 +19,7 @@ class SpanRoadwayOutput extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  'SUMMARY OF SPAN OR ROADWAY RESULT',
+                  'SUMMARY OF SPAN, BEAM AND GIRDER RESULT',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -64,35 +65,25 @@ class SpanRoadwayOutput extends StatelessWidget {
                     Text(
                       "e. Total Sand Bag Required for demolition of spans = ${_model.totalSandbagForSpan} Nos",
                     ),
-                    // Text(
-                    //   "b. No of charge = ${_model.totalNoOfCharge} Nos",
-                    // ),
-                    // Text(
-                    //   "c. Total amount of charge required = ${_model.totalAmountCharge.toStringAsFixed(2)} lb CE TNT",
-                    // ),
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Text("d. Spacing of charge",
-                    //         style: TextStyle(fontWeight: FontWeight.bold)),
-                    //     Padding(
-                    //       padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //           Text(
-                    //             "(i) Dist of outer charges from edges of pier = ${_model.outerCharges.toStringAsFixed(2)}''",
-                    //           ),
-                    //           Text(
-                    //             "(ii) Inner charges, charge to charge distance = ${_model.innerCharges.toStringAsFixed(2)}''",
-                    //           ),
-                    //           Text('(iii) Charges should be well temped.')
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // Text("e.")
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "f. Total required for ${_model.noOfSpans} spans ",
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "= ${_model.timeRequiredPerSection} hrs for a section",
+                            ),
+                            Text(
+                              "= ${_model.totalTimeRequired} platoon hours",
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),

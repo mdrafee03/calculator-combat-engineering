@@ -1,25 +1,26 @@
-import 'package:combat_engineering/router/route_const.dart';
-import 'package:combat_engineering/screens/counter-mobility/screens/reserve-demolition/screens/span-roadway/models/span_roadway.dart';
 import 'package:flutter/material.dart';
 
-class SpanRoadwayInput extends StatefulWidget {
+import '../../../../../../../router/route_const.dart';
+import '../models/span_beam_girder.dart';
+
+class SpanBeamGirderInput extends StatefulWidget {
   @override
-  _SpanRoadwayInputState createState() => _SpanRoadwayInputState();
+  _SpanBeamGirderInputState createState() => _SpanBeamGirderInputState();
 }
 
-class _SpanRoadwayInputState extends State<SpanRoadwayInput> {
+class _SpanBeamGirderInputState extends State<SpanBeamGirderInput> {
   final appBar = AppBar(
-    title: Text('Demolition of Span or Roadway'),
+    title: Text('Demolition of Span, Beam and Girder'),
   );
 
   final _formKey = GlobalKey<FormState>();
 
-  final SpanRoadway _model = SpanRoadway();
+  final SpanBeamGirder _model = SpanBeamGirder();
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
-    Navigator.pushNamed(context, spanRoadwayOutput, arguments: _model);
+    Navigator.pushNamed(context, spanBeamGirderOutput, arguments: _model);
   }
 
   @override
@@ -77,6 +78,13 @@ class _SpanRoadwayInputState extends State<SpanRoadwayInput> {
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.noOfSpans = int.parse(val)),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "Width of pier", labelText: "Width of pier"),
+                  keyboardType: TextInputType.number,
+                  onSaved: (val) =>
+                      setState(() => _model.width = double.parse(val)),
                 ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
