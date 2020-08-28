@@ -33,24 +33,30 @@ class BoreholePier {
 
   Map get chargeRequiredOneHole {
     List<Map<String, dynamic>> dias = [];
+    double time = 0;
     double charge = 0;
     if (depthOfHole > 40) {
       charge += (40 - depthOfHole.toDouble() / 2) * 2.5;
+      time += charge * 5 / 12;
       dias.add({"dia": 2, "depth": (40 - depthOfHole / 2)});
       if (depthOfHole > 60) {
         charge += 20 * 2;
+        time += (20 * 2) * 6 / 12;
         dias.add({"dia": 1.75, "depth": 20});
         charge += (depthOfHole - 60) * 1.5;
+        time += ((depthOfHole - 60) * 1.5) * 7 / 12;
         dias.add({"dia": 1.5, "depth": (depthOfHole - 60)});
       } else {
         charge += (depthOfHole - 40) * 2;
+        time += ((depthOfHole - 40) * 2) * 6 / 12;
         dias.add({"dia": 1.75, "depth": (depthOfHole - 40)});
       }
     } else {
-      charge = depthOfHole / 2 * 2.5;
+      charge += depthOfHole / 2 * 2.5;
+      time += charge * 5 / 12;
       dias.add({"dia": 2, "depth": depthOfHole / 2});
     }
-    return {"dias": dias, "charge": charge};
+    return {"dias": dias, "charge": charge, "time": time.ceil()};
   }
 
   double get totalChargeRequiredOnePier {

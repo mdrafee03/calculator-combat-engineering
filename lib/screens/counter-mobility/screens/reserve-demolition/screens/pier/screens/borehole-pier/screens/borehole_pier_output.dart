@@ -8,7 +8,7 @@ class BoreholePierOutput extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    final BoreholePier _borehole = ModalRoute.of(context).settings.arguments;
+    final BoreholePier _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
@@ -34,6 +34,7 @@ class BoreholePierOutput extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Row(
                   children: [
+                    Text('1. '),
                     Text(
                       'Calculation',
                       style: TextStyle(
@@ -44,6 +45,9 @@ class BoreholePierOutput extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -51,22 +55,22 @@ class BoreholePierOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. No of holes require one row = ${_borehole.noOfHolesPerRow} Nos",
+                      "a. No of holes require one row = ${_model.noOfHolesPerRow} Nos",
                     ),
                     Text(
-                      "b. No of rows = ${_borehole.row} Nos",
+                      "b. No of rows = ${_model.row} Nos",
                     ),
                     Text(
-                      "c. Total no of holes = ${_borehole.totalNoOfholes} Nos",
+                      "c. Total no of holes = ${_model.totalNoOfholes} Nos",
                     ),
                     Text(
-                      "d. Depth of hole = ${_borehole.depthOfHole}''",
+                      "d. Depth of hole = ${_model.depthOfHole}''",
                     ),
                     Text(
-                      "e. Distance Between Rows = ${_borehole.depthOfHole}''",
+                      "e. Distance Between Rows = ${_model.depthOfHole}''",
                     ),
                     Text(
-                      "f. Depth of explosive to be filled = ${_borehole.depthOfExplosiveToBeFilled}''",
+                      "f. Depth of explosive to be filled = ${_model.depthOfExplosiveToBeFilled}''",
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,18 +85,18 @@ class BoreholePierOutput extends StatelessWidget {
                             children: [
                               for (int i = 0;
                                   i <
-                                      _borehole
+                                      _model
                                           .chargeRequiredOneHole["dias"].length;
                                   i++)
                                 Text(
-                                    "${String.fromCharCode(97 + i)}. ${_borehole.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_borehole.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
+                                    "${String.fromCharCode(97 + i)}. ${_model.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_model.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
                             ],
                           ),
                         ),
                       ],
                     ),
                     Text(
-                      "h. Charge required in one hole = ${_borehole.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
+                      "h. Charge required in one hole = ${_model.chargeRequiredOneHole["charge"].toStringAsFixed(2)} oz PE",
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,15 +108,109 @@ class BoreholePierOutput extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                " = ${(_borehole.totalChargeRequiredOnePier * 16).toStringAsFixed(2)} oz"),
+                                " = ${(_model.totalChargeRequiredOnePier * 16).toStringAsFixed(2)} oz"),
                             Text(
-                                " = ${_borehole.totalChargeRequiredOnePier.toStringAsFixed(2)} lb")
+                                " = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb")
                           ],
                         )
                       ],
                     ),
                     Text(
-                      "j. Total amount of charge required = ${_borehole.totalAmountForAllPiers.toStringAsFixed(2)} lb",
+                      "j. Total amount of charge required = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb",
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                child: Row(
+                  children: [
+                    Text('2. '),
+                    Text(
+                      'Time Requirement',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          decoration: TextDecoration.underline),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "a. No of holes require one row = ${_model.noOfHolesPerRow} Nos",
+                    ),
+                    Text(
+                      "b. No of rows = ${_model.row} Nos",
+                    ),
+                    Text(
+                      "c. Total no of holes = ${_model.totalNoOfholes} Nos",
+                    ),
+                    Text(
+                      "d. Depth of hole = ${_model.depthOfHole}''",
+                    ),
+                    Text(
+                      "e. Distance Between Rows = ${_model.depthOfHole}''",
+                    ),
+                    Text(
+                      "f. Depth of explosive to be filled = ${_model.depthOfExplosiveToBeFilled}''",
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "g. Dia of borehole",
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              for (int i = 0;
+                                  i <
+                                      _model
+                                          .chargeRequiredOneHole["dias"].length;
+                                  i++)
+                                Text(
+                                    "${String.fromCharCode(97 + i)}. ${_model.chargeRequiredOneHole["dias"][i]["dia"]}'' dia borehole to be made for ${_model.chargeRequiredOneHole["dias"][i]["depth"]}'' depth of hole")
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "h. Total time required = ${_model.chargeRequiredOneHole["time"]} min",
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "i. Total Charge required in one pier",
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                " = ${(_model.totalChargeRequiredOnePier * 16).toStringAsFixed(2)} oz"),
+                            Text(
+                                " = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb")
+                          ],
+                        )
+                      ],
+                    ),
+                    Text(
+                      "j. Total amount of charge required = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb",
                     ),
                   ],
                 ),
