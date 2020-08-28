@@ -1,6 +1,7 @@
 class FootingPier {
   double width;
   double thickness;
+  int noOfPier;
 
   double get explosivePerCharge {
     int factor = thickness <= 6 ? 10 : 20;
@@ -21,5 +22,10 @@ class FootingPier {
 
   double get innerCharges {
     return thickness * 12;
+  }
+
+  int get totalTimeRequired {
+    int timePerSection = width <= 20 ? 2 : 3;
+    return (noOfPier * timePerSection / 4).ceil();
   }
 }

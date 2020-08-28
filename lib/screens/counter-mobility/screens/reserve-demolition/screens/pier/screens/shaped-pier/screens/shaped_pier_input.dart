@@ -49,31 +49,6 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
                   onSaved: (val) =>
                       setState(() => _shaped.noOfPier = int.parse(val)),
                 ),
-                // TextFormField(
-                //   decoration: InputDecoration(
-                //       hintText: "No of pier", labelText: "No of pier"),
-                //   keyboardType: TextInputType.number,
-                //   onSaved: (val) =>
-                //       setState(() => _shaped.noOfPier = int.parse(val)),
-                // ),
-                // DropDownFormField(
-                //   titleText: 'Type of Pier',
-                //   hintText: 'Type of Pier',
-                //   value: _shaped.typeOfBoreholePier,
-                //   filled: false,
-                //   dataSource: typesOfBoreholePier
-                //       .map(
-                //           (option) => {"display": option.name, "value": option})
-                //       .toList(),
-                //   onChanged: (BoreholePierType value) {
-                //     setState(() {
-                //       _shaped.typeOfBoreholePier = value;
-                //       _shaped.row = value.row;
-                //     });
-                //   },
-                //   textField: 'display',
-                //   valueField: 'value',
-                // ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
                   child: Text('Submit'),

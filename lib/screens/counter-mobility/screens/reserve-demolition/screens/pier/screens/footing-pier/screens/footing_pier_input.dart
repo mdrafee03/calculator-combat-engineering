@@ -15,12 +15,12 @@ class _FootingState extends State<FootingPierInput> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _footing = FootingPier();
+  final _model = FootingPier();
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
-    Navigator.pushNamed(context, footingPierOutput, arguments: _footing);
+    Navigator.pushNamed(context, footingPierOutput, arguments: _model);
   }
 
   @override
@@ -39,14 +39,21 @@ class _FootingState extends State<FootingPierInput> {
                       InputDecoration(hintText: "Width", labelText: "Width"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
-                      setState(() => _footing.width = double.parse(val)),
+                      setState(() => _model.width = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Thickness", labelText: "Thickness"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
-                      setState(() => _footing.thickness = double.parse(val)),
+                      setState(() => _model.thickness = double.parse(val)),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "No of Pier", labelText: "No of Pier"),
+                  keyboardType: TextInputType.number,
+                  onSaved: (val) =>
+                      setState(() => _model.noOfPier = int.parse(val)),
                 ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
