@@ -21,9 +21,9 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
                 child: Text(
                   'SUMMARY OF RESERVE DEMOLISTION',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      decoration: TextDecoration.underline),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -32,23 +32,12 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Total Explosive Required',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Text(
-                      " = ${_model.totalExplosiveRequired.toStringAsFixed(2)} lb PE",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  '1. Total Explosive Required = ${_model.totalExplosiveRequired.toStringAsFixed(2)} lb PE',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
               ),
               SizedBox(
@@ -56,23 +45,12 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Total Time Required',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Text(
-                      " = ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  '2. Total Time Required = ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
               ),
               SizedBox(
@@ -80,23 +58,12 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Sandbag',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                    Text(
-                      " = ${_model.getSandbag.toStringAsFixed(2)} Nos",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  '3. Total Sandbag Required = ${_model.getSandbag.toStringAsFixed(2)} Nos',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
                 ),
               ),
             ],
