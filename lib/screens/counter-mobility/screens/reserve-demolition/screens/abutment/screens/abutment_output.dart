@@ -4,7 +4,7 @@ import '../models/abutment.dart';
 
 class AbutmentOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
-    title: Text('Abutment Result'),
+    title: Text('Abutment Demolition'),
   );
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class AbutmentOutput extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  'SUMMARY OF ABUTMENT RESULT',
+                  'SUMMARY OF ABUTMENT DEMOLITION',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                      decoration: TextDecoration.underline),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -182,14 +182,14 @@ class AbutmentOutput extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("a. Type of Attack = Mined Charge"),
+                          Text("a. Method of Attack = Mined Charge"),
                           Text(
                             "b. Type of target = ${typesOfTarget.firstWhere((target) => target["value"] == _model.targetFactor)['type']}",
                           ),
                           Text(
                             "c. Total Explosive Require = ${_model.totalExclusive(_model.craterNo).toStringAsFixed(2)} lbs",
                           ),
-                          Text("d. Total no of craters = 5"),
+                          Text("d. Total no of craters = ${_model.craterNo}"),
                           Text(
                             "e. Crater Dia = ${_model.craterDia(_model.craterNo).toStringAsFixed(2)} ft",
                           ),
@@ -233,17 +233,29 @@ class AbutmentOutput extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              "a. For 3 craters time Requirement 2 section hours."),
-                          Text(
-                            "b. For ${_model.craterNo} craters time required = ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hour",
+                            "a. For 3 craters time Requirement 2 section hours.",
                           ),
                           Text(
-                            "c. For 1 section ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hour will be required",
+                            "(Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
                           ),
-                          Text(
-                              "d. Time Requirement by a platoon = ${_model.timeRequiredByPlatoon} Platoon hour"),
-                          Text(
-                            "    (Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  "b. Total Time Require for ${_model.craterNo} craters "),
+                              Container(
+                                alignment: Alignment.topRight,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "= ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hours"),
+                                    Text(
+                                        "= ${_model.timeRequiredByPlatoon} Platoon hours"),
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ],
                       ),
