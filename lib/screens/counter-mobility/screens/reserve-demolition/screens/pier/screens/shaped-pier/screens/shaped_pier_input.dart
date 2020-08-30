@@ -37,14 +37,14 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Dia of each Pier",
-                      labelText: "Dia of each Pier"),
+                      labelText: "Dia of each Pier (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _shaped.dia = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "No of Pier", labelText: "No of Pier"),
+                      hintText: "No of Pier", labelText: "No of Pier (nos)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _shaped.noOfPier = int.parse(val)),
