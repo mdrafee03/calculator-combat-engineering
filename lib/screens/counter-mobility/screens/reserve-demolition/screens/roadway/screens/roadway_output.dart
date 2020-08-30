@@ -94,9 +94,6 @@ class RoadwayOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
               PlacementOfCharges(),
             ],
           ),
