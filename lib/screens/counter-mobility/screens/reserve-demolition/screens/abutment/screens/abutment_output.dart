@@ -166,9 +166,10 @@ class AbutmentOutput extends StatelessWidget {
                           Text(
                             'Summary of Calculation',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                decoration: TextDecoration.underline),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ],
                       ),
@@ -188,6 +189,10 @@ class AbutmentOutput extends StatelessWidget {
                           ),
                           Text(
                             "c. Total Explosive Require = ${_model.totalExclusive(_model.craterNo).toStringAsFixed(2)} lbs",
+                            style: TextStyle(
+                              color: Color(0xFF00008B),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text("d. Total no of craters = ${_model.craterNo}"),
                           Text(
@@ -239,22 +244,34 @@ class AbutmentOutput extends StatelessWidget {
                             "(Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
                           ),
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                  "b. Total Time Require for ${_model.craterNo} craters "),
-                              Container(
-                                alignment: Alignment.topRight,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        "= ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hours"),
-                                    Text(
-                                        "= ${_model.timeRequiredByPlatoon} Platoon hours"),
-                                  ],
+                                "b. Total Time Require for ${_model.craterNo} craters ",
+                                style: TextStyle(
+                                  color: Color(0xFF00008B),
+                                  fontWeight: FontWeight.bold,
                                 ),
-                              )
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "= ${_model.timeRequiredPerSection.toStringAsFixed(2)} section hours",
+                                    style: TextStyle(
+                                      color: Color(0xFF00008B),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "= ${_model.timeRequiredByPlatoon} Platoon hours",
+                                    style: TextStyle(
+                                      color: Color(0xFF00008B),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ],

@@ -11,7 +11,7 @@ class AbutmentInput extends StatefulWidget {
 
 class _AbutmentInputState extends State<AbutmentInput> {
   final appBar = AppBar(
-    title: Text('Abutment'),
+    title: Text('Abutment Demolition'),
   );
 
   final _formKey = GlobalKey<FormState>();
@@ -36,8 +36,8 @@ class _AbutmentInputState extends State<AbutmentInput> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration:
-                      InputDecoration(hintText: "Width", labelText: "Width"),
+                  decoration: InputDecoration(
+                      hintText: "Width", labelText: "Width(ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _abutment.width = double.parse(val)),
@@ -60,8 +60,8 @@ class _AbutmentInputState extends State<AbutmentInput> {
                   valueField: 'value',
                 ),
                 TextFormField(
-                  decoration:
-                      InputDecoration(hintText: "Crater", labelText: "Crater"),
+                  decoration: InputDecoration(
+                      hintText: "Crater", labelText: "Crater (nos)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _abutment.craterNo = int.parse(val)),

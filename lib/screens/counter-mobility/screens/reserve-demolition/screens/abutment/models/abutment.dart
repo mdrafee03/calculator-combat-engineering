@@ -29,7 +29,7 @@ class Abutment {
   }
 
   double spacingOfCharges(int n) {
-    return 2 * craterDia(n) / 3;
+    return n == 1 ? 0 : 2 * craterDia(n) / 3;
   }
 
   double get timeRequiredPerSection {
