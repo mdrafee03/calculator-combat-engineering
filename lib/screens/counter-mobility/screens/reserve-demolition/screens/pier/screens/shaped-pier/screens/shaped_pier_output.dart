@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../../../shared/widgets/time_requirement.dart';
+
 import '../models/shaped_pier.dart';
 
 class ShapedPierOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
-    title: Text('Shaped Charge Result'),
+    title: Text('Shaped Charge'),
   );
   @override
   Widget build(BuildContext context) {
@@ -16,44 +21,8 @@ class ShapedPierOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'SUMMARY OF SHAPED CHARGE RESULT',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '1. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Summay of Calculation',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              HeadingOutput("Demolition of Pier By Shaped Charge"),
+              SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -82,33 +51,7 @@ class ShapedPierOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '2. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Time Requirement',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              TimeRequirement(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -145,33 +88,7 @@ class ShapedPierOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '3. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Placement of Charges',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              PlacementOfCharges(),
             ],
           ),
         ),

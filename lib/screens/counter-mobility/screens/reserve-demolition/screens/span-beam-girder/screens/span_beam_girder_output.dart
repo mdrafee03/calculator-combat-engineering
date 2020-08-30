@@ -1,3 +1,7 @@
+import 'package:combat_engineering/shared/widgets/heading_output.dart';
+import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
+import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
+import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
 
 import '../models/span_beam_girder.dart';
@@ -16,41 +20,9 @@ class SpanBeamGirderOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'DEMOLITION OF SPAN, BEAM AND GIRDER BY PRESSURE CHARGE',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      decoration: TextDecoration.underline),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '1. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Summary of Calculation',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
+              HeadingOutput(
+                  'Demolition of Span, Beam And Girder By Pressure Charge'),
+              SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -83,33 +55,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '2. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Time Requirement',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              TimeRequirement(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -145,31 +91,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '3. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Placement of charges',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10)
+              PlacementOfCharges(),
             ],
           ),
         ),

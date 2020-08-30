@@ -1,8 +1,9 @@
-import 'package:combat_engineering/shared/widgets/heading_output.dart';
-import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
-import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
-import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../../../shared/widgets/time_requirement.dart';
 
 import '../models/borehole_pier.dart';
 
