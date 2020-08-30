@@ -35,22 +35,22 @@ class _FootingState extends State<FootingPierInput> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration:
-                      InputDecoration(hintText: "Width", labelText: "Width"),
+                  decoration: InputDecoration(
+                      hintText: "Width", labelText: "Width (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.width = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "Thickness", labelText: "Thickness"),
+                      hintText: "Thickness", labelText: "Thickness (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.thickness = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "No of Pier", labelText: "No of Pier"),
+                      hintText: "No of Pier", labelText: "No of Pier (nos)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.noOfPier = int.parse(val)),

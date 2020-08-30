@@ -64,10 +64,10 @@ class ShapedPierOutput extends StatelessWidget {
                       "a. Method of Attack = Hayrick (Shaped Charge)",
                     ),
                     Text(
-                      "b. Dia of one column, d = ${_model.dia}'",
+                      "b. Dia of one column, d = ${_model.dia} ft",
                     ),
                     Text(
-                      "c. Circumference of one pier = ${_model.circumferencePerPier.toStringAsFixed(2)}'",
+                      "c. Circumference of one pier = ${_model.circumferencePerPier.toStringAsFixed(2)} ft",
                     ),
                     Text(
                       "d. Number of hayricks required = ${_model.noOfHyricks} Nos",

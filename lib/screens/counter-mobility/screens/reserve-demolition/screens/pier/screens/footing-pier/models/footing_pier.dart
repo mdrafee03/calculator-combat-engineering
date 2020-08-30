@@ -12,8 +12,12 @@ class FootingPier {
     return (width / thickness).ceil();
   }
 
-  double get totalAmountCharge {
+  double get amountOfChargePerPier {
     return explosivePerCharge * totalNoOfCharge;
+  }
+
+  double get totalAmountOfCharge {
+    return amountOfChargePerPier * noOfPier;
   }
 
   double get outerCharges {
