@@ -1,3 +1,7 @@
+import 'package:combat_engineering/shared/widgets/heading_output.dart';
+import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
+import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
+import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
 
 import '../models/borehole_pier.dart';
@@ -16,39 +20,8 @@ class BoreholePierOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'DEMOLITION OF PIER BY BOREHOLE CHARGE',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    decoration: TextDecoration.underline,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text('1. '),
-                    Text(
-                      'Summary of Calculation',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              HeadingOutput('Demolition of pier by borehole charge'),
+              SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -113,27 +86,7 @@ class BoreholePierOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text('2. '),
-                    Text(
-                      'Time Requirement',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              TimeRequirement(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -165,6 +118,7 @@ class BoreholePierOutput extends StatelessWidget {
                   ],
                 ),
               ),
+              PlacementOfCharges(),
             ],
           ),
         ),
