@@ -24,7 +24,7 @@ class SummaryOfCalculation extends StatelessWidget {
                 ),
               ),
               Text(
-                'Summay of Calculation',
+                'Summary of Calculation',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,

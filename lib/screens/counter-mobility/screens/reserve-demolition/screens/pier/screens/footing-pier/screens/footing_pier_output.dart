@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../../../shared/widgets/time_requirement.dart';
+
 import '../models/footing_pier.dart';
 
 class FootingPierOutput extends StatelessWidget {
@@ -16,45 +21,8 @@ class FootingPierOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'DEMOLITION OF PIER BY PIER FOOTING CHARGE',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    decoration: TextDecoration.underline,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '1. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Summary of Calculation',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              HeadingOutput("Demolition of Pier By Pier Footing Charge"),
+              SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -120,74 +88,42 @@ class FootingPierOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '2. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Time Requirement',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              TimeRequirement(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "a. Time reqr for dml of pier = ${_model.totalTimeRequired.toStringAsFixed(2)} pl hr = ${(_model.totalTimeRequired * 4).toStringAsFixed(2)} hr for 1 sec",
+                      "a. Time requre for demolition of pier ",
                       style: TextStyle(
                         color: Color(0xFF00008B),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    Column(
+                      children: <Widget>[
+                        Text(
+                          "= ${(_model.totalTimeRequired * 4).toStringAsFixed(2)} section hours",
+                          style: TextStyle(
+                            color: Color(0xFF00008B),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "= ${(_model.totalTimeRequired).toStringAsFixed(2)} section hours",
+                          style: TextStyle(
+                            color: Color(0xFF00008B),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      '3. ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                    ),
-                    Text(
-                      'Placement of charges',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 10)
+              PlacementOfCharges(),
             ],
           ),
         ),

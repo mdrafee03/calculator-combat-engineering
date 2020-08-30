@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/reserve_demolition_summary.dart';
+import '../../../../../../../shared/widgets/heading_output.dart';
 
 class ReserveDemolitionSummaryScreen extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -16,17 +17,7 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'SUMMARY OF RESERVE DEMOLISTION',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      decoration: TextDecoration.underline),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              HeadingOutput('Summary of reserve demolition of a bridge'),
               SizedBox(
                 height: 20,
               ),
