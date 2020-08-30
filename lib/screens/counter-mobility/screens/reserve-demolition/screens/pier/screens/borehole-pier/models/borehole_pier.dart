@@ -100,10 +100,10 @@ class BoreholePier {
     return totalNoOfholes * totalCharge / 16;
   }
 
-  int get totalTimeRequired {
-    double time = (totalTime * totalNoOfholes / 2);
-    ReserveDemolitionSummary.pierTime = time / 60;
-    return time.ceil();
+  double get totalTimeRequired {
+    double time = (totalTime * totalNoOfholes / 2) / 60;
+    ReserveDemolitionSummary.pierTime = time;
+    return time;
   }
 
   double get totalAmountForAllPiers {

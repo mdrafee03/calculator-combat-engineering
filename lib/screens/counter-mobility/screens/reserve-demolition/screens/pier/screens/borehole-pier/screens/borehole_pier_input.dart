@@ -12,7 +12,7 @@ class BoreholePierInput extends StatefulWidget {
 
 class _BoreholePierInputState extends State<BoreholePierInput> {
   final appBar = AppBar(
-    title: Text('Abutment'),
+    title: Text('Borehole Charge'),
   );
 
   final _formKey = GlobalKey<FormState>();
@@ -37,22 +37,22 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration:
-                      InputDecoration(hintText: "Width", labelText: "Width"),
+                  decoration: InputDecoration(
+                      hintText: "Width", labelText: "Width (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _borehole.width = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "Thickness", labelText: "Thickness"),
+                      hintText: "Thickness", labelText: "Thickness (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _borehole.thickness = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "No of pier", labelText: "No of pier"),
+                      hintText: "No of pier", labelText: "No of pier (nos)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _borehole.noOfPier = int.parse(val)),

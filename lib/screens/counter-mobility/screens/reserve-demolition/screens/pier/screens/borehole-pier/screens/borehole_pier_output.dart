@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../models/borehole_pier.dart';
-import '../../../../../../../../../shared//models/timeHelper.dart';
 
 class BoreholePierOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
-    title: Text('Borehole Pier Result'),
+    title: Text('Borehole Charge'),
   );
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,11 @@ class BoreholePierOutput extends StatelessWidget {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  'SUMMARY OF PIER RESULT',
+                  'DEMOLITION OF PIER BY BOREHOLE CHARGE',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
+                    decoration: TextDecoration.underline,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -37,7 +37,7 @@ class BoreholePierOutput extends StatelessWidget {
                   children: [
                     Text('1. '),
                     Text(
-                      'Calculation',
+                      'Summary of Calculation',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -68,10 +68,10 @@ class BoreholePierOutput extends StatelessWidget {
                       "d. Depth of hole = ${_model.depthOfHole}''",
                     ),
                     Text(
-                      "e. Distance Between Rows = ${_model.depthOfHole}''",
+                      "e. Distance between rows of borehole = ${_model.depthOfHole}''",
                     ),
                     Text(
-                      "f. Depth of explosive to be filled = ${_model.depthOfExplosiveToBeFilled}''",
+                      "f. Depth of explosive to be filled in borehole = ${_model.depthOfExplosiveToBeFilled}''",
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,38 +84,31 @@ class BoreholePierOutput extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              if (_model.chargeAndTimeCalucation.length > 1)
+                                Text(
+                                    "(1) 2.0'' dia borehole will be filled with mud up to initial ${_model.depthOfExplosiveToBeFilled}'' depth"),
                               for (int i = 0;
                                   i < _model.chargeAndTimeCalucation.length;
                                   i++)
                                 Text(
-                                    "${String.fromCharCode(97 + i)}. ${_model.chargeAndTimeCalucation[i].dia}'' dia borehole to be made for ${_model.chargeAndTimeCalucation[i].depth}'' depth of hole")
+                                    "(${_model.chargeAndTimeCalucation.length > 1 ? i + 2 : i + 1}) ${_model.chargeAndTimeCalucation[i].dia}'' dia borehole to be filled with explosive up to initial ${_model.chargeAndTimeCalucation[i].depth}'' depth")
                             ],
                           ),
                         ),
                       ],
                     ),
                     Text(
-                      "h. Charge required in one hole = ${_model.totalCharge} oz PE",
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "i. Total Charge required in one pier",
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                                " = ${(_model.totalChargeRequiredOnePier * 16).toStringAsFixed(2)} oz"),
-                            Text(
-                                " = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb")
-                          ],
-                        )
-                      ],
+                      "h. Charge required in one hole = ${_model.totalCharge.toStringAsFixed(2)} oz PE",
                     ),
                     Text(
-                      "j. Total amount of charge required = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb",
+                      "j. Total Charge require for one pier = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb PE",
+                    ),
+                    Text(
+                      "k. Total amount of charge require for demoliton of ${_model.noOfPier} piers = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb PE",
+                      style: TextStyle(
+                        color: Color(0xFF00008B),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -154,11 +147,20 @@ class BoreholePierOutput extends StatelessWidget {
                             i < _model.chargeAndTimeCalucation.length;
                             i++)
                           Text(
-                              "${String.fromCharCode(97 + i)}. For making ${_model.chargeAndTimeCalucation[i].timeDepth}'' inch hole needs = ${_model.chargeAndTimeCalucation[i].time.toStringAsFixed(2)}'' minute")
+                              "${String.fromCharCode(97 + i)}. Time require for making ${_model.chargeAndTimeCalucation[i].timeDepth} inch borehole = ${_model.chargeAndTimeCalucation[i].time.toStringAsFixed(2)} minute")
                       ],
                     ),
                     Text(
-                      "Total time required = ${TimeHelper.minuteFormat(_model.totalTimeRequired)}",
+                        "    (Auth: ERPB 1964, Section 26, Note (i) and serial 5)"),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "${String.fromCharCode(97 + _model.chargeAndTimeCalucation.length)}. Total time requirement for demolition of ${_model.noOfPier} piers = ${_model.totalTimeRequired.toStringAsFixed(2)} hr",
+                      style: TextStyle(
+                        color: Color(0xFF00008B),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
