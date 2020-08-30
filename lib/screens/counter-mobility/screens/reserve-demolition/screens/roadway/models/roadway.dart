@@ -6,7 +6,6 @@ class Roadway {
   final dia = 20;
   final depth = 7;
   final explosivePerCrater = 70;
-  final craterIndividual = 10;
   final lineOfGroupCrater = 80;
 
   int get totalRoadCraterAlongRoadWidh {

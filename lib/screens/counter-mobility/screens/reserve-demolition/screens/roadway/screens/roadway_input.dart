@@ -36,7 +36,7 @@ class _RoadwayInputState extends State<RoadwayInput> {
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "width of the road",
-                      labelText: "width of the road"),
+                      labelText: "width of the road (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.width = double.parse(val)),
@@ -44,7 +44,7 @@ class _RoadwayInputState extends State<RoadwayInput> {
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "length of the road",
-                      labelText: "length of road "),
+                      labelText: "length of road (m)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
                       setState(() => _model.length = double.parse(val)),

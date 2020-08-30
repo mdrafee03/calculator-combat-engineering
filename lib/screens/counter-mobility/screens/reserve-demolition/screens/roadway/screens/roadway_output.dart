@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../models/roadway.dart';
+import '../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../shared/widgets/time_requirement.dart';
+import '../../../../../../../shared/widgets/placement_of_charges.dart';
 
 class RoadwayOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -16,34 +20,8 @@ class RoadwayOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'SUMMARY OF DEMOLISTION OF ROADWAY RESULT',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Calculation',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          decoration: TextDecoration.underline),
-                    ),
-                  ],
-                ),
-              ),
+              HeadingOutput("Demolition of Roadway"),
+              SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -63,7 +41,7 @@ class RoadwayOutput extends StatelessWidget {
                       "d. Individuals crater should be 80' apart",
                     ),
                     Text(
-                      "e. Line of group craters should be 80' apart",
+                      "e. Line of group craters should be 10' apart",
                     ),
                     Text(
                       "f. Total no of road crater along road width = ${_model.totalRoadCraterAlongRoadWidh}",
@@ -75,30 +53,51 @@ class RoadwayOutput extends StatelessWidget {
                       "h. Total no of Road crater = ${_model.totalRoadCrater} Nos",
                     ),
                     Text(
-                      "i. Amount of charge required = ${_model.totalCharge.toStringAsFixed(2)} lb PE",
+                      "j. Amount of charge required = ${_model.totalCharge.toStringAsFixed(2)} lb PE",
                     ),
-                    Row(
+                  ],
+                ),
+              ),
+              TimeRequirement(),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      "a. Time require for road crater",
+                      style: TextStyle(
+                        color: Color(0xFF00008B),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "j. Time required ",
+                          "= ${_model.totalTimeRequiredPerSection} section hours ",
+                          style: TextStyle(
+                            color: Color(0xFF00008B),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "= ${_model.totalTimeRequiredPerSection} section hrs",
-                            ),
-                            Text(
-                              "= ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours",
-                            )
-                          ],
-                        )
+                        Text(
+                          "= ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours",
+                          style: TextStyle(
+                            color: Color(0xFF00008B),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              PlacementOfCharges(),
             ],
           ),
         ),
