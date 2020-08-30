@@ -243,6 +243,9 @@ class AbutmentOutput extends StatelessWidget {
                           Text(
                             "(Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
