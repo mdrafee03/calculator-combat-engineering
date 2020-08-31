@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/widgets/section_heading.dart';
 import 'package:flutter/material.dart';
 
 import '../models/reserve_demolition_summary.dart';
@@ -55,6 +56,14 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
+                ),
+              ),
+              SectionHeading(
+                  '4. ', 'Placement of various charges for demolition'),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/sum.png',
+                  fit: BoxFit.cover,
                 ),
               ),
             ],
