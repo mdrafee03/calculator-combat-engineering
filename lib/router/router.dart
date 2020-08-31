@@ -1,5 +1,3 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_input.dart';
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_output.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/counter-mobility/counter_mobility.dart';
@@ -22,6 +20,8 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/span-beam
 import '../screens/counter-mobility/screens/reserve-demolition/screens/roadway/screens/roadway_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/roadway/screens/roadway_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/summary/screens/reserve_demolition_summary_screen.dart';
+import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_input.dart';
+import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_output.dart';
 import './route_const.dart';
 
 class Router {

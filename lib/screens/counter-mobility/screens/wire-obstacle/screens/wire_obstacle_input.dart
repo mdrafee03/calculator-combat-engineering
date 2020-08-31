@@ -1,7 +1,8 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/models/wire_obstacle.dart';
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/models/wire_obstacle_task.dart';
-import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+
+import '../models/wire_obstacle.dart';
+import '../models/wire_obstacle_task.dart';
 
 import 'package:combat_engineering/router/route_const.dart';
 

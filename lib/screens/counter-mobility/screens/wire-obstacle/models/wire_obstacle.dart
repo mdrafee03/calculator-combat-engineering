@@ -1,5 +1,5 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/models/wire_obstacle_task.dart';
 import '../../../../../shared/extension-methods/double_apis.dart';
+import './wire_obstacle_task.dart';
 
 enum PartsOfDay { Day, Night }
 
@@ -21,7 +21,13 @@ class WireObstacle {
 
   int getValueBySection(int type) {
     int value = type * section;
-    print(type);
     return (value * 1.1).toDoubleAsPrecision().ceil();
+  }
+
+  double get timeRequire {
+    int timePer100 =
+        time == PartsOfDay.Day ? task.timesForday : task.timesForNight;
+    double totalHour = timePer100 * frontage / 100 / section / 60;
+    return totalHour >= 1 ? totalHour : 1;
   }
 }

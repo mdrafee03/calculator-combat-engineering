@@ -1,7 +1,8 @@
-import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/models/wire_obstacle.dart';
-import 'package:combat_engineering/shared/widgets/heading_output.dart';
-import 'package:combat_engineering/shared/widgets/section_heading.dart';
 import 'package:flutter/material.dart';
+
+import '../models/wire_obstacle.dart';
+import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/section_heading.dart';
 
 class WireObstacleOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -19,7 +20,7 @@ class WireObstacleOutput extends StatelessWidget {
           child: Column(
             children: [
               HeadingOutput('Summary of Wire Obstacle'),
-              SectionHeading('1. ', _model.task.task),
+              SectionHeading('1. ', "Store Calculation"),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -72,7 +73,36 @@ class WireObstacleOutput extends StatelessWidget {
                       ),
                   ],
                 ),
-              )
+              ),
+              SectionHeading('2. ', "Time Calculation"),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Time require = ${_model.timeRequire.toStringAsFixed(2)} platoon hours in ${_model.time == PartsOfDay.Day ? "Day" : "Dark Night"}",
+                    ),
+                  ],
+                ),
+              ),
+              SectionHeading('3. ', "Manpower Calculation"),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "(1) ${_model.section}x section each having ${_model.task.nco} NCO and ${_model.task.men} men",
+                    ),
+                    Text(
+                      "(2) This group will form ${_model.task.group}",
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
