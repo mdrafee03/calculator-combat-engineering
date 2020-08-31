@@ -1,3 +1,7 @@
+import 'package:combat_engineering/shared/widgets/heading_output.dart';
+import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
+import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
+import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
 
 import '../models/abutment.dart';
@@ -15,17 +19,7 @@ class AbutmentOutput extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.all(10),
             child: Column(children: [
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'SUMMARY OF ABUTMENT DEMOLITION',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      decoration: TextDecoration.underline),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              HeadingOutput('Summary of abutment demolition'),
               SizedBox(
                 height: 20,
               ),
@@ -155,28 +149,7 @@ class AbutmentOutput extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          Text('1. '),
-                          Text(
-                            'Summary of Calculation',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    SummaryOfCalculation(),
                     Container(
                       padding: EdgeInsets.only(left: 20),
                       alignment: Alignment.topLeft,
@@ -210,27 +183,7 @@ class AbutmentOutput extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          Text('2. '),
-                          Text(
-                            'Time Requirement',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                decoration: TextDecoration.underline),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    TimeRequirement(),
                     Container(
                       padding: EdgeInsets.only(left: 20),
                       alignment: Alignment.topLeft,
@@ -280,22 +233,11 @@ class AbutmentOutput extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    PlacementOfCharges(),
                     Container(
-                      alignment: Alignment.topLeft,
-                      child: Row(
-                        children: [
-                          Text('3. '),
-                          Text(
-                            'Placement of Charge',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                decoration: TextDecoration.underline),
-                          ),
-                        ],
+                      child: Image.asset(
+                        'assets/images/reserve-demolition/abutment.png',
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ],
