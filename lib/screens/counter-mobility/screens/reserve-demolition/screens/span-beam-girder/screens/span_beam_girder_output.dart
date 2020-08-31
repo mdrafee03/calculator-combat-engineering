@@ -92,6 +92,24 @@ class SpanBeamGirderOutput extends StatelessWidget {
                 ),
               ),
               PlacementOfCharges(),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/span_beam_girder1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/span_beam_girder2.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/span_beam_girder3.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ],
           ),
         ),

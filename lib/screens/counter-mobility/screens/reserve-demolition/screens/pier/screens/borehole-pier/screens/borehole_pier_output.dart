@@ -120,6 +120,12 @@ class BoreholePierOutput extends StatelessWidget {
                 ),
               ),
               PlacementOfCharges(),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/borehole1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ],
           ),
         ),
