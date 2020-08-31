@@ -24,10 +24,14 @@ class WireObstacle {
     return (value * 1.1).toDoubleAsPrecision().ceil();
   }
 
-  double get timeRequire {
+  double get timeRequirePerSection {
     int timePer100 =
         time == PartsOfDay.Day ? task.timesForday : task.timesForNight;
-    double totalHour = timePer100 * frontage / 100 / section / 60;
-    return totalHour >= 1 ? totalHour : 1;
+    return timePer100 * frontage / 100 / section / 60;
+  }
+
+  double get totalTimeRequire {
+    double time = timeRequirePerSection / 4;
+    return time <= 1 ? 1 : time;
   }
 }

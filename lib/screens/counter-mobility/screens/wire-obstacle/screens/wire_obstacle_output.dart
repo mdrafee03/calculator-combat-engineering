@@ -79,11 +79,21 @@ class WireObstacleOutput extends StatelessWidget {
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "Time require = ${_model.timeRequire.toStringAsFixed(2)} platoon hours in ${_model.time == PartsOfDay.Day ? "Day" : "Dark Night"}",
+                      "Time require in ${_model.time == PartsOfDay.Day ? "Day" : "Dark Night"} ",
                     ),
+                    Column(
+                      children: [
+                        Text(
+                          "= ${_model.timeRequirePerSection.toStringAsFixed(2)} Section hours ",
+                        ),
+                        Text(
+                          "= ${_model.totalTimeRequire.toStringAsFixed(2)} platoon hours ",
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
