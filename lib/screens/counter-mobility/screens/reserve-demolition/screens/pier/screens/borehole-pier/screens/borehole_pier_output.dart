@@ -126,6 +126,12 @@ class BoreholePierOutput extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/borehole2.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ],
           ),
         ),
