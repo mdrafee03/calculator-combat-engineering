@@ -17,12 +17,12 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _borehole = BoreholePier();
+  final _model = BoreholePier();
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
-    Navigator.pushNamed(context, boreholePierOutput, arguments: _borehole);
+    Navigator.pushNamed(context, boreholePierOutput, arguments: _model);
   }
 
   @override
@@ -41,26 +41,26 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
                       hintText: "Width", labelText: "Width (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
-                      setState(() => _borehole.width = double.parse(val)),
+                      setState(() => _model.width = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Thickness", labelText: "Thickness (ft)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
-                      setState(() => _borehole.thickness = double.parse(val)),
+                      setState(() => _model.thickness = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "No of pier", labelText: "No of pier (nos)"),
                   keyboardType: TextInputType.number,
                   onSaved: (val) =>
-                      setState(() => _borehole.noOfPier = int.parse(val)),
+                      setState(() => _model.noOfPier = int.parse(val)),
                 ),
                 DropDownFormField(
                   titleText: 'Type of Pier',
                   hintText: 'Type of Pier',
-                  value: _borehole.typeOfBoreholePier,
+                  value: _model.typeOfBoreholePier,
                   filled: false,
                   dataSource: typesOfBoreholePier
                       .map(
@@ -68,8 +68,8 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
                       .toList(),
                   onChanged: (BoreholePierType value) {
                     setState(() {
-                      _borehole.typeOfBoreholePier = value;
-                      _borehole.row = value.row;
+                      _model.typeOfBoreholePier = value;
+                      _model.row = value.row;
                     });
                   },
                   textField: 'display',

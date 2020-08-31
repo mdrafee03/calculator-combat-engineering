@@ -1,3 +1,5 @@
+import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_input.dart';
+import 'package:combat_engineering/screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_output.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/counter-mobility/counter_mobility.dart';
@@ -46,6 +48,8 @@ class Router {
       roadwayOutput: (BuildContext ctx) => RoadwayOutput(),
       reserveDemolitionSummary: (BuildContext ctx) =>
           ReserveDemolitionSummaryScreen(),
+      wireObstacleInput: (BuildContext ctx) => WireObstacleInput(),
+      wireObstacleOuput: (BuildContext ctx) => WireObstacleOutput(),
     };
   }
 }
