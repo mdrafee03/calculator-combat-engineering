@@ -8,6 +8,7 @@ class WireObstacleTask {
   int nco;
   int men;
   String group;
+  List<String> images;
   int barbedWire;
   int barbedWireConcertina;
   int baredWireCoil;
@@ -27,6 +28,7 @@ class WireObstacleTask {
     @required this.nco,
     @required this.men,
     @required this.group,
+    @required this.images,
     this.barbedWire,
     this.barbedWireConcertina,
     this.baredWireCoil,
@@ -50,6 +52,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 1,
     men: 10,
     group: "TF-A",
+    images: ["assets/images/wire-obstacle/double_apron.png"],
     barbedWire: 13,
     longPiquet: 40,
     shortPiquet: 82,
@@ -65,6 +68,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 1,
     men: 10,
     group: "TF-B",
+    images: ["assets/images/wire-obstacle/catwire3.png"],
     barbedWireConcertina: 30,
     baredWireCoil: 12,
     longPiquet: 128,
@@ -77,6 +81,10 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 1,
     men: 7,
     group: "TF-3",
+    images: [
+      "assets/images/wire-obstacle/triple_conc1.png",
+      "assets/images/wire-obstacle/triple_conc2.png"
+    ],
     barbedWireConcertina: 18,
     baredWireCoil: 2,
     longPiquet: 52,
@@ -92,6 +100,10 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 2,
     men: 14,
     group: "TF-D",
+    images: [
+      "assets/images/wire-obstacle/highwire1.png",
+      "assets/images/wire-obstacle/highwire2.png"
+    ],
     barbedWireConcertina: 32,
     baredWireCoil: 19,
     longPiquet: 80,
@@ -108,6 +120,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 1,
     men: 10,
     group: "TF-B",
+    images: ["assets/images/wire-obstacle/catwire2.png"],
     concertinaCoil: 24,
     baredWireCoil: 9,
     longPicket: 96,
@@ -123,6 +136,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     nco: 1,
     men: 10,
     group: "TF-B",
+    images: ["assets/images/wire-obstacle/catwire1.png"],
     concertinaCoil: 12,
     baredWireCoil: 6,
     longPicket: 16,

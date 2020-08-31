@@ -113,6 +113,17 @@ class WireObstacleOutput extends StatelessWidget {
                   ],
                 ),
               ),
+              SectionHeading('4. ', "Layout of ${_model.task.task}"),
+              Column(
+                children: _model.task.images.map((item) {
+                  return Container(
+                    child: Image.asset(
+                      item,
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                }).toList(),
+              )
             ],
           ),
         ),
