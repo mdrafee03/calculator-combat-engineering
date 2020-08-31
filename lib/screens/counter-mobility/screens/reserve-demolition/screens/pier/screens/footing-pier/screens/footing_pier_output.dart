@@ -126,7 +126,13 @@ class FootingPierOutput extends StatelessWidget {
               PlacementOfCharges(),
               Container(
                 child: Image.asset(
-                  'assets/images/reserve-demolition/pier_footing_charge.png',
+                  'assets/images/reserve-demolition/pier_footing_charge1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                child: Image.asset(
+                  'assets/images/reserve-demolition/pier_footing_charge2.png',
                   fit: BoxFit.cover,
                 ),
               ),
