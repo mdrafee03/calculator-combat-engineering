@@ -52,8 +52,8 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
                       setState(() => _model.section = int.parse(val)),
                 ),
                 DropDownFormField(
-                  titleText: 'time',
-                  hintText: 'time',
+                  titleText: 'Time',
+                  hintText: 'Time',
                   value: _model.time,
                   filled: false,
                   dataSource: [
@@ -69,8 +69,8 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
                   valueField: 'value',
                 ),
                 DropDownFormField(
-                  titleText: 'task',
-                  hintText: 'task',
+                  titleText: 'Type of Wire Obstacle',
+                  hintText: 'Type of Wire Obstacle',
                   value: _model.task,
                   filled: false,
                   dataSource: listOfWireObstackleTasks

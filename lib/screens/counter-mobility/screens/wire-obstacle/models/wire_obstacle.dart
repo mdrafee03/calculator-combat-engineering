@@ -31,7 +31,7 @@ class WireObstacle {
   }
 
   double get totalTimeRequire {
-    double time = timeRequirePerSection / 4;
+    double time = timeRequirePerSection * section / 4;
     return time <= 1 ? 1 : time;
   }
 }

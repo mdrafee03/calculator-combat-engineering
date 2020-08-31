@@ -90,7 +90,7 @@ class WireObstacleOutput extends StatelessWidget {
                           "= ${_model.timeRequirePerSection.toStringAsFixed(2)} Section hours ",
                         ),
                         Text(
-                          "= ${_model.totalTimeRequire.toStringAsFixed(2)} platoon hours ",
+                          "= ${_model.totalTimeRequire.toStringAsFixed(2)} Platoon hours ",
                         ),
                       ],
                     )
