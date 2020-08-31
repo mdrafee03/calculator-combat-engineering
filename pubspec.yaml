@@ -20,6 +20,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/reserve-demolition/
+    - assets/images/wire-obstacle/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
