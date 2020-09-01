@@ -22,6 +22,9 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/roadway/s
 import '../screens/counter-mobility/screens/reserve-demolition/screens/summary/screens/reserve_demolition_summary_screen.dart';
 import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_input.dart';
 import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_output.dart';
+import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_input.dart';
+import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_output.dart';
+
 import './route_const.dart';
 
 class Router {
@@ -50,6 +53,8 @@ class Router {
           ReserveDemolitionSummaryScreen(),
       wireObstacleInput: (BuildContext ctx) => WireObstacleInput(),
       wireObstacleOuput: (BuildContext ctx) => WireObstacleOutput(),
+      antiTankInput: (BuildContext ctx) => AntiTankInput(),
+      antiTankOuput: (BuildContext ctx) => AntiTankOutput(),
     };
   }
 }
