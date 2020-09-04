@@ -25,5 +25,6 @@ const String reserveDemolitionSummary = '/reserve-demolition/summary';
 const String wireObstacleList = '/wire-obstacle';
 const String wireObstacleInput = '/wire-obstacle/input';
 const String wireObstacleOuput = '/wire-obstacle/output';
-const String antiTankInput = '/anti-tank';
+const String antiTankList = '/anti-tank';
+const String antiTankInput = '/anti-tank/input';
 const String antiTankOuput = '/anti-tank/output';

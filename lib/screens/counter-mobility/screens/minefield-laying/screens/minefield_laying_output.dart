@@ -16,7 +16,6 @@ class MinefieldLayingOutput extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.list),
           onPressed: () {
-            Navigator.pushNamed(context, minefieldLayingList);
             Navigator.pushNamedAndRemoveUntil(
               context,
               minefieldLayingList,

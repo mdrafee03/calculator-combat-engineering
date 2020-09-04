@@ -23,7 +23,7 @@ class CounterMobilityScreen extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Wire Obstacle', wireObstacleList),
             SizedBox(height: 10),
-            Button(context, 'Anti-tank ditch', antiTankInput),
+            Button(context, 'Anti-tank ditch', antiTankList),
             SizedBox(height: 10),
             Button(context, 'Combined Engineer Project', counterMobilityScreen),
           ],

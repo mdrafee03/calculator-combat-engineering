@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 
-import '../models/anti_tank.dart';
+import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/heading_output.dart';
 import '../../../../../shared/widgets/section_heading.dart';
 import '../../../../../shared/widgets/summary_of_calculation.dart';
 import '../../../../../shared/widgets/time_requirement.dart';
+import '../models/anti_tank.dart';
 
 class AntiTankOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Anti Tank Ditch'),
-  );
   @override
   Widget build(BuildContext context) {
     final AntiTank _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Anti Tank Ditch'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              antiTankList,
+              ModalRoute.withName(counterMobilityScreen),
+            );
+          },
+        )
+      ],
+    );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
