@@ -9,17 +9,20 @@ import '../models/minefield_laying.dart';
 class MinefieldLayingOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MinefieldLaying _minefieldLaying =
-        ModalRoute.of(context).settings.arguments;
+    final MinefieldLaying _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
       title: Text('Minefield Laying Result'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
-          onPressed: () => Navigator.popUntil(
-            context,
-            ModalRoute.withName(minefieldLayingList),
-          ),
+          onPressed: () {
+            Navigator.pushNamed(context, minefieldLayingList);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              minefieldLayingList,
+              ModalRoute.withName(counterMobilityScreen),
+            );
+          },
         )
       ],
     );
@@ -39,13 +42,13 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Number of Strips = ${_minefieldLaying.numberOfStrips}",
+                      "a. Number of Strips = ${_model.numberOfStrips}",
                     ),
                     Text(
-                      "b. Number of Anti-Tank Strips = ${_minefieldLaying.numberOfAntiTankStrips}",
+                      "b. Number of Anti-Tank Strips = ${_model.numberOfAntiTankStrips}",
                     ),
                     Text(
-                      "c. Number of Mixed Strips = ${_minefieldLaying.numberOfMixedStrip.ceil()}",
+                      "c. Number of Mixed Strips = ${_model.numberOfMixedStrip.ceil()}",
                     ),
                   ],
                 ),
@@ -58,10 +61,10 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Number of Anti-Tank Mines = ${_minefieldLaying.antiTankMines}",
+                      "a. Number of Anti-Tank Mines = ${_model.antiTankMines}",
                     ),
                     Text(
-                      "b. Number of Anti-Personnel Mines = ${_minefieldLaying.antiPersonnelMines}",
+                      "b. Number of Anti-Personnel Mines = ${_model.antiPersonnelMines}",
                     ),
                   ],
                 ),
@@ -74,19 +77,19 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Long Pickets = ${_minefieldLaying.longPicket}",
+                      "a. Long Pickets = ${_model.longPicket}",
                     ),
                     Text(
-                      "b. Short Pickets = ${_minefieldLaying.shortPicket}",
+                      "b. Short Pickets = ${_model.shortPicket}",
                     ),
                     Text(
-                      "c. Barbed Wire = ${_minefieldLaying.barbedWire}",
+                      "c. Barbed Wire = ${_model.barbedWire}",
                     ),
                     Text(
-                      "d. Perimeter Sign Posting = ${_minefieldLaying.perimeterSignPosting}",
+                      "d. Perimeter Sign Posting = ${_model.perimeterSignPosting}",
                     ),
                     Text(
-                      "e. Tracing Tape = ${_minefieldLaying.tracingTape}",
+                      "e. Tracing Tape = ${_model.tracingTape}",
                     ),
                   ],
                 ),
@@ -99,13 +102,13 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. For Anti-Tank Mines = ${_minefieldLaying.totalLorryForAntiTankMine}x 3-ton lorry",
+                      "a. For Anti-Tank Mines = ${_model.totalLorryForAntiTankMine}x 3-ton lorry",
                     ),
                     Text(
-                      "b. For Anti-Personnel Mines = ${_minefieldLaying.totalLorryForAntiPersonnelMine}x 3-ton lorry",
+                      "b. For Anti-Personnel Mines = ${_model.totalLorryForAntiPersonnelMine}x 3-ton lorry",
                     ),
                     Text(
-                      "c. For Perimeter Fencing = ${_minefieldLaying.totalLorryForStores}x 3-ton lorry",
+                      "c. For Perimeter Fencing = ${_model.totalLorryForStores}x 3-ton lorry",
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -117,7 +120,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "= ${_minefieldLaying.totalLorryForPersonnel}x 3-ton lorry",
+                              "= ${_model.totalLorryForPersonnel}x 3-ton lorry",
                             ),
                             Text("= 1x 1/4-ton Jeep"),
                             Text("= 1x 1-ton pickup"),
@@ -127,7 +130,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "e. Total 3-ton Require = ${(_minefieldLaying.totalLorryForPersonnel + _minefieldLaying.totalLorryForAntiTankMine + _minefieldLaying.totalLorryForAntiPersonnelMine + _minefieldLaying.totalLorryForStores)}",
+                      "e. Total 3-ton Require = ${(_model.totalLorryForPersonnel + _model.totalLorryForAntiTankMine + _model.totalLorryForAntiPersonnelMine + _model.totalLorryForStores)}",
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -155,13 +158,13 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Start Time = ${_minefieldLaying.hourFormat(_minefieldLaying.lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == _minefieldLaying.dDay).title})",
+                      "a. Start Time = ${_model.hourFormat(_model.lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == _model.dDay).title})",
                     ),
                     Text(
-                      "b. Completion Time = ${_minefieldLaying.timeRequired.completionTime}",
+                      "b. Completion Time = ${_model.timeRequired.completionTime}",
                     ),
                     Text(
-                      "c. Total Time Require = ${_minefieldLaying.timeRequired.timeRequiredInMinutes}",
+                      "c. Total Time Require = ${_model.timeRequired.timeRequiredInMinutes}",
                     ),
                   ],
                 ),

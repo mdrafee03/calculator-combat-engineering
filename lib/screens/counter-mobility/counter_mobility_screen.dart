@@ -21,7 +21,7 @@ class CounterMobilityScreen extends StatelessWidget {
             Button(
                 context, 'Reserve Demolition of a Bridge', reserveDemolition),
             SizedBox(height: 10),
-            Button(context, 'Wire Obstacle', wireObstacleInput),
+            Button(context, 'Wire Obstacle', wireObstacleList),
             SizedBox(height: 10),
             Button(context, 'Anti-tank ditch', antiTankInput),
             SizedBox(height: 10),

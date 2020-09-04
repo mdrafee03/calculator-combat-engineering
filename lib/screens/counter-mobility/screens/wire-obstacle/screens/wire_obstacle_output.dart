@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/wire_obstacle.dart';
+import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/heading_output.dart';
 import '../../../../../shared/widgets/section_heading.dart';
+import '../models/wire_obstacle.dart';
 
 class WireObstacleOutput extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -11,6 +12,21 @@ class WireObstacleOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final WireObstacle _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Minefield Laying Result'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              wireObstacleList,
+              ModalRoute.withName(counterMobilityScreen),
+            );
+          },
+        )
+      ],
+    );
     _model.sl = 0;
     return Scaffold(
       appBar: appbar,

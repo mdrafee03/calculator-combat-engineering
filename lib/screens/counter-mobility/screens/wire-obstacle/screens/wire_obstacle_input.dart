@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
+import '../../../../../router/route_const.dart';
+import '../../../models/counter_mobility.dart';
 import '../models/wire_obstacle.dart';
 import '../models/wire_obstacle_task.dart';
-
-import 'package:combat_engineering/router/route_const.dart';
 
 class WireObstacleInput extends StatefulWidget {
   @override
@@ -18,16 +18,19 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _model = WireObstacle();
-
-  void handleSubmit(BuildContext context) {
-    final form = _formKey.currentState;
-    form.save();
-    Navigator.pushNamed(context, wireObstacleOuput, arguments: _model);
-  }
-
   @override
   Widget build(BuildContext context) {
+    WireObstacle _model = ModalRoute.of(context).settings.arguments;
+    void handleSubmit(BuildContext context) {
+      final form = _formKey.currentState;
+      form.save();
+      var isEdit = CounterMobility.listOfWireObstacle.contains(_model);
+      if (isEdit == false) {
+        CounterMobility.listOfWireObstacle.add(_model);
+      }
+      Navigator.pushNamed(context, wireObstacleOuput, arguments: _model);
+    }
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -41,6 +44,9 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
                   decoration: InputDecoration(
                       hintText: "Frontage", labelText: "Frontage (yard)"),
                   keyboardType: TextInputType.number,
+                  initialValue: _model.frontage != null
+                      ? _model.frontage.toString()
+                      : null,
                   onSaved: (val) =>
                       setState(() => _model.frontage = double.parse(val)),
                 ),
@@ -48,6 +54,8 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
                   decoration: InputDecoration(
                       hintText: "Section", labelText: "Section (nos)"),
                   keyboardType: TextInputType.number,
+                  initialValue:
+                      _model.section != null ? _model.section.toString() : null,
                   onSaved: (val) =>
                       setState(() => _model.section = int.parse(val)),
                 ),
