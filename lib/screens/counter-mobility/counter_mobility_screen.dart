@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../router/route_const.dart';
 import '../../shared/widgets/button.dart';
 
-class CounterMobility extends StatelessWidget {
+class CounterMobilityScreen extends StatelessWidget {
   final appBar = AppBar(
     title: Text('Counter Mobility'),
   );
@@ -16,7 +16,7 @@ class CounterMobility extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Button(context, 'Minefield Laying', minefieldLayingInput),
+            Button(context, 'Minefield Laying', minefieldLayingList),
             SizedBox(height: 10),
             Button(
                 context, 'Reserve Demolition of a Bridge', reserveDemolition),
@@ -25,7 +25,7 @@ class CounterMobility extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Anti-tank ditch', antiTankInput),
             SizedBox(height: 10),
-            Button(context, 'Combined Engineer Project', counterMobility),
+            Button(context, 'Combined Engineer Project', counterMobilityScreen),
           ],
         ),
       ),

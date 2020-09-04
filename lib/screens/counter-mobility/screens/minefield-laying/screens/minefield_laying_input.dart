@@ -1,6 +1,7 @@
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/counter_mobility.dart';
 import '../models/moon_lit.dart';
 import '../../../../../router/route_const.dart';
 import '../models/minefield_laying.dart';
@@ -17,17 +18,22 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final _minefieldLaying = MinefieldLaying();
-
-  void handleSubmit(BuildContext context) {
-    final form = _formKey.currentState;
-    form.save();
-    Navigator.pushNamed(context, minefieldLayingOutput,
-        arguments: _minefieldLaying);
-  }
-
   @override
   Widget build(BuildContext context) {
+    MinefieldLaying _minefieldLaying =
+        ModalRoute.of(context).settings.arguments;
+    void handleSubmit(BuildContext context) {
+      final form = _formKey.currentState;
+      form.save();
+      var isExist =
+          CounterMobility.listOfMinefieldLaying.indexOf(_minefieldLaying);
+      if (isExist == -1) {
+        CounterMobility.listOfMinefieldLaying.add(_minefieldLaying);
+      }
+      Navigator.pushNamed(context, minefieldLayingOutput,
+          arguments: _minefieldLaying);
+    }
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -39,8 +45,13 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
               children: [
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "Frontage", labelText: "Frontage"),
+                    hintText: "Frontage",
+                    labelText: "Frontage",
+                  ),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.frontage != null
+                      ? _minefieldLaying.frontage.toString()
+                      : null,
                   onSaved: (val) => setState(
                       () => _minefieldLaying.frontage = double.parse(val)),
                 ),
@@ -48,12 +59,18 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   decoration:
                       InputDecoration(hintText: "Depth", labelText: "Depth"),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.depth != null
+                      ? _minefieldLaying.depth.toString()
+                      : null,
                   onSaved: (val) => setState(
                       () => _minefieldLaying.depth = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Density", labelText: "Density"),
+                  initialValue: _minefieldLaying.density != null
+                      ? _minefieldLaying.density.toString()
+                      : null,
                   onSaved: (val) => setState(
                     () => _minefieldLaying.density =
                         _minefieldLaying.convertToFraction(val),
@@ -64,48 +81,68 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                       hintText: "Number of mixed strip",
                       labelText: "Number of mixed strip"),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.numberOfMixedStrip != null
+                      ? _minefieldLaying.numberOfMixedStrip.toString()
+                      : null,
                   onSaved: (val) => setState(() =>
-                      _minefieldLaying.numberOfMixedStrip = double.parse(val)),
+                      _minefieldLaying.numberOfMixedStrip = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Number of IOE group",
                       labelText: "Number of IOE group"),
                   keyboardType: TextInputType.number,
-                  onSaved: (val) => setState(() =>
-                      _minefieldLaying.numberOfIOEGroup = double.parse(val)),
+                  initialValue: _minefieldLaying.numberOfIOEGroup != null
+                      ? _minefieldLaying.numberOfIOEGroup.toString()
+                      : null,
+                  onSaved: (val) => setState(
+                      () => _minefieldLaying.numberOfIOEGroup = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Number of Cluster per group",
                       labelText: "Number of Cluster per group"),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.numberOfClusterPerGroup != null
+                      ? _minefieldLaying.numberOfClusterPerGroup.toString()
+                      : null,
                   onSaved: (val) => setState(() => _minefieldLaying
-                      .numberOfClusterPerGroup = double.parse(val)),
+                      .numberOfClusterPerGroup = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Total turning points",
                       labelText: "Total turning points (TP) (per strip)"),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.totalTurningPointsPerStrip !=
+                          null
+                      ? _minefieldLaying.totalTurningPointsPerStrip.toString()
+                      : null,
                   onSaved: (val) => setState(() => _minefieldLaying
-                      .totalTurningPointsPerStrip = double.parse(val)),
+                      .totalTurningPointsPerStrip = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Number of Field Engineer platoon",
                       labelText: "Number of Field Engineer platoon"),
                   keyboardType: TextInputType.number,
+                  initialValue:
+                      _minefieldLaying.noOfFieldEngineerPlatoon != null
+                          ? _minefieldLaying.noOfFieldEngineerPlatoon.toString()
+                          : null,
                   onSaved: (val) => setState(() => _minefieldLaying
-                      .noOfFieldEngineerPlatoon = double.parse(val)),
+                      .noOfFieldEngineerPlatoon = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "Number of Infantry platoon",
                       labelText: "Number of Infantry platoon"),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.noOfInfantryPlatoon != null
+                      ? _minefieldLaying.noOfInfantryPlatoon.toString()
+                      : null,
                   onSaved: (val) => setState(() =>
-                      _minefieldLaying.noOfInfantryPlatoon = double.parse(val)),
+                      _minefieldLaying.noOfInfantryPlatoon = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -114,8 +151,13 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                       labelText:
                           "No of Engineer Platoon Assisted By Infantry platoon"),
                   keyboardType: TextInputType.number,
+                  initialValue:
+                      _minefieldLaying.noOfAssistedByInfantryPlatoon != null
+                          ? _minefieldLaying.noOfAssistedByInfantryPlatoon
+                              .toString()
+                          : null,
                   onSaved: (val) => setState(() => _minefieldLaying
-                      .noOfAssistedByInfantryPlatoon = double.parse(val)),
+                      .noOfAssistedByInfantryPlatoon = int.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -123,13 +165,16 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                     labelText: "Trip Wire of Mixed Cluster (%)",
                   ),
                   keyboardType: TextInputType.number,
+                  initialValue: _minefieldLaying.percentageOfTripWire != null
+                      ? _minefieldLaying.percentageOfTripWire.toString()
+                      : null,
                   onSaved: (val) => setState(() => _minefieldLaying
                       .percentageOfTripWire = double.parse(val)),
                 ),
                 DropDownFormField(
                   titleText: 'Type of Anti Tank Mine',
                   hintText: 'Type of Anti Tank Mine',
-                  value: _minefieldLaying.antiTankMinePerLorry,
+                  value: _minefieldLaying.noOfantiTankMinePerLorry,
                   filled: false,
                   dataSource: [
                     {
@@ -143,7 +188,7 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   ],
                   onChanged: (int value) {
                     setState(() {
-                      _minefieldLaying.antiTankMinePerLorry = value.toDouble();
+                      _minefieldLaying.noOfantiTankMinePerLorry = value;
                     });
                   },
                   textField: 'display',
@@ -152,7 +197,7 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                 DropDownFormField(
                   titleText: 'Type of Anti Personnel Mine',
                   hintText: 'Type of Anti Personnel Mine',
-                  value: _minefieldLaying.antiPersonnelMinePerLorry,
+                  value: _minefieldLaying.noOfantiPersonnelMinePerLorry,
                   filled: false,
                   dataSource: [
                     {
@@ -166,8 +211,7 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   ],
                   onChanged: (int value) {
                     setState(() {
-                      _minefieldLaying.antiPersonnelMinePerLorry =
-                          value.toDouble();
+                      _minefieldLaying.noOfantiPersonnelMinePerLorry = value;
                     });
                   },
                   textField: 'display',

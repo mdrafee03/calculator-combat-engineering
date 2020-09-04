@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../screens/counter-mobility/counter_mobility.dart';
-import '../screens/mobility/mobility.dart';
-import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_input.dart';
 import '../screens/home.dart';
+import '../screens/counter-mobility/counter_mobility_screen.dart';
+import '../screens/mobility/mobility.dart';
+import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_list.dart';
+import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_input.dart';
 import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/reserve_demolition.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/screens/abutment_input.dart';
@@ -32,7 +33,8 @@ class Router {
     return <String, WidgetBuilder>{
       home: (BuildContext ctx) => Home(),
       mobility: (BuildContext ctx) => Mobility(),
-      counterMobility: (BuildContext ctx) => CounterMobility(),
+      counterMobilityScreen: (BuildContext ctx) => CounterMobilityScreen(),
+      minefieldLayingList: (BuildContext ctx) => MinefieldLayingList(),
       minefieldLayingInput: (BuildContext ctx) => MineFieldLayingInput(),
       minefieldLayingOutput: (BuildContext ctx) => MinefieldLayingOutput(),
       reserveDemolition: (BuildContext ctx) => ReserveDemolition(),

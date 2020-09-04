@@ -1,7 +1,8 @@
 const String home = '/';
 const String mobility = '/mobility';
-const String counterMobility = '/counter-mobility';
-const String minefieldLayingInput = '/minefield-laying';
+const String counterMobilityScreen = '/counter-mobility';
+const String minefieldLayingList = '/minefield-laying';
+const String minefieldLayingInput = '/minefield-laying/input';
 const String minefieldLayingOutput = '/minefield-laying/output';
 const String reserveDemolition = '/reserve-demolition';
 const String abutmentInput = '/reserve-demolition/abutment';

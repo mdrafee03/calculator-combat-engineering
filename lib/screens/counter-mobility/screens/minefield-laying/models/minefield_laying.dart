@@ -27,16 +27,16 @@ class MinefieldLaying {
   double frontage;
   double depth;
   Fraction density;
-  double numberOfMixedStrip;
-  double numberOfIOEGroup;
-  double numberOfClusterPerGroup;
-  double totalTurningPointsPerStrip;
-  double noOfFieldEngineerPlatoon;
-  double noOfInfantryPlatoon = 0;
-  double noOfAssistedByInfantryPlatoon = 0;
+  int numberOfMixedStrip;
+  int numberOfIOEGroup;
+  int numberOfClusterPerGroup;
+  int totalTurningPointsPerStrip;
+  int noOfFieldEngineerPlatoon;
+  int noOfInfantryPlatoon = 0;
+  int noOfAssistedByInfantryPlatoon = 0;
   double percentageOfTripWire;
-  double antiTankMinePerLorry;
-  double antiPersonnelMinePerLorry;
+  int noOfantiTankMinePerLorry;
+  int noOfantiPersonnelMinePerLorry;
   OuterStrip typeOfOuterStrip;
   int dDay;
   TimeOfDay firstLight = TimeOfDay.now();
@@ -108,11 +108,13 @@ class MinefieldLaying {
   }
 
   int get totalLorryForAntiTankMine {
-    return (antiTankMines / antiTankMinePerLorry).toDoubleAsPrecision().ceil();
+    return (antiTankMines / noOfantiTankMinePerLorry)
+        .toDoubleAsPrecision()
+        .ceil();
   }
 
   int get totalLorryForAntiPersonnelMine {
-    return (antiPersonnelMines / antiPersonnelMinePerLorry)
+    return (antiPersonnelMines / noOfantiPersonnelMinePerLorry)
         .toDoubleAsPrecision()
         .ceil();
   }

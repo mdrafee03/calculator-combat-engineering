@@ -15,21 +15,12 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Button(
-              context,
-              'COUNTER MOBILITY TASK',
-              counterMobility
-            ),
+            Button(context, 'COUNTER MOBILITY TASK', counterMobilityScreen),
             SizedBox(height: 10),
-            Button(
-              context,
-              'MOBILITY TASK',
-              mobility
-            ),
+            Button(context, 'MOBILITY TASK', mobility),
           ],
         ),
       ),
     );
   }
 }
-
