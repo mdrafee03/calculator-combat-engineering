@@ -1,6 +1,5 @@
 import './borehole_pier_type.dart';
 import './borehole_pier_calc.dart';
-import '../../../../summary/models/reserve_demolition_summary.dart';
 
 class BoreholePier {
   double width;
@@ -102,13 +101,11 @@ class BoreholePier {
 
   double get totalTimeRequired {
     double time = (totalTime * totalNoOfholes / 2) / 60;
-    ReserveDemolitionSummary.pierTime = time;
     return time;
   }
 
-  double get totalAmountForAllPiers {
+  double get totalChargeRequired {
     double charge = noOfPier * totalChargeRequiredOnePier;
-    ReserveDemolitionSummary.pierCharge = charge;
     return charge;
   }
 }

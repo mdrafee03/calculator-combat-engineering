@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/heading_output.dart';
 import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
 import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
@@ -8,12 +9,23 @@ import '../../../../../../../../../shared/widgets/time_requirement.dart';
 import '../models/borehole_pier.dart';
 
 class BoreholePierOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Borehole Charge'),
-  );
   @override
   Widget build(BuildContext context) {
     final BoreholePier _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Borehole Charge'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        )
+      ],
+    );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
@@ -78,7 +90,7 @@ class BoreholePierOutput extends StatelessWidget {
                       "j. Total Charge require for one pier = ${_model.totalChargeRequiredOnePier.toStringAsFixed(2)} lb PE",
                     ),
                     Text(
-                      "k. Total amount of charge require for demoliton of ${_model.noOfPier} piers = ${_model.totalAmountForAllPiers.toStringAsFixed(2)} lb PE",
+                      "k. Total amount of charge require for demoliton of ${_model.noOfPier} piers = ${_model.totalChargeRequired.toStringAsFixed(2)} lb PE",
                       style: TextStyle(
                         color: Color(0xFF00008B),
                         fontWeight: FontWeight.bold,

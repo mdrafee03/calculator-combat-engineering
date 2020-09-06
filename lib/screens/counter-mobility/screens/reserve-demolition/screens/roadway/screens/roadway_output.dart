@@ -1,3 +1,4 @@
+import 'package:combat_engineering/router/route_const.dart';
 import 'package:flutter/material.dart';
 
 import '../models/roadway.dart';
@@ -7,12 +8,24 @@ import '../../../../../../../shared/widgets/time_requirement.dart';
 import '../../../../../../../shared/widgets/placement_of_charges.dart';
 
 class RoadwayOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Demolition of Roadway Result'),
-  );
   @override
   Widget build(BuildContext context) {
     final Roadway _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Demolition of Roadway'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              roadwayList,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        )
+      ],
+    );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
@@ -53,7 +66,7 @@ class RoadwayOutput extends StatelessWidget {
                       "h. Total no of Road crater = ${_model.totalRoadCrater} Nos",
                     ),
                     Text(
-                      "j. Amount of charge required = ${_model.totalCharge.toStringAsFixed(2)} lb PE",
+                      "j. Amount of charge required = ${_model.totalChargeRequired.toStringAsFixed(2)} lb PE",
                     ),
                   ],
                 ),

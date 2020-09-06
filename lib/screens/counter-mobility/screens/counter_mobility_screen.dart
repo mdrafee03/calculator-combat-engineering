@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../router/route_const.dart';
-import '../../shared/widgets/button.dart';
+import '../../../router/route_const.dart';
+import '../../../shared/widgets/button.dart';
 
 class CounterMobilityScreen extends StatelessWidget {
   final appBar = AppBar(
@@ -18,8 +18,8 @@ class CounterMobilityScreen extends StatelessWidget {
           children: [
             Button(context, 'Minefield Laying', minefieldLayingList),
             SizedBox(height: 10),
-            Button(
-                context, 'Reserve Demolition of a Bridge', reserveDemolition),
+            Button(context, 'Reserve Demolition of a Bridge',
+                reserveDemolitionList),
             SizedBox(height: 10),
             Button(context, 'Wire Obstacle', wireObstacleList),
             SizedBox(height: 10),

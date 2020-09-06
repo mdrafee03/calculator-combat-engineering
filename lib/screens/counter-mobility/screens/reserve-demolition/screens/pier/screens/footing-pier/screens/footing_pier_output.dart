@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/heading_output.dart';
 import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
 import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
@@ -8,12 +9,23 @@ import '../../../../../../../../../shared/widgets/time_requirement.dart';
 import '../models/footing_pier.dart';
 
 class FootingPierOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Pier Footing Charge'),
-  );
   @override
   Widget build(BuildContext context) {
     final FootingPier _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Pier Footing Charge'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        )
+      ],
+    );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(

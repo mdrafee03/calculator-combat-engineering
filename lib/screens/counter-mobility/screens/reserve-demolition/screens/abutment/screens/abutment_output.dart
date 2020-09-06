@@ -1,18 +1,31 @@
-import 'package:combat_engineering/shared/widgets/heading_output.dart';
-import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
-import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
-import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../shared/widgets/time_requirement.dart';
 import '../models/abutment.dart';
 
 class AbutmentOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Abutment Demolition'),
-  );
   @override
   Widget build(BuildContext context) {
     final Abutment _model = ModalRoute.of(context).settings.arguments;
+    final AppBar appbar = new AppBar(
+      title: Text('Abutment Demolition'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              abutmentList,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        )
+      ],
+    );
     return Scaffold(
         appBar: appbar,
         body: SingleChildScrollView(
@@ -95,7 +108,7 @@ class AbutmentOutput extends StatelessWidget {
                             for (int i = 1; i < 6; i++)
                               TableCell(
                                 child: Text(_model
-                                    .totalExclusive(i)
+                                    .totalChargeRequired(i)
                                     .toStringAsFixed(2)),
                               )
                           ],
@@ -161,7 +174,7 @@ class AbutmentOutput extends StatelessWidget {
                             "b. Type of target = ${typesOfTarget.firstWhere((target) => target["value"] == _model.targetFactor)['type']}",
                           ),
                           Text(
-                            "c. Total Explosive Require = ${_model.totalExclusive(_model.craterNo).toStringAsFixed(2)} lbs",
+                            "c. Total Explosive Require = ${_model.totalChargeRequired(_model.craterNo).toStringAsFixed(2)} lbs",
                             style: TextStyle(
                               color: Color(0xFF00008B),
                               fontWeight: FontWeight.bold,
@@ -220,7 +233,7 @@ class AbutmentOutput extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    "= ${_model.timeRequiredByPlatoon} Platoon hours",
+                                    "= ${_model.totalTimeRequired} Platoon hours",
                                     style: TextStyle(
                                       color: Color(0xFF00008B),
                                       fontWeight: FontWeight.bold,

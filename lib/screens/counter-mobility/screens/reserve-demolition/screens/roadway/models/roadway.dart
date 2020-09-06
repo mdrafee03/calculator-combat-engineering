@@ -1,5 +1,3 @@
-import '../../summary/models/reserve_demolition_summary.dart';
-
 class Roadway {
   double width;
   double length;
@@ -20,9 +18,8 @@ class Roadway {
     return totalLineOfGroupAlongRoadLength * totalRoadCraterAlongRoadWidh;
   }
 
-  double get totalCharge {
+  double get totalChargeRequired {
     double charge = (totalRoadCrater * explosivePerCrater).toDouble();
-    ReserveDemolitionSummary.roadwayCharge = charge;
     return charge;
   }
 
@@ -34,7 +31,6 @@ class Roadway {
     double time = totalTimeRequiredPerSection / 4 >= 1
         ? totalTimeRequiredPerSection / 4
         : 1;
-    ReserveDemolitionSummary.roadwayTime = time;
     return time;
   }
 }

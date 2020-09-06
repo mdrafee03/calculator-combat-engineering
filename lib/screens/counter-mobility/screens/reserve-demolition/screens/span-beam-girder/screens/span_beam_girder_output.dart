@@ -1,17 +1,30 @@
-import 'package:combat_engineering/shared/widgets/heading_output.dart';
-import 'package:combat_engineering/shared/widgets/placement_of_charges.dart';
-import 'package:combat_engineering/shared/widgets/summary_of_calculation.dart';
-import 'package:combat_engineering/shared/widgets/time_requirement.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../../../../../shared/widgets/summary_of_calculation.dart';
+import '../../../../../../../shared/widgets/time_requirement.dart';
 import '../models/span_beam_girder.dart';
 
 class SpanBeamGirderOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Span, Beam and Girder'),
-  );
   @override
   Widget build(BuildContext context) {
+    final AppBar appbar = new AppBar(
+      title: Text('Span, Beam and Girder Demolition'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        )
+      ],
+    );
+
     final SpanBeamGirder _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar,
@@ -36,7 +49,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
                       "b. Total amount of charge require for ${_model.noOfBeams} beams = ${_model.totalChargeBeams.toStringAsFixed(2)} lb PE",
                     ),
                     Text(
-                      "c. Total charge require for ${_model.noOfSpans} spans = ${_model.totalChargeSpans.toStringAsFixed(2)} lb PE",
+                      "c. Total charge require for ${_model.noOfSpans} spans = ${_model.totalChargeRequired.toStringAsFixed(2)} lb PE",
                       style: TextStyle(
                         color: Color(0xFF00008B),
                         fontWeight: FontWeight.bold,
@@ -46,7 +59,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
                       "d. Sand Bag Require for one span = ${_model.sanbagPerSpan} Nos",
                     ),
                     Text(
-                      "e. Total Sand Bag Required for demolition of spans = ${_model.totalSandbagForSpan} Nos",
+                      "e. Total Sand Bag Required for demolition of spans = ${_model.totalSandbagRequired} Nos",
                       style: TextStyle(
                         color: Color(0xFF00008B),
                         fontWeight: FontWeight.bold,

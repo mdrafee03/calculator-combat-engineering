@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import '../../summary/models/reserve_demolition_summary.dart';
 import './time_manpower.dart';
 
 class SpanBeamGirder {
@@ -22,9 +21,8 @@ class SpanBeamGirder {
     return chargeOfEachBeam * noOfBeams;
   }
 
-  double get totalChargeSpans {
+  double get totalChargeRequired {
     double charge = totalChargeBeams * noOfSpans;
-    ReserveDemolitionSummary.spanCharge = charge;
     return charge;
   }
 
@@ -32,9 +30,8 @@ class SpanBeamGirder {
     return (20 / 25 * totalChargeBeams).ceil();
   }
 
-  int get totalSandbagForSpan {
+  int get totalSandbagRequired {
     int sandbag = (sanbagPerSpan * noOfSpans);
-    ReserveDemolitionSummary.sandbag = sandbag;
     return sandbag;
   }
 
@@ -52,7 +49,6 @@ class SpanBeamGirder {
   double get totalTimeRequired {
     double time =
         (timeRequiredPerSection / 4) >= 1 ? (timeRequiredPerSection / 4) : 1;
-    ReserveDemolitionSummary.spanTime = time;
     return time;
   }
 }

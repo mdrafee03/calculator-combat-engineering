@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../router/route_const.dart';
-import '../../../../../../shared/widgets/button.dart';
+import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/button.dart';
 
-class Pier extends StatelessWidget {
+class PierScreen extends StatelessWidget {
   final appBar = AppBar(
     title: Text('Demolition of Pier'),
   );

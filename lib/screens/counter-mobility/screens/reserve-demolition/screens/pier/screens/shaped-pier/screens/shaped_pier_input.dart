@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
+import '../../../../../../../models/counter_mobility.dart';
+import '../../../../../models/reserve_demolition.dart';
 import '../models/shaped_pier.dart';
 
 class ShapedPierInput extends StatefulWidget {
@@ -14,17 +16,30 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
   );
 
   final _formKey = GlobalKey<FormState>();
-
-  final _shaped = ShapedPier();
-
-  void handleSubmit(BuildContext context) {
-    final form = _formKey.currentState;
-    form.save();
-    Navigator.pushNamed(context, shapedPierOutput, arguments: _shaped);
-  }
+  ShapedPier _model;
 
   @override
   Widget build(BuildContext context) {
+    ReserveDemolition _currentReserveDemolition =
+        ReserveDemolition.currentReserveDemolition;
+    if (_currentReserveDemolition?.pier?.shapedPier != null) {
+      _model = _currentReserveDemolition.pier.shapedPier;
+    } else {
+      _model = ShapedPier();
+      _currentReserveDemolition.pier.shapedPier = _model;
+    }
+
+    void handleSubmit(BuildContext context) {
+      final form = _formKey.currentState;
+      form.save();
+
+      if (CounterMobility.listOfReserveDemolition
+              .contains(_currentReserveDemolition) ==
+          false)
+        CounterMobility.listOfReserveDemolition.add(_currentReserveDemolition);
+      Navigator.pushNamed(context, shapedPierOutput, arguments: _model);
+    }
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -39,15 +54,20 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
                       hintText: "Dia of each Pier",
                       labelText: "Dia of each Pier (ft)"),
                   keyboardType: TextInputType.number,
+                  initialValue:
+                      _model.dia != null ? _model.dia.toString() : null,
                   onSaved: (val) =>
-                      setState(() => _shaped.dia = double.parse(val)),
+                      setState(() => _model.dia = double.parse(val)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                       hintText: "No of Pier", labelText: "No of Pier (nos)"),
                   keyboardType: TextInputType.number,
+                  initialValue: _model.noOfPier != null
+                      ? _model.noOfPier.toString()
+                      : null,
                   onSaved: (val) =>
-                      setState(() => _shaped.noOfPier = int.parse(val)),
+                      setState(() => _model.noOfPier = int.parse(val)),
                 ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
