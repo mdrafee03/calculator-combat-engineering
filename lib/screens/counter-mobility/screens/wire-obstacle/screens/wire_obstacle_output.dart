@@ -43,29 +43,12 @@ class WireObstacleOutput extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if ([1].contains(_model.task.id))
-                      Text(
-                        "${_model.getSerial}. Barbed wire = ${_model.getValueByFrontage(_model.task.barbedWire)} Nos",
-                      ),
-                    if ([2, 3, 4].contains(_model.task.id))
-                      Text(
-                        "${_model.getSerial}. Barbed wire concertina = ${_model.getValueByFrontage(_model.task.barbedWireConcertina)} Nos",
-                      ),
-                    if ([5, 6].contains(_model.task.id))
-                      Text(
-                        "${_model.getSerial}. Concertina Coil = ${_model.getValueByFrontage(_model.task.concertinaCoil)} Nos",
-                      ),
+                    Text(
+                      "${_model.getSerial}. Barbed wire = ${_model.getValueByFrontage(_model.task.barbedWire)} Nos",
+                    ),
                     if ([2, 3, 4, 5, 6].contains(_model.task.id))
                       Text(
-                        "${_model.getSerial}. Bared wire Coil = ${_model.getValueByFrontage(_model.task.baredWireCoil)} Nos",
-                      ),
-                    if ([1, 2, 3, 4].contains(_model.task.id))
-                      Text(
-                        "${_model.getSerial}. Long Piquet = ${_model.getValueByFrontage(_model.task.longPiquet)} Nos",
-                      ),
-                    if ([5, 6].contains(_model.task.id))
-                      Text(
-                        "${_model.getSerial}. Long Picket (6') = ${_model.getValueByFrontage(_model.task.longPicket)} Nos",
+                        "${_model.getSerial}. Barbed wire concertina = ${_model.getValueByFrontage(_model.task.barbedWireConcertina)} Nos",
                       ),
                     if ([1, 4].contains(_model.task.id))
                       Text(

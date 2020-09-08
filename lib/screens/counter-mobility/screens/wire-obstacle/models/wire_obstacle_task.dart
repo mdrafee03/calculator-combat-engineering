@@ -11,9 +11,6 @@ class WireObstacleTask {
   List<String> images;
   int barbedWire;
   int barbedWireConcertina;
-  int baredWireCoil;
-  int concertinaCoil;
-  int longPiquet;
   int longPicket;
   int shortPiquet;
   int tracingTapRoll;
@@ -31,9 +28,6 @@ class WireObstacleTask {
     @required this.images,
     this.barbedWire,
     this.barbedWireConcertina,
-    this.baredWireCoil,
-    this.concertinaCoil,
-    this.longPiquet,
     this.longPicket,
     this.shortPiquet,
     this.tracingTapRoll,
@@ -54,7 +48,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     group: "TF-A",
     images: ["assets/images/wire-obstacle/double_apron.png"],
     barbedWire: 13,
-    longPiquet: 40,
+    longPicket: 40,
     shortPiquet: 82,
     wireCutter: 2,
     windlassingStick: 10,
@@ -70,8 +64,8 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     group: "TF-B",
     images: ["assets/images/wire-obstacle/catwire3.png"],
     barbedWireConcertina: 30,
-    baredWireCoil: 12,
-    longPiquet: 128,
+    barbedWire: 12,
+    longPicket: 128,
   ),
   new WireObstacleTask(
     id: 3,
@@ -86,8 +80,8 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
       "assets/images/wire-obstacle/triple_conc2.png"
     ],
     barbedWireConcertina: 18,
-    baredWireCoil: 2,
-    longPiquet: 52,
+    barbedWire: 2,
+    longPicket: 52,
     mauls: 3,
     wireCutter: 1,
     windlassingStick: 7,
@@ -105,8 +99,8 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
       "assets/images/wire-obstacle/highwire2.png"
     ],
     barbedWireConcertina: 32,
-    baredWireCoil: 19,
-    longPiquet: 80,
+    barbedWire: 19,
+    longPicket: 80,
     shortPiquet: 84,
     mauls: 7,
     wireCutter: 2,
@@ -121,8 +115,8 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     men: 10,
     group: "TF-B",
     images: ["assets/images/wire-obstacle/catwire2.png"],
-    concertinaCoil: 24,
-    baredWireCoil: 9,
+    barbedWireConcertina: 24,
+    barbedWire: 9,
     longPicket: 96,
     tracingTapRoll: 1,
     wireCutter: 1,
@@ -137,8 +131,8 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     men: 10,
     group: "TF-B",
     images: ["assets/images/wire-obstacle/catwire1.png"],
-    concertinaCoil: 12,
-    baredWireCoil: 6,
+    barbedWireConcertina: 12,
+    barbedWire: 6,
     longPicket: 16,
     tracingTapRoll: 1,
     wireCutter: 1,
