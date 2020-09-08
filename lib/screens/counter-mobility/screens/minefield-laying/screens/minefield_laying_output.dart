@@ -129,7 +129,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "e. Total 3-ton Require = ${(_model.totalLorryForPersonnel + _model.totalLorryForAntiTankMine + _model.totalLorryForAntiPersonnelMine + _model.totalLorryForStores)}",
+                      "e. Total 3-ton Require = ${_model.totalTransportRequired}",
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,

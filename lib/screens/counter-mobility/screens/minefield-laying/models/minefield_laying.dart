@@ -1,11 +1,10 @@
 import 'dart:math';
-
-import 'package:combat_engineering/screens/counter-mobility/screens/minefield-laying/models/minefield_time.dart';
 import 'package:flutter/material.dart';
 import 'package:fraction/fraction.dart';
 
 import '../../../../../shared//extension-methods/double_apis.dart';
 import '../../../../../shared//extension-methods/timeOfDay_apis.dart';
+import './minefield_time.dart';
 
 enum OuterStrip {
   TripWireCluster,
@@ -144,6 +143,13 @@ class MinefieldLaying {
             noOfInfantryPerPlatoon *
                 (noOfInfantryPlatoon + noOfAssistedByInfantryPlatoon));
     return (totalManPower / noOfPersonsPerLorry).toDoubleAsPrecision().ceil();
+  }
+
+  int get totalTransportRequired {
+    return totalLorryForPersonnel +
+        totalLorryForAntiTankMine +
+        totalLorryForAntiPersonnelMine +
+        totalLorryForStores;
   }
 
   double get platoonWeight {

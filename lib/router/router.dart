@@ -30,6 +30,7 @@ import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_list.dart';
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_input.dart';
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_output.dart';
+import '../screens/counter-mobility/screens/combined-project/screens/combined_project_screen.dart';
 
 import './route_const.dart';
 
@@ -68,6 +69,7 @@ class Router {
       antiTankList: (BuildContext ctx) => AntiTankList(),
       antiTankInput: (BuildContext ctx) => AntiTankInput(),
       antiTankOuput: (BuildContext ctx) => AntiTankOutput(),
+      combinedProjectScreen: (BuildContext ctx) => CombinedProjectScreen(),
     };
   }
 }
