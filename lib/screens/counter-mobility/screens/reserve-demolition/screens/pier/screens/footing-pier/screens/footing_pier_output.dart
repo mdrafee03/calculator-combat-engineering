@@ -54,7 +54,7 @@ class FootingPierOutput extends StatelessWidget {
                       "c. Amount of charge require for each pier = ${_model.amountOfChargePerPier.toStringAsFixed(2)} lb CE TNT",
                     ),
                     Text(
-                      "d. Total amount of charge require for each pier = ${_model.totalAmountOfCharge.toStringAsFixed(2)} lb CE TNT",
+                      "d. Total amount of charge require for each pier = ${_model.totalAmountOfCharge.toStringAsFixed(2)} lb PE",
                       style: TextStyle(
                         color: Color(0xFF00008B),
                         fontWeight: FontWeight.bold,
