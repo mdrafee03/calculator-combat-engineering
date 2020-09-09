@@ -50,6 +50,9 @@ class WireObstacleOutput extends StatelessWidget {
                       Text(
                         "${_model.getSerial}. Barbed wire concertina = ${_model.getValueByFrontage(_model.task.barbedWireConcertina)} Nos",
                       ),
+                    Text(
+                      "${_model.getSerial}. Long Piquet = ${_model.getValueByFrontage(_model.task.longPicket)} Nos",
+                    ),
                     if ([1, 4].contains(_model.task.id))
                       Text(
                         "${_model.getSerial}. Short Picket = ${_model.getValueByFrontage(_model.task.shortPiquet)} Nos",
