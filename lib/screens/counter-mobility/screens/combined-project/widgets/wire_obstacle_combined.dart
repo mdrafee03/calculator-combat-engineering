@@ -28,8 +28,16 @@ class WireObstacleCombined extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "${String.fromCharCode(97 + i)}. Wire Obstacle ${i + 1}",
+                      Row(
+                        children: [
+                          Text("${String.fromCharCode(97 + i)}. "),
+                          Text(
+                            "Wire Obstacle ${i + 1}",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 20),
@@ -83,7 +91,11 @@ class WireObstacleCombined extends StatelessWidget {
                   children: [
                     Text(
                       "Total Stores for all Wire Obstacle",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Color(0xFF00008B),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 20),

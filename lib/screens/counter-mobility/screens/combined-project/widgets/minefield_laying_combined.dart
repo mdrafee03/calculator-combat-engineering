@@ -28,8 +28,16 @@ class MinefieldLayingCombined extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "${String.fromCharCode(97 + i)}. Minefield Laying ${i + 1}",
+                      Row(
+                        children: [
+                          Text("${String.fromCharCode(97 + i)}. "),
+                          Text(
+                            "Minefield Laying ${i + 1}",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 20),
@@ -74,7 +82,11 @@ class MinefieldLayingCombined extends StatelessWidget {
                   children: [
                     Text(
                       "Total Stores for all Minefield Laying",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Color(0xFF00008B),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 20),

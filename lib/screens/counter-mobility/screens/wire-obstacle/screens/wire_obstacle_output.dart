@@ -13,7 +13,7 @@ class WireObstacleOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final WireObstacle _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Minefield Laying Result'),
+      title: Text('Wire Obstacle'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

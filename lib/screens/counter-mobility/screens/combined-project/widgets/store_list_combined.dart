@@ -16,7 +16,7 @@ class StoreListCombined extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('4. ', 'Store List'),
+        SectionHeading('4. ', 'Store List for Combined Engineer Project'),
         Container(
           padding: EdgeInsets.only(left: 20),
           alignment: Alignment.topLeft,
