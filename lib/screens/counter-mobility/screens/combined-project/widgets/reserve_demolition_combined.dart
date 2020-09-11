@@ -83,7 +83,7 @@ class ReserveDemolitionCombined extends StatelessWidget {
                             "(i) Plastic Explosive = ${_model.fold<double>(0, (previousValue, element) => previousValue + element.plasticExplosive).toStringAsFixed(2)}",
                           ),
                           Text(
-                            "(ii) Hayrick = ${_model.fold(0, (previousValue, element) => previousValue + element?.pier?.shapedPier?.totalNoOfHyrics ?? 0)}",
+                            "(ii) Hayrick = ${_model?.fold(0, (previousValue, element) => previousValue + element.hayrics) ?? 0}",
                           ),
                         ],
                       ),

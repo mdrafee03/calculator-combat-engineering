@@ -45,4 +45,6 @@ const String wireObstacleOuput = '/counter-mobility/wire-obstacle/output';
 const String antiTankList = '/counter-mobility/anti-tank';
 const String antiTankInput = '/counter-mobility/anti-tank/input';
 const String antiTankOuput = '/counter-mobility/anti-tank/output';
-const String combinedProjectScreen = '/counter-mobility/compined-project';
+const String combinedProjectInput = '/counter-mobility/combined-project/input';
+const String combinedProjectOutput =
+    '/counter-mobility/combined-project/output';

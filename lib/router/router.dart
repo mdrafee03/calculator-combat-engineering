@@ -30,7 +30,8 @@ import '../screens/counter-mobility/screens/wire-obstacle/screens/wire_obstacle_
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_list.dart';
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_input.dart';
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_output.dart';
-import '../screens/counter-mobility/screens/combined-project/screens/combined_project_screen.dart';
+import '../screens/counter-mobility/screens/combined-project/screens/combined_project_input.dart';
+import '../screens/counter-mobility/screens/combined-project/screens/combined_project_output.dart';
 
 import './route_const.dart';
 
@@ -44,8 +45,7 @@ class Router {
       minefieldLayingInput: (BuildContext ctx) => MineFieldLayingInput(),
       minefieldLayingOutput: (BuildContext ctx) => MinefieldLayingOutput(),
       reserveDemolitionList: (BuildContext ctx) => ReserveDemolitionList(),
-      reserveDemolitionChildren: (BuildContext ctx) =>
-          ReserveDemolitionChildren(),
+      reserveDemolitionChildren: (BuildContext ctx) => ReserveDemolitionChildren(),
       abutmentList: (BuildContext ctx) => AbutmentList(),
       abutmentInput: (BuildContext ctx) => AbutmentInput(),
       abutmentOutput: (BuildContext ctx) => AbutmentOutput(),
@@ -61,15 +61,15 @@ class Router {
       roadwayList: (BuildContext ctx) => RoadwayList(),
       roadwayInput: (BuildContext ctx) => RoadwayInput(),
       roadwayOutput: (BuildContext ctx) => RoadwayOutput(),
-      reserveDemolitionSummary: (BuildContext ctx) =>
-          ReserveDemolitionSummaryScreen(),
+      reserveDemolitionSummary: (BuildContext ctx) => ReserveDemolitionSummaryScreen(),
       wireObstacleList: (BuildContext ctx) => WireObstacleList(),
       wireObstacleInput: (BuildContext ctx) => WireObstacleInput(),
       wireObstacleOuput: (BuildContext ctx) => WireObstacleOutput(),
       antiTankList: (BuildContext ctx) => AntiTankList(),
       antiTankInput: (BuildContext ctx) => AntiTankInput(),
       antiTankOuput: (BuildContext ctx) => AntiTankOutput(),
-      combinedProjectScreen: (BuildContext ctx) => CombinedProjectScreen(),
+      combinedProjectInput: (BuildContext ctx) => CombinedProjectInput(),
+      combinedProjectOutput: (BuildContext ctx) => CombinedProjectOutput(),
     };
   }
 }

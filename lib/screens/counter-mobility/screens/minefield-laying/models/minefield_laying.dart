@@ -416,6 +416,7 @@ class MinefieldLaying {
     minefieldTime.timeRequired = (currentDay - dDay) * timeAvailable +
         timeAvailable -
         (moonLitTime + darkTime);
+    minefieldTime.totalTimeRequired = minefieldTime.timeRequired / 60 / 4;
     return minefieldTime;
   }
 

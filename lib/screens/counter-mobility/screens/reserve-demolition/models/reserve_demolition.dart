@@ -12,18 +12,36 @@ class ReserveDemolition {
   static ReserveDemolition currentReserveDemolition;
 
   double get plasticExplosive {
-    double abutment = listOfAbutment.fold(
-        0,
-        (previousValue, element) =>
-            previousValue + element.totalChargeRequired(element.craterNo));
-    double borehole = pier.boreholePier.totalChargeRequired;
-    double pierFooting = pier.footingPier.totalAmountOfCharge;
-    double roadway = listOfRoadway.fold(
-        0,
-        (previousValue, element) =>
-            previousValue + element.totalChargeRequired);
-    double span = spanBeamGirder.totalChargeRequired;
+    double abutment = listOfAbutment?.fold(
+            0,
+            (previousValue, element) =>
+                previousValue +
+                    element.totalChargeRequired(element.craterNo ?? 0) ??
+                0) ??
+        0;
+    double borehole = pier?.boreholePier?.totalChargeRequired ?? 0;
+    double pierFooting = pier?.footingPier?.totalAmountOfCharge ?? 0;
+    double roadway = listOfRoadway?.fold(
+            0,
+            (previousValue, element) =>
+                previousValue + element.totalChargeRequired ?? 0) ??
+        0;
+    double span = spanBeamGirder?.totalChargeRequired ?? 0;
 
     return abutment + borehole + roadway + span + pierFooting;
+  }
+
+  double get totalTimeRequired {
+    double abutmentTime = listOfAbutment.fold(0,
+        (previousValue, element) => previousValue + element.totalTimeRequired);
+    double pierTime = pier?.boreholePier?.totalChargeRequired ?? 0;
+    double spanTime = spanBeamGirder?.totalTimeRequired ?? 0;
+    double roadwayTime = listOfRoadway.fold(
+        0, (previousValue, element) => element.totalTimeRequired);
+    return abutmentTime + pierTime + spanTime + roadwayTime;
+  }
+
+  int get hayrics {
+    return pier?.shapedPier?.totalNoOfHyrics ?? 0;
   }
 }

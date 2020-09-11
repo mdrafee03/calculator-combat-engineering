@@ -7,6 +7,7 @@ class MinefieldTime {
   TimeOfDay firstLight;
   TimeOfDay lastLight;
   double timeRequired;
+  double totalTimeRequired;
 
   String get timeRequiredInMinutes {
     return minuteFormat(timeRequired);
