@@ -21,7 +21,7 @@ class TimeCombined extends StatelessWidget {
   TableCell buildTableHeader(String title) {
     return TableCell(
       verticalAlignment: TableCellVerticalAlignment.middle,
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.only(top: 5.0, bottom: 5),
         child: Center(
           child: RotatedBox(
@@ -50,6 +50,13 @@ class TimeCombined extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Table(
                   defaultColumnWidth: FlexColumnWidth(20),
+                  border: TableBorder(
+                    verticalInside: BorderSide(width: 1),
+                    top: BorderSide(width: 1),
+                    left: BorderSide(width: 1),
+                    right: BorderSide(width: 1),
+                    bottom: BorderSide(width: 1),
+                  ),
                   columnWidths: {
                     0: FixedColumnWidth(20),
                     1: FixedColumnWidth(140),
@@ -59,47 +66,58 @@ class TimeCombined extends StatelessWidget {
                     for (int i = 0; i < numberOfCol; i++)
                       i + 5: FixedColumnWidth(20),
                   },
-                  border: TableBorder.all(),
                   children: [
-                    TableRow(children: [
-                      buildTableHeader('Ser'),
-                      buildTableHeader('Task'),
-                      buildTableHeader('Task Force'),
-                      buildTableHeader('Pri'),
-                      buildTableHeader('Pl Hr'),
-                      for (int i = 0; i < numberOfCol; i++)
-                        buildTableHeader((_model.dateTableHeaderFormat(
-                            _model.startDate.add(Duration(days: i))))),
-                    ]),
+                    TableRow(
+                      children: [
+                        buildTableHeader('Ser'),
+                        buildTableHeader('Task'),
+                        buildTableHeader('Task Force'),
+                        buildTableHeader('Pri'),
+                        buildTableHeader('Pl Hr'),
+                        for (int i = 0; i < numberOfCol; i++)
+                          buildTableHeader((_model.dateTableHeaderFormat(
+                              _model.startDate.add(Duration(days: i))))),
+                      ],
+                    ),
                     for (int i = 0;
                         i < TaskDistribution.taskDistributions.length;
                         i++)
                       TableRow(
+                        decoration:
+                            TaskDistribution.taskDistributions[i].startForce
+                                ? BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(width: 2),
+                                    ),
+                                  )
+                                : null,
                         children: [
-                          TableCell(
-                            child: Text((i + 1).toString()),
+                          buildTableCell((i + 1).toString(), isCenter: true),
+                          buildTableCell(
+                            TaskDistribution.taskDistributions[i].name,
                           ),
-                          TableCell(
-                            child: Text(
-                                TaskDistribution.taskDistributions[i].name),
-                          ),
-                          TableCell(
+                          Container(
+                            decoration: i == 0
+                                ? BoxDecoration(
+                                    border: Border(top: BorderSide(width: 1)))
+                                : null,
+                            alignment: Alignment.center,
                             child: Text(TaskDistribution
-                                .taskDistributions[i].force.name),
+                                    .taskDistributions[i].showTaskforce
+                                ? TaskDistribution
+                                    .taskDistributions[i].force.name
+                                : ''),
                           ),
-                          TableCell(
-                            child: Text(
+                          buildTableCell(
                               TaskDistribution.taskDistributions[i].priority
                                   .toString(),
-                            ),
-                          ),
-                          TableCell(
-                            child: Text(
-                              TaskDistribution.taskDistributions[i].time
-                                  .toStringAsFixed(2),
-                            ),
+                              isCenter: true),
+                          buildTableCell(
+                            TaskDistribution.taskDistributions[i].time
+                                .toStringAsFixed(2),
                           ),
                           ...List.generate(numberOfCol, (index) {
+                            Widget temp;
                             if ((index >=
                                     TaskDistribution
                                         .taskDistributions[i].startDay
@@ -115,7 +133,7 @@ class TimeCombined extends StatelessWidget {
                                   startDay - index >= 0 &&
                                   endDay - index < 1 &&
                                   endDay - index >= 0) {
-                                return Container(
+                                temp = Container(
                                   margin: EdgeInsets.only(
                                       left: 20 * (startDay - index),
                                       right: 20 * (1 - (endDay - index))),
@@ -125,7 +143,7 @@ class TimeCombined extends StatelessWidget {
                                 );
                               } else if (startDay - index < 1 &&
                                   startDay - index >= 0) {
-                                return Container(
+                                temp = Container(
                                   margin: EdgeInsets.only(
                                       left: 20 * (startDay - index)),
                                   color: TaskDistribution
@@ -134,7 +152,7 @@ class TimeCombined extends StatelessWidget {
                                 );
                               } else if (endDay - index < 1 &&
                                   endDay - index >= 0) {
-                                return Container(
+                                temp = Container(
                                   margin: EdgeInsets.only(
                                       right: 20 * (1 - (endDay - index))),
                                   color: TaskDistribution
@@ -142,15 +160,22 @@ class TimeCombined extends StatelessWidget {
                                   child: Text(''),
                                 );
                               } else {
-                                return Container(
+                                temp = Container(
                                   color: TaskDistribution
                                       .taskDistributions[i].force.color,
                                   child: Text(''),
                                 );
                               }
                             } else {
-                              return Text("");
+                              temp = Text("");
                             }
+                            return Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    top: BorderSide(width: 1),
+                                  ),
+                                ),
+                                child: temp);
                           }),
                         ],
                       ),
@@ -161,6 +186,18 @@ class TimeCombined extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Container buildTableCell(String cell, {bool isCenter = false}) {
+    return Container(
+      alignment: isCenter ? Alignment.center : Alignment.centerLeft,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1),
+        ),
+      ),
+      child: Text(cell),
     );
   }
 }

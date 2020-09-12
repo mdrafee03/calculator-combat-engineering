@@ -96,6 +96,7 @@ class CombinedProject {
     int wireObstacleCounter = 0;
     int antiTankCounter = 0;
     for (int i = 0; i < 3; i++) {
+      bool start = i == 0 ? false : true;
       int priority = 1;
       double startDay = 0;
       for (int j = 0; j < minefieldByForces[i]; j++) {
@@ -110,8 +111,10 @@ class CombinedProject {
             priority: priority,
             startDay: startDay,
             endDay: endDay,
+            startForce: start,
           ),
         );
+        start = false;
         startDay = endDay;
         minefieldCounter += 1;
         priority += 1;
@@ -128,8 +131,10 @@ class CombinedProject {
             priority: priority,
             startDay: startDay,
             endDay: endDay,
+            startForce: start,
           ),
         );
+        start = false;
         startDay = endDay;
         reserveDemolitionCounter += 1;
         priority += 1;
@@ -145,8 +150,10 @@ class CombinedProject {
             priority: priority,
             startDay: startDay,
             endDay: endDay,
+            startForce: start,
           ),
         );
+        start = false;
         startDay = endDay;
         wireObstacleCounter += 1;
         priority += 1;
@@ -162,13 +169,38 @@ class CombinedProject {
             priority: priority,
             startDay: startDay,
             endDay: endDay,
+            startForce: start,
           ),
         );
+        start = false;
         startDay = endDay;
         antiTankCounter += 1;
         priority += 1;
       }
     }
+    List<int> priorityIndexes = [];
+    TaskDistribution.taskDistributions.asMap().forEach((i, element) {
+      if (element.priority == 1) priorityIndexes.add(i);
+    });
+    TaskDistribution
+        .taskDistributions[
+            ((priorityIndexes[1] - 1 - priorityIndexes[0]) / 2).ceil()]
+        .showTaskforce = true;
+    TaskDistribution
+        .taskDistributions[priorityIndexes[1] -
+            1 +
+            ((priorityIndexes[2] - priorityIndexes[1]) / 2).ceil()]
+        .showTaskforce = true;
+    TaskDistribution
+        .taskDistributions[priorityIndexes[2] -
+            1 +
+            ((TaskDistribution.taskDistributions.length -
+                        (priorityIndexes[2] - 1)) /
+                    2)
+                .ceil()]
+        .showTaskforce = true;
+
+    print(priorityIndexes);
   }
 
   int get antiTankMines {
