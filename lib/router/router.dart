@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../screens/home.dart';
 import '../screens/counter-mobility/screens/counter_mobility_screen.dart';
-import '../screens/mobility/mobility.dart';
 import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_list.dart';
 import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_input.dart';
 import '../screens/counter-mobility/screens/minefield-laying/screens/minefield_laying_output.dart';
@@ -32,6 +31,7 @@ import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_input.da
 import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_output.dart';
 import '../screens/counter-mobility/screens/combined-project/screens/combined_project_input.dart';
 import '../screens/counter-mobility/screens/combined-project/screens/combined_project_output.dart';
+import '../screens/mobility/screens/mobility_screen.dart';
 
 import './route_const.dart';
 
@@ -39,13 +39,14 @@ class Router {
   static Map<String, WidgetBuilder> mainRouter() {
     return <String, WidgetBuilder>{
       home: (BuildContext ctx) => Home(),
-      mobility: (BuildContext ctx) => Mobility(),
+      // counter mobility
       counterMobilityScreen: (BuildContext ctx) => CounterMobilityScreen(),
       minefieldLayingList: (BuildContext ctx) => MinefieldLayingList(),
       minefieldLayingInput: (BuildContext ctx) => MineFieldLayingInput(),
       minefieldLayingOutput: (BuildContext ctx) => MinefieldLayingOutput(),
       reserveDemolitionList: (BuildContext ctx) => ReserveDemolitionList(),
-      reserveDemolitionChildren: (BuildContext ctx) => ReserveDemolitionChildren(),
+      reserveDemolitionChildren: (BuildContext ctx) =>
+          ReserveDemolitionChildren(),
       abutmentList: (BuildContext ctx) => AbutmentList(),
       abutmentInput: (BuildContext ctx) => AbutmentInput(),
       abutmentOutput: (BuildContext ctx) => AbutmentOutput(),
@@ -61,7 +62,8 @@ class Router {
       roadwayList: (BuildContext ctx) => RoadwayList(),
       roadwayInput: (BuildContext ctx) => RoadwayInput(),
       roadwayOutput: (BuildContext ctx) => RoadwayOutput(),
-      reserveDemolitionSummary: (BuildContext ctx) => ReserveDemolitionSummaryScreen(),
+      reserveDemolitionSummary: (BuildContext ctx) =>
+          ReserveDemolitionSummaryScreen(),
       wireObstacleList: (BuildContext ctx) => WireObstacleList(),
       wireObstacleInput: (BuildContext ctx) => WireObstacleInput(),
       wireObstacleOuput: (BuildContext ctx) => WireObstacleOutput(),
@@ -70,6 +72,8 @@ class Router {
       antiTankOuput: (BuildContext ctx) => AntiTankOutput(),
       combinedProjectInput: (BuildContext ctx) => CombinedProjectInput(),
       combinedProjectOutput: (BuildContext ctx) => CombinedProjectOutput(),
+      // mobility
+      mobilityScreen: (BuildContext ctx) => MobilityScreen(),
     };
   }
 }

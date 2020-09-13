@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
           children: [
             Button(context, 'COUNTER MOBILITY TASK', counterMobilityScreen),
             SizedBox(height: 10),
-            Button(context, 'MOBILITY TASK', mobility),
+            Button(context, 'MOBILITY TASK', mobilityScreen),
           ],
         ),
       ),

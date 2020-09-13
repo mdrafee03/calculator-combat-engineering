@@ -1,8 +1,7 @@
 const String home = '/';
-const String mobility = '/mobility';
-const String counterMobilityScreen = '/counter-mobility';
 
 // counter mobility
+const String counterMobilityScreen = '/counter-mobility';
 const String minefieldLayingList = '/counter-mobility/minefield-laying';
 const String minefieldLayingInput = '/counter-mobility/minefield-laying/input';
 const String minefieldLayingOutput =
@@ -48,3 +47,6 @@ const String antiTankOuput = '/counter-mobility/anti-tank/output';
 const String combinedProjectInput = '/counter-mobility/combined-project/input';
 const String combinedProjectOutput =
     '/counter-mobility/combined-project/output';
+
+// mobility
+const String mobilityScreen = '/mobility';

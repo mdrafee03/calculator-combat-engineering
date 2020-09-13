@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../router/route_const.dart';
-import '../../shared/widgets/button.dart';
+import '../../../router/route_const.dart';
+import '../../../shared/widgets/button.dart';
 
-class Mobility extends StatelessWidget {
+class MobilityScreen extends StatelessWidget {
   final appBar = AppBar(
     title: Text('Mobility'),
   );
