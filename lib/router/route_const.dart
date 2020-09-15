@@ -50,3 +50,6 @@ const String combinedProjectOutput =
 
 // mobility
 const String mobilityScreen = '/mobility';
+const String bailyBridgeList = '/mobility/baily-bridge';
+const String bailyBridgeInput = '/mobility/baily-bridge/input';
+const String bailyBridgeOutput = '/mobility/baily-bridge/output';

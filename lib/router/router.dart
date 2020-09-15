@@ -32,6 +32,9 @@ import '../screens/counter-mobility/screens/anit-tank/screens/anti_tank_output.d
 import '../screens/counter-mobility/screens/combined-project/screens/combined_project_input.dart';
 import '../screens/counter-mobility/screens/combined-project/screens/combined_project_output.dart';
 import '../screens/mobility/screens/mobility_screen.dart';
+import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_list.dart';
+import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_input.dart';
+import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_output.dart';
 
 import './route_const.dart';
 
@@ -74,6 +77,9 @@ class Router {
       combinedProjectOutput: (BuildContext ctx) => CombinedProjectOutput(),
       // mobility
       mobilityScreen: (BuildContext ctx) => MobilityScreen(),
+      bailyBridgeList: (BuildContext ctx) => BailyBridgeList(),
+      bailyBridgeInput: (BuildContext ctx) => BailyBridgeInput(),
+      bailyBridgeOutput: (BuildContext ctx) => BailyBridgeOutput(),
     };
   }
 }

@@ -18,7 +18,7 @@ class MobilityScreen extends StatelessWidget {
           children: [
             Button(context, 'Heavy Pontoon Bridge', counterMobilityScreen),
             SizedBox(height: 10),
-            Button(context, 'Baily Bridge', counterMobilityScreen),
+            Button(context, 'Baily Bridge', bailyBridgeList),
             SizedBox(height: 10),
             Button(context, 'Minefield Breaching', counterMobilityScreen),
           ],
