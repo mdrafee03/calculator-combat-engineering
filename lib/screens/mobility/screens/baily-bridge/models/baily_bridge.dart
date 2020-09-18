@@ -336,10 +336,11 @@ class BailyBridge {
     );
     double firstPosition =
         positionRollersNum[positionOfConstructionRoller.last];
+    double firstPositionGroundLevel =
+        existingGroundLevels[positionOfConstructionRoller.last];
     double farBank = waterGap;
-    double row4Factor = (row1.farBank -
-            existingGroundLevels[positionOfConstructionRoller.last]) /
-        (firstPosition + farBank);
+    double row4Factor =
+        (row1.farBank - firstPositionGroundLevel) / (firstPosition + farBank);
 
     var row4 = new LaunchingCalc(
       sl: 4,
@@ -352,16 +353,17 @@ class BailyBridge {
       roller0: row4Factor * (firstPosition - 0),
       farBank: row4Factor * (firstPosition + farBank),
     );
+    double row5Factor = firstPositionGroundLevel + 6;
     var row5 = new LaunchingCalc(
       sl: 4,
       consideration: "Height of Launching plane from datum",
-      roller102: row4.roller102 + 18,
-      roller77: row4.roller77 + 18,
-      roller52: row4.roller52 + 18,
-      roller27: row4.roller27 + 18,
-      roller3p5: row4.roller3p5 + 18,
-      roller0: row4.roller0 + 18,
-      farBank: row4.farBank + 18,
+      roller102: row4.roller102 + row5Factor,
+      roller77: row4.roller77 + row5Factor,
+      roller52: row4.roller52 + row5Factor,
+      roller27: row4.roller27 + row5Factor,
+      roller3p5: row4.roller3p5 + row5Factor,
+      roller0: row4.roller0 + row5Factor,
+      farBank: row4.farBank + row5Factor,
     );
     var row6 = new LaunchingCalc(
       sl: 4,
@@ -437,7 +439,7 @@ class BailyBridge {
 
     int panelNose = typeOfConstructionOfNose[0] * 2 +
         typeOfConstructionOfNose[1] * 4 +
-        typeOfConstructionOfNose[2] * 4;
+        typeOfConstructionOfNose[2] * 8;
     int panelSum = sumWithFactor(2) + panelNose;
     var row3 = new StoreBridge(
       sl: "3",
