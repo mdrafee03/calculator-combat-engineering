@@ -1,3 +1,4 @@
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
@@ -29,6 +30,24 @@ class _BailyBridgeInputState extends State<BailyBridgeInput> {
       Navigator.pushNamed(context, bailyBridgeOutput, arguments: _model);
     }
 
+    TextFormField buildFieldForGroundLevel(
+        Map<PositionRollers, double> groundLevel, PositionRollers element) {
+      return TextFormField(
+        key: ValueKey(element),
+        decoration: InputDecoration(
+          hintText:
+              "Existing Ground level at ${_model.positionRollersString[element]}'",
+          labelText:
+              "Existing Ground level at ${_model.positionRollersString[element]} (inch)",
+        ),
+        keyboardType: TextInputType.number,
+        initialValue:
+            groundLevel[element] != 0 ? groundLevel[element].toString() : "",
+        onChanged: (val) =>
+            setState(() => groundLevel[element] = double.parse(val)),
+      );
+    }
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -39,24 +58,35 @@ class _BailyBridgeInputState extends State<BailyBridgeInput> {
             child: Column(
               children: [
                 TextFormField(
+                    decoration: InputDecoration(
+                        hintText: "Water Gap", labelText: "Water Gap (ft)"),
+                    keyboardType: TextInputType.number,
+                    initialValue: _model?.waterGap?.toString() ?? null,
+                    onChanged: (value) =>
+                        setState(() => _model.waterGap = double.parse(value))),
+                TextFormField(
                   decoration: InputDecoration(
-                      hintText: "Water Gap", labelText: "Water Gap (ft)"),
+                      hintText:
+                          "Distance of Launching roller from the near bank",
+                      labelText:
+                          "Distance of Launching roller from the near bank (ft)"),
                   keyboardType: TextInputType.number,
-                  initialValue: _model?.waterGap?.toString() ?? null,
-                  onSaved: (val) =>
-                      setState(() => _model.waterGap = double.parse(val)),
+                  initialValue:
+                      _model?.distanceBetweenLaunchingNearbank?.toString() ??
+                          null,
+                  onChanged: (value) => setState(() => _model
+                      .distanceBetweenLaunchingNearbank = double.parse(value)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      hintText: "Distance between Launching and Landing Roller",
+                      hintText: "Distance of Landing roller from the far bank",
                       labelText:
-                          "Distance between Launching and Landing Roller (ft)"),
+                          "Distance of Landing roller from the far bank (ft)"),
                   keyboardType: TextInputType.number,
                   initialValue:
-                      _model?.distanceBtweenLaunchingLanding?.toString() ??
-                          null,
-                  onSaved: (val) => setState(() => _model
-                      .distanceBtweenLaunchingLanding = double.parse(val)),
+                      _model?.distanceBetweenLandingFarbank?.toString() ?? null,
+                  onChanged: (value) => setState(() => _model
+                      .distanceBetweenLandingFarbank = double.parse(value)),
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -86,40 +116,60 @@ class _BailyBridgeInputState extends State<BailyBridgeInput> {
                   onSaved: (val) => setState(
                       () => _model.additionalGrillage = int.parse(val)),
                 ),
-                // DropDownFormField(
-                //   titleText: 'Time',
-                //   hintText: 'Time',
-                //   value: _model.time,
-                //   filled: false,
-                //   dataSource: [
-                //     {"display": "Day", "value": PartsOfDay.Day},
-                //     {"display": "Dark Night", "value": PartsOfDay.Night}
-                //   ],
-                //   onChanged: (PartsOfDay value) {
-                //     setState(() {
-                //       _model.time = value;
-                //     });
-                //   },
-                //   textField: 'display',
-                //   valueField: 'value',
-                // ),
-                // DropDownFormField(
-                //   titleText: 'Type of Wire Obstacle',
-                //   hintText: 'Type of Wire Obstacle',
-                //   value: _model.task,
-                //   filled: false,
-                //   dataSource: listOfWireObstackleTasks
-                //       .map(
-                //           (option) => {"display": option.task, "value": option})
-                //       .toList(),
-                //   onChanged: (WireObstacleTask value) {
-                //     setState(() {
-                //       _model.task = value;
-                //     });
-                //   },
-                //   textField: 'display',
-                //   valueField: 'value',
-                // ),
+                DropDownFormField(
+                  titleText: 'Choose Launching Type',
+                  hintText: 'Choose Launching Type',
+                  value: _model.isLunching,
+                  filled: false,
+                  dataSource: [
+                    {"display": "With Launching Calculation", "value": true},
+                    {"display": "Withoug Launching Calculation", "value": false}
+                  ],
+                  onChanged: (bool value) {
+                    setState(() {
+                      _model.isLunching = value;
+                    });
+                  },
+                  textField: 'display',
+                  valueField: 'value',
+                ),
+                if (_model.isLunching)
+                  Column(
+                    children: [
+                      if (_model.positionOfConstructionRoller
+                          .contains(PositionRollers.Roller102))
+                        buildFieldForGroundLevel(
+                          _model.existingGroundLevels,
+                          PositionRollers.Roller102,
+                        ),
+                      if (_model.positionOfConstructionRoller
+                          .contains(PositionRollers.Roller77))
+                        buildFieldForGroundLevel(
+                          _model.existingGroundLevels,
+                          PositionRollers.Roller77,
+                        ),
+                      buildFieldForGroundLevel(
+                        _model.existingGroundLevels,
+                        PositionRollers.Roller52,
+                      ),
+                      buildFieldForGroundLevel(
+                        _model.existingGroundLevels,
+                        PositionRollers.Roller27,
+                      ),
+                      buildFieldForGroundLevel(
+                        _model.existingGroundLevels,
+                        PositionRollers.Roller3p5,
+                      ),
+                      buildFieldForGroundLevel(
+                        _model.existingGroundLevels,
+                        PositionRollers.Roller0,
+                      ),
+                      buildFieldForGroundLevel(
+                        _model.existingGroundLevels,
+                        PositionRollers.FarBank,
+                      ),
+                    ],
+                  ),
                 RaisedButton(
                   onPressed: () => handleSubmit(context),
                   child: Text('Submit'),

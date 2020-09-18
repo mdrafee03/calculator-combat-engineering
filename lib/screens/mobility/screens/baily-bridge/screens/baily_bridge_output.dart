@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
-import '../../../../../shared/models/utility.dart';
-import '../../../../../shared/models/serial_manage.dart';
 import '../../../../../shared/widgets/heading_output.dart';
-import '../../../../../shared/widgets/section_heading.dart';
+import '../../../../../shared/widgets/reference_text.dart';
+import '../../../../../shared/widgets/section_sub_heading.dart';
+import '../../../../../shared/models/serial_manage.dart';
 import '../models/baily_bridge.dart';
+import '../widgets/launching_calc.dart';
+import '../widgets/store_calc_bb_widget.dart';
 
 class BailyBridgeOutput extends StatelessWidget {
-  final SerialManage sl = SerialManage();
+  final SerialManage slForVehicle = SerialManage();
+  final SerialManage slForParent = SerialManage();
   @override
   Widget build(BuildContext context) {
     final BailyBridge _model = ModalRoute.of(context).settings.arguments;
-    sl.reset();
+    slForVehicle.reset();
+    slForParent.reset();
     final AppBar appbar = new AppBar(
       title: Text('Baily Bridge'),
       actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+                context, bailyBridgeInput, ModalRoute.withName(bailyBridgeList),
+                arguments: _model);
+          },
+        ),
         IconButton(
           icon: const Icon(Icons.list),
           onPressed: () {
@@ -36,7 +48,10 @@ class BailyBridgeOutput extends StatelessWidget {
           child: Column(
             children: [
               HeadingOutput('Summary of Baily Bridge'),
-              SectionHeading('1. ', "Calculation"),
+              SectionSubHeading(
+                "${slForParent.serialNum} .",
+                "Lenght of Baily Bridge and Type of Construction",
+              ),
               Container(
                 padding: EdgeInsets.only(left: 20),
                 alignment: Alignment.topLeft,
@@ -44,18 +59,34 @@ class BailyBridgeOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${sl.serialNum}. Length of Baily Bridge = ${_model.lengthOfBailyBridge} ft",
+                      "a. Length of Baily Bridge = ${_model.lengthOfBailyBridge} ft",
                     ),
                     Text(
-                      "${sl.serialNum}. Type of Construction of Baily Bridge = ${_model.typesOfConstructionString[_model.typeOfConstructionOfBridge]}",
+                      "b. Type of Construction of Baily Bridge = ${_model.typesOfConstructionString[_model.typeOfConstructionOfBridge]}",
                     ),
+                    ReferenceText(
+                      "(Auth: ERPB-1964, Section 16, Para 6, Table 1)",
+                    ),
+                  ],
+                ),
+              ),
+              SectionSubHeading(
+                "${slForParent.serialNum} .",
+                "Launching Nose and Position of Launching Link",
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      "${sl.serialNum}. Length of Nose = ${_model.lengthOfNose} ft = ${(_model.lengthOfNose / 10).round()} Bay ",
+                      "a. Length of Nose = ${_model.lengthOfNose} ft = ${(_model.lengthOfNose / 10).round()} Bay ",
                     ),
                     Wrap(
                       children: [
                         Text(
-                          "${sl.serialNum}. Type of Construction of of Nose = ${_model.typeOfConstructionOfNose[0]} SS",
+                          "b. Type of Construction of of Nose = ${_model.typeOfConstructionOfNose[0]} SS",
                         ),
                         if (_model.typeOfConstructionOfNose[1] != 0)
                           Text(
@@ -67,20 +98,50 @@ class BailyBridgeOutput extends StatelessWidget {
                           ),
                       ],
                     ),
+                    ReferenceText(
+                        "(Authorization: ME Volume III, Part III, Figure 33, 34, 35, or 36), Page 149-152"),
                     Text(
-                      "${sl.serialNum}. Corrected Length of Nose = ${_model.lengthOfNoseCorrected} ft = ${(_model.lengthOfNose / 10).round()} Bay ",
+                      "c. Corrected Length of Nose = ${_model.lengthOfNoseCorrected} ft = ${(_model.lengthOfNose / 10).round()} Bay ",
+                    ),
+                    ReferenceText(
+                        "(Authorization: ME Volume III, Part III, Figure 33, 34, 35, or 36), Page 149-152"),
+                    Text(
+                      "d. Position of Launching Link = ${_model.positionOfLaunchingLink} Bay ",
+                    ),
+                    ReferenceText(
+                      "[Auth: ME Volume III, Part III, Section 8, Para 3a] (Page-33)",
+                    ),
+                  ],
+                ),
+              ),
+              SectionSubHeading(
+                "${slForParent.serialNum} .",
+                "Roller Layout",
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "a. Construction Space = ${_model.constructionSpaceRollerLayout} ft",
                     ),
                     Text(
-                      "${sl.serialNum}. Position of Launching Link = ${_model.positionOfLaunchingLink} Bay ",
+                      "b. Position of Construction Roller = At a Distance of ${_model.positionOfConstructionRoller.sublist(0, _model.positionOfConstructionRoller.length - 1).map((element) => _model.positionRollersString[element]).join("', ")}' and ${_model.positionRollersString[_model.positionOfConstructionRoller.last]}'",
                     ),
-                    Text(
-                      "${sl.serialNum}. Construction Space = ${_model.constructionSpaceRollerLayout} ft",
+                    ReferenceText(
+                      "[Auth: ME Volume III, Part III, Section 8, Part 3a] (Page-33)",
                     ),
-                    Text(
-                      "${sl.serialNum}. Position of Construction Roller at = ${_model.positionOfConstructionRoller.join("', ")}'",
-                    ),
-                    Text(
-                      "${sl.serialNum}. No. of Construction roller at each side",
+                    Row(
+                      children: [
+                        Text("c. "),
+                        Text(
+                          "No. of Construction rollers at each side",
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ],
                     ),
                     Container(
                       padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
@@ -92,57 +153,157 @@ class BailyBridgeOutput extends StatelessWidget {
                               .map((i, element) => MapEntry(
                                   i,
                                   Text(
-                                      "(${Utility.romanize(i + 1)}) At ${element.keys.first}' = ${element.values.first} Nos")))
+                                      "(${i + 1}) At ${element.keys.first}' : ${element.values.first} Nos")))
                               .values
                               .toList()),
                     ),
-                    Text(
-                      "${sl.serialNum}. No. of Launching Roller = ${_model.numberOfLaunchingRoller} Nos",
+                    ReferenceText(
+                      "(Auth: ERPB Section 16 Para 4c, Page-67; ME Volumne III, Part III, Section 6, Para -4, Page-30)",
                     ),
                     Text(
-                      "${sl.serialNum}. No. of Landing Roller = ${_model.numberOfLandingRoller} Nos",
+                      "d. No. of Launching Roller = ${_model.numberOfLaunchingRoller} Nos",
+                    ),
+                    ReferenceText(
+                      "[Auth: ME Volumne III, Part III, Annex A (Page-132) and Section 4, Para 1 (Page-29), Section 6, Para 2 & ERPB Section 16 Para 2 (Page-66)]",
                     ),
                     Text(
-                      "${sl.serialNum}. Rocking Rollers = ${_model.numberOfLaunchingRoller + _model.numberOfLandingRoller} Nos",
+                      "e. No. of Landing Roller = ${_model.numberOfLandingRoller} Nos",
+                    ),
+                    ReferenceText(
+                      "(Auth: ME Volume III, Part III, Section 6, Para-3)",
+                    ),
+                    Row(
+                      children: [
+                        Text("f. "),
+                        Text(
+                          "Total Required of Rollers",
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "(1) Rocking Rollers = ${_model.numberOfLaunchingRoller + _model.numberOfLandingRoller} Nos",
+                          ),
+                          Text(
+                            "(2) Plain Rollers = ${_model.plainRoller} Nos",
+                          ),
+                          Text(
+                            "(3) Total Rollers = ${_model.totalRoller} Nos",
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SectionSubHeading(
+                "${slForParent.serialNum} .",
+                "Grillage",
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "a. Maximum base plate reaction = ${_model.maxReactionOfBasePlate} ton",
+                    ),
+                    ReferenceText(
+                      "(Auth: ERPB, Section 16, table under para 13) (Page-83)",
                     ),
                     Text(
-                      "${sl.serialNum}. Plain Rollers = ${_model.plainRoller} Nos",
+                      "b. Size of the Baseplate  = ${_model.sizeOfBaseplate} sq ft",
+                    ),
+                    ReferenceText("(Auth: ERPB, Section 16, Para 03)"),
+                    Text(
+                      "c. Given Bearing pressure on soil  = ${_model.pressureOfSoil} ton/sq ft",
                     ),
                     Text(
-                      "${sl.serialNum}. Total Rollers = ${_model.totalRoller} Nos",
-                    ),
-                    Text(
-                      "${sl.serialNum}. Max Reaction on Baseplate  = ${_model.maxReactionOfBasePlate} ton",
-                    ),
-                    Text(
-                      "${sl.serialNum}. Size of the Baseplate  = ${_model.sizeOfBaseplate} sq ft",
-                    ),
-                    Text(
-                      "${sl.serialNum}. Bearing Pressure on soil  = ${_model.pressureOfSoil} ton/sq ft",
-                    ),
-                    Text(
-                      "${sl.serialNum}. Max Bearing Pressure on soil  = ${_model.maxPressureOnSoil.toStringAsFixed(2)} ton/sq ft",
+                      "d. Max Bearing Pressure on soil  = ${_model.maxPressureOnSoil.toStringAsFixed(2)} ton/sq ft",
                     ),
                     _model.isGrillageRequire
-                        ? Text("${sl.serialNum}. we'll need Grillage ")
-                        : Text("${sl.serialNum}. we won't need Grillage"),
+                        ? Text("e. Grillage is required")
+                        : Text("e. Grillage is not required"),
                     if (_model.isGrillageRequire)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${sl.serialNum} Type = ${_model.getGrillageLoads.type}, Baseplate = ${_model.getGrillageLoads.basePlate}, template = ${_model.getGrillageLoads.template},",
+                            "f. Type of Grillage = ${_model.getGrillageLoads.type}, Baseplate = ${_model.getGrillageLoads.basePlate}, template = ${_model.getGrillageLoads.template},",
                           ),
                           Text(
-                            "${sl.serialNum} Total Grillage = ${_model.numberOfGrillage} Nos",
+                            "g. Total no of Grillage = ${_model.numberOfGrillage} Nos",
                           ),
                         ],
                       ),
+                    ReferenceText("(Auth: ME Volume III, Part III, Fig: 37"),
+                  ],
+                ),
+              ),
+              SectionSubHeading(
+                "${slForParent.serialNum} .",
+                "Jacks",
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      "${sl.serialNum}. Weight taken By Jack = ${_model.weightOfJack} tons",
+                      "a .Weight on Jack = ${_model.weightOfJack.toStringAsFixed(2)} tons",
                     ),
                     Text(
-                      "${sl.serialNum}. Number of Jack require = ${_model.numberOfJack} Nos",
+                      "b. No of Jack require = ${_model.numberOfJack} Nos",
+                    ),
+                    ReferenceText(
+                      "(Auth: ME Volume III part III, Section: 15, Para 1) (Page-42)",
+                    ),
+                  ],
+                ),
+              ),
+              if (_model.isLunching)
+                LaunchingCalcBailyBridge(
+                  sl: slForParent.serialNum,
+                  lauchings: _model.launchingCalculations,
+                  positions: _model.positionOfConstructionRoller,
+                  farbank: _model.waterGap,
+                ),
+              StoreCalcBBWidget(
+                sl: slForParent.serialNum,
+                stores: _model.storeCalculation,
+              ),
+              SectionSubHeading(
+                  "${slForParent.serialNum} .", "Vehicle Require"),
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${slForVehicle.serial}. Lorry for Panels = ${_model.lorryForPanels}",
+                    ),
+                    Text(
+                      "${slForVehicle.serial}. Lorry for Decking  = ${_model.lorryForDecking}",
+                    ),
+                    Text(
+                      "${slForVehicle.serial}. Ramps  = 2 x Lorry",
+                    ),
+                    if (_model.isGrillageRequire)
+                      Text(
+                        "${slForVehicle.serial}. Grillage  = ${_model.lorryForGrillage}",
+                      ),
+                    Text(
+                      "${slForVehicle.serial}. Total Lorry= ${_model.totalLorry}",
                     ),
                   ],
                 ),
