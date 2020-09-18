@@ -24,16 +24,7 @@ class StoreCalcBBWidget extends StatelessWidget {
       children: [
         SectionSubHeading(
           "$sl .",
-          "Store Calculation and Requirement of Vehicles",
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-          ),
-          child: SectionSubHeading(
-            'a. ',
-            "Store List",
-          ),
+          "Store Calculation",
         ),
         Container(
           alignment: Alignment.topLeft,
