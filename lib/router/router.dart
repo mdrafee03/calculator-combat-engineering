@@ -35,6 +35,9 @@ import '../screens/mobility/screens/mobility_screen.dart';
 import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_list.dart';
 import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_input.dart';
 import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_output.dart';
+import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_input.dart';
+import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_list.dart';
+import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_output.dart';
 
 import './route_const.dart';
 
@@ -80,6 +83,10 @@ class Router {
       bailyBridgeList: (BuildContext ctx) => BailyBridgeList(),
       bailyBridgeInput: (BuildContext ctx) => BailyBridgeInput(),
       bailyBridgeOutput: (BuildContext ctx) => BailyBridgeOutput(),
+      heavyPontoonBridgeList: (BuildContext ctx) => HeavyPontoonBridgeList(),
+      heavyPontoonBridgeInput: (BuildContext ctx) => HeavyPontoonBridgeInput(),
+      heavyPontoonBridgeOutput: (BuildContext ctx) =>
+          HeavyPontoonBridgeOutput(),
     };
   }
 }

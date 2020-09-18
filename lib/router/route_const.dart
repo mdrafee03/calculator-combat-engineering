@@ -53,3 +53,6 @@ const String mobilityScreen = '/mobility';
 const String bailyBridgeList = '/mobility/baily-bridge';
 const String bailyBridgeInput = '/mobility/baily-bridge/input';
 const String bailyBridgeOutput = '/mobility/baily-bridge/output';
+const String heavyPontoonBridgeList = '/mobility/heavy-pontoon-bridge';
+const String heavyPontoonBridgeInput = '/mobility/heavy-pontoon-bridge/input';
+const String heavyPontoonBridgeOutput = '/mobility/heavy-pontoon-bridge/output';

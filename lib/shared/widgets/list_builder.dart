@@ -43,44 +43,47 @@ class ListBuilder extends StatelessWidget {
         ),
       ),
       body: list.length > 0
-          ? Column(
-              children: list
-                  .asMap()
-                  .map(
-                    (i, model) => MapEntry(
-                      i,
-                      ListTile(
-                        title: Text("$title ${i + 1}"),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.remove_red_eye),
-                              onPressed: () => Navigator.pushNamed(
-                                context,
-                                output,
-                                arguments: model,
+          ? SingleChildScrollView(
+              child: Column(
+                children: list
+                    .asMap()
+                    .map(
+                      (i, model) => MapEntry(
+                        i,
+                        ListTile(
+                          key: ValueKey(i),
+                          title: Text("$title ${i + 1}"),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.remove_red_eye),
+                                onPressed: () => Navigator.pushNamed(
+                                  context,
+                                  output,
+                                  arguments: model,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.edit),
-                              onPressed: () => Navigator.pushNamed(
-                                context,
-                                input,
-                                arguments: model,
+                              IconButton(
+                                icon: const Icon(Icons.edit),
+                                onPressed: () => Navigator.pushNamed(
+                                  context,
+                                  input,
+                                  arguments: model,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () => onDelete(i),
-                            ),
-                          ],
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () => onDelete(i),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                  .values
-                  .toList(),
+                    )
+                    .values
+                    .toList(),
+              ),
             )
           : Container(
               child: Center(

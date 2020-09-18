@@ -16,7 +16,7 @@ class MobilityScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Button(context, 'Heavy Pontoon Bridge', counterMobilityScreen),
+            Button(context, 'Heavy Pontoon Bridge', heavyPontoonBridgeList),
             SizedBox(height: 10),
             Button(context, 'Baily Bridge', bailyBridgeList),
             SizedBox(height: 10),
