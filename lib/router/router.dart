@@ -38,6 +38,9 @@ import '../screens/mobility/screens/baily-bridge/screens/baily_bridge_output.dar
 import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_input.dart';
 import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_list.dart';
 import '../screens/mobility/screens/heavy-pontoon-bridge/screens/heavy_pontoon_bridge_output.dart';
+import '../screens/mobility/screens/minefield-breaching/screens/minefield_breaching_input.dart';
+import '../screens/mobility/screens/minefield-breaching/screens/minefield_breaching_list.dart';
+import '../screens/mobility/screens/minefield-breaching/screens/minefield_breaching_output.dart';
 
 import './route_const.dart';
 
@@ -87,6 +90,10 @@ class Router {
       heavyPontoonBridgeInput: (BuildContext ctx) => HeavyPontoonBridgeInput(),
       heavyPontoonBridgeOutput: (BuildContext ctx) =>
           HeavyPontoonBridgeOutput(),
+      minefieldBreachingList: (BuildContext ctx) => MinefieldBreachingList(),
+      minefieldBreachingInput: (BuildContext ctx) => MinefieldBreachingInput(),
+      minefieldBreachingOutput: (BuildContext ctx) =>
+          MinefieldBreachingOutput(),
     };
   }
 }

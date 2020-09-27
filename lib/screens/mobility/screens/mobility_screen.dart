@@ -20,7 +20,7 @@ class MobilityScreen extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Baily Bridge', bailyBridgeList),
             SizedBox(height: 10),
-            Button(context, 'Minefield Breaching', counterMobilityScreen),
+            Button(context, 'Minefield Breaching', minefieldBreachingList),
           ],
         ),
       ),

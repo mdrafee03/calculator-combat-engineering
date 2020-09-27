@@ -56,3 +56,6 @@ const String bailyBridgeOutput = '/mobility/baily-bridge/output';
 const String heavyPontoonBridgeList = '/mobility/heavy-pontoon-bridge';
 const String heavyPontoonBridgeInput = '/mobility/heavy-pontoon-bridge/input';
 const String heavyPontoonBridgeOutput = '/mobility/heavy-pontoon-bridge/output';
+const String minefieldBreachingList = '/mobility/minefield-breaching';
+const String minefieldBreachingInput = '/mobility/minefield-breaching/input';
+const String minefieldBreachingOutput = '/mobility/minefield-breaching/output';
