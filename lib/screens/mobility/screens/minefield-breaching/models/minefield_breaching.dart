@@ -261,8 +261,8 @@ class MinefieldBreaching {
         checkIfDayEnd(markingLane);
         breachingLanes.add(BreachingLane(
           serial: 7,
-          party: "Pulling Party",
-          task: "Pulling At Mine",
+          party: "Setting Out and Basic Breaching Parties",
+          task: "Marking the lanes",
           time: markingLane,
           from: current,
           to: addedTime,
