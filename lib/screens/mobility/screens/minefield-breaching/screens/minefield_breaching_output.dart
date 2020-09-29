@@ -8,7 +8,6 @@ import '../../../../../shared/widgets/section_sub_heading.dart';
 import '../models/minefield_breaching.dart';
 
 class MinefieldBreachingOutput extends StatelessWidget {
-  final SerialManage slForBankPart = SerialManage();
   final SerialManage slForParent = SerialManage();
   Container buildTableCell(String cell) {
     return Container(
@@ -25,7 +24,6 @@ class MinefieldBreachingOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final MinefieldBreaching _model = ModalRoute.of(context).settings.arguments;
     _model.timeCalculation;
-    slForBankPart.reset();
     slForParent.reset();
     final AppBar appbar = new AppBar(
       title: Text('Minefield Breaching'),

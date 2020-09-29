@@ -308,6 +308,22 @@ class BailyBridgeOutput extends StatelessWidget {
                   ],
                 ),
               ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/baily-bridge/bb1.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                  Image.asset(
+                    'assets/images/baily-bridge/bb2.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                  Image.asset(
+                    'assets/images/baily-bridge/bb3.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              )
             ],
           ),
         ),
