@@ -238,6 +238,18 @@ class MinefieldBreachingOutput extends StatelessWidget {
                   ],
                 ),
               ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/minefield-breaching/minefield-breaching1.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                  Image.asset(
+                    'assets/images/minefield-breaching/minefield-breaching2.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
             ],
           ),
         ),

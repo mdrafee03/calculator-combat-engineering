@@ -323,7 +323,7 @@ class BailyBridgeOutput extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
