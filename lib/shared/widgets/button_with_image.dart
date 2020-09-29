@@ -11,19 +11,16 @@ class ButtonWithImage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.all(10),
-        child: RaisedButton(
-          onPressed: () => Navigator.pushNamed(context, routeName),
-          padding: const EdgeInsets.all(4),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: Theme.of(context).primaryColor,
-          child: Image.asset(
-            imageUrl,
-            width: 150,
-          ),
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: RaisedButton(
+        onPressed: () => Navigator.pushNamed(context, routeName),
+        padding: const EdgeInsets.all(4),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        color: Theme.of(context).primaryColor,
+        child: Image.asset(
+          imageUrl,
+          width: 150,
         ),
       ),
     );
