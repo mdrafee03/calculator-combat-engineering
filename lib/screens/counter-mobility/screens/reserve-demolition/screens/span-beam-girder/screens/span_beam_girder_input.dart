@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../models/counter_mobility.dart';
 import '../../../models/reserve_demolition.dart';
 import '../models/span_beam_girder.dart';
@@ -121,10 +122,7 @@ class _SpanBeamGirderInputState extends State<SpanBeamGirderInput> {
                   onSaved: (val) =>
                       setState(() => _model.width = double.parse(val)),
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

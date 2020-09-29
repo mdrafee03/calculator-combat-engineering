@@ -2,10 +2,10 @@ import 'package:combat_engineering/router/route_const.dart';
 import 'package:flutter/material.dart';
 
 import '../models/roadway.dart';
-import '../../../../../../../shared/widgets/summary_of_calculation.dart';
-import '../../../../../../../shared/widgets/heading_output.dart';
-import '../../../../../../../shared/widgets/time_requirement.dart';
-import '../../../../../../../shared/widgets/placement_of_charges.dart';
+import '../../../widgets/summary_of_calculation.dart';
+import '../../../../../../../shared/widgets/top_header.dart';
+import '../../../widgets/time_requirement.dart';
+import '../../../widgets/placement_of_charges.dart';
 
 class RoadwayOutput extends StatelessWidget {
   @override
@@ -33,7 +33,7 @@ class RoadwayOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput("Demolition of Roadway"),
+              TopHeader("Demolition of Roadway"),
               SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),

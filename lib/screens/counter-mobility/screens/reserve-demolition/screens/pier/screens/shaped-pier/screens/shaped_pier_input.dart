@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
+import '../../../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../../../models/counter_mobility.dart';
 import '../../../../../models/reserve_demolition.dart';
 import '../models/shaped_pier.dart';
@@ -69,10 +70,7 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
                   onSaved: (val) =>
                       setState(() => _model.noOfPier = int.parse(val)),
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

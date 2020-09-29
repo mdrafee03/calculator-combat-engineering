@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../models/counter_mobility.dart';
 import '../../../models/reserve_demolition.dart';
 import '../models/roadway.dart';
@@ -66,10 +67,7 @@ class _RoadwayInputState extends State<RoadwayInput> {
                   onSaved: (val) =>
                       setState(() => _model.length = double.parse(val)),
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

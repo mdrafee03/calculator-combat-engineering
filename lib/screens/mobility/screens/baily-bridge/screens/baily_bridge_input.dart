@@ -2,6 +2,7 @@ import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/mobility.dart';
 import '../models/baily_bridge.dart';
 
@@ -170,10 +171,7 @@ class _BailyBridgeInputState extends State<BailyBridgeInput> {
                       ),
                     ],
                   ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

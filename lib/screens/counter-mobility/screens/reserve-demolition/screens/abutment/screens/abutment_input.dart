@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../models/counter_mobility.dart';
 import '../../../models/reserve_demolition.dart';
 import '../models/abutment.dart';
@@ -82,10 +83,7 @@ class _AbutmentInputState extends State<AbutmentInput> {
                   textField: 'display',
                   valueField: 'value',
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

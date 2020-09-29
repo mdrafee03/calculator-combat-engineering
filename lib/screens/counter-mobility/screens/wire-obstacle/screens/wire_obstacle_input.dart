@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/counter_mobility.dart';
 import '../models/wire_obstacle.dart';
 import '../models/wire_obstacle_task.dart';
@@ -93,10 +94,7 @@ class _WireObstacleInputState extends State<WireObstacleInput> {
                   textField: 'display',
                   valueField: 'value',
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

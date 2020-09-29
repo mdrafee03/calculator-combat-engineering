@@ -1,9 +1,10 @@
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/counter_mobility.dart';
 import '../models/moon_lit.dart';
-import '../../../../../router/route_const.dart';
 import '../models/minefield_laying.dart';
 
 class MineFieldLayingInput extends StatefulWidget {
@@ -285,10 +286,7 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                     }
                   },
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit)
               ],
             ),
           ),

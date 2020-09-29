@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
-import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/reference_text.dart';
 import '../../../../../shared/widgets/section_sub_heading.dart';
 import '../../../../../shared/models/serial_manage.dart';
@@ -47,7 +47,7 @@ class BailyBridgeOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Summary of Baily Bridge'),
+              TopHeader('Summary of Baily Bridge'),
               SectionSubHeading(
                 "${slForParent.serialNum} .",
                 "Lenght of Baily Bridge and Type of Construction",

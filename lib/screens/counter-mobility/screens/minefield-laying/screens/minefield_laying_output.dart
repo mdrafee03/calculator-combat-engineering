@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
-import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/section_heading.dart';
 import '../models/moon_lit.dart';
 import '../models/minefield_laying.dart';
@@ -32,7 +32,7 @@ class MinefieldLayingOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Summary of the minefield laying calculation'),
+              TopHeader('Summary of the minefield laying calculation'),
               SectionHeading('1. ', 'Strips'),
               Container(
                 padding: EdgeInsets.only(left: 20),

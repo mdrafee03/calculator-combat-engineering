@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/counter_mobility.dart';
 
 import '../models/anti_tank.dart';
@@ -49,10 +50,7 @@ class _AntiTankInputState extends State<AntiTankInput> {
                   onSaved: (val) =>
                       setState(() => _model.length = double.parse(val)),
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

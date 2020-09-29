@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class HeadingOutput extends StatelessWidget {
+class TopHeader extends StatelessWidget {
   final String heading;
-  HeadingOutput(this.heading);
+  TopHeader(this.heading);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,7 @@ class HeadingOutput extends StatelessWidget {
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15,
+          color: Theme.of(context).primaryColor,
           decoration: TextDecoration.underline,
         ),
         textAlign: TextAlign.center,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
-import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/section_heading.dart';
 import '../models/wire_obstacle.dart';
 
@@ -35,7 +35,7 @@ class WireObstacleOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Summary of Wire Obstacle'),
+              TopHeader('Summary of Wire Obstacle'),
               SectionHeading('1. ', "Store Calculation"),
               Container(
                 padding: EdgeInsets.only(left: 20),

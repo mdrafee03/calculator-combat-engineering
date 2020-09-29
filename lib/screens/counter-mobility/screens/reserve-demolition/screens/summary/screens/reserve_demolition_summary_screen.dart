@@ -2,7 +2,7 @@ import 'package:combat_engineering/shared/widgets/section_heading.dart';
 import 'package:flutter/material.dart';
 
 import '../models/reserve_demolition_summary.dart';
-import '../../../../../../../shared/widgets/heading_output.dart';
+import '../../../../../../../shared/widgets/top_header.dart';
 
 class ReserveDemolitionSummaryScreen extends StatelessWidget {
   final AppBar appbar = new AppBar(
@@ -18,7 +18,7 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Summary of reserve demolition of a bridge'),
+              TopHeader('Summary of reserve demolition of a bridge'),
               SizedBox(
                 height: 20,
               ),

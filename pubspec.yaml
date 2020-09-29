@@ -11,16 +11,20 @@ dependencies:
   fraction: ^1.2.1
   dropdown_formfield: ^0.1.2
   intl: ^0.16.1
-
+  flutter_launcher_icons: ^0.8.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
   uses-material-design: true
-
   assets:
     - assets/images/
     - assets/images/reserve-demolition/
     - assets/images/wire-obstacle/
     - assets/images/baily-bridge/
     - assets/images/minefield-breaching/
+    - assets/images/icons/
+flutter_icons:
+  image_path: assets/images/icons/logo.png
+  android: true
+  ios: true

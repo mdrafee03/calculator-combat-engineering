@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/mobility.dart';
 import '../models/heavy_pontoon_bridge.dart';
 
@@ -113,10 +114,7 @@ class _HeavyPontoonBridgeInputState extends State<HeavyPontoonBridgeInput> {
                   onChanged: (value) => setState(
                       () => _model.distanceFarShore = double.parse(value)),
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

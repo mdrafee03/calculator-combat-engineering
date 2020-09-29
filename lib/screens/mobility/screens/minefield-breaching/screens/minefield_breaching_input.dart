@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/mobility.dart';
 import '../models/minefield_breaching.dart';
 
@@ -152,10 +153,7 @@ class _MinefieldBreachingInputState extends State<MinefieldBreachingInput> {
                     }
                   },
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),

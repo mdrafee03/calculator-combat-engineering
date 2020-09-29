@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
-import '../../../../../../../../../shared/widgets/heading_output.dart';
-import '../../../../../../../../../shared/widgets/placement_of_charges.dart';
-import '../../../../../../../../../shared/widgets/summary_of_calculation.dart';
-import '../../../../../../../../../shared/widgets/time_requirement.dart';
+import '../../../../../../../../../shared/widgets/top_header.dart';
+import '../../../../../widgets/placement_of_charges.dart';
+import '../../../../../widgets/summary_of_calculation.dart';
+import '../../../../../widgets/time_requirement.dart';
 
 import '../models/borehole_pier.dart';
 
@@ -33,7 +33,7 @@ class BoreholePierOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Demolition of pier by borehole charge'),
+              TopHeader('Demolition of pier by borehole charge'),
               SummaryOfCalculation(),
               Container(
                 padding: EdgeInsets.only(left: 20),

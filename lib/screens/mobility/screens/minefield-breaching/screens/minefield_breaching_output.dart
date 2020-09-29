@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../shared/models/serial_manage.dart';
 import '../../../../../router/route_const.dart';
-import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/section_heading.dart';
 import '../../../../../shared/widgets/section_sub_heading.dart';
 import '../models/minefield_breaching.dart';
@@ -47,7 +47,7 @@ class MinefieldBreachingOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput('Summary of Minefield Breaching'),
+              TopHeader('Summary of Minefield Breaching'),
               SectionHeading(
                 "${slForParent.serialNum} .",
                 "Time Calculation",

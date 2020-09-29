@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../shared/widgets/heading_output.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../models/combined_project.dart';
 import '../widgets/minefield_laying_combined.dart';
 import '../widgets/reserve_demolition_combined.dart';
@@ -28,7 +28,7 @@ class CombinedProjectOutput extends StatelessWidget {
           margin: EdgeInsets.all(10),
           child: Column(
             children: [
-              HeadingOutput("Combined Project"),
+              TopHeader("Combined Project"),
               if (_model.minefields.length > 0)
                 MinefieldLayingCombined(model: _model.minefields),
               if (_model.reserveDemolitions.length > 0)

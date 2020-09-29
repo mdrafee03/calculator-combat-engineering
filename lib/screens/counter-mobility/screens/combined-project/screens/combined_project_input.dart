@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
 import '../models/combined_project.dart';
 
 class CombinedProjectInput extends StatefulWidget {
@@ -53,10 +54,7 @@ class _CombinedProjectInputState extends State<CombinedProjectInput> {
                     }
                   },
                 ),
-                RaisedButton(
-                  onPressed: () => handleSubmit(context),
-                  child: Text('Submit'),
-                )
+                InputSubmitButton(handleSubmit),
               ],
             ),
           ),
