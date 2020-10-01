@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 
 import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/top_header.dart';
@@ -15,10 +14,11 @@ import '../models/anti_tank.dart';
 
 class AntiTankOutput extends StatelessWidget {
   static GlobalKey screen = new GlobalKey();
+
   screenShot() async {
     RenderRepaintBoundary boundary = screen.currentContext.findRenderObject();
     ui.Image image = await boundary.toImage();
-    final directory = (await getApplicationSupportDirectory()).path;
+    final directory = '/storage/emulated/0/Download';
     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData.buffer.asUint8List();
     print(pngBytes);
@@ -55,6 +55,7 @@ class AntiTankOutput extends StatelessWidget {
         key: screen,
         child: SingleChildScrollView(
           child: Container(
+            color: Colors.white,
             margin: EdgeInsets.all(10),
             child: Column(
               children: [
