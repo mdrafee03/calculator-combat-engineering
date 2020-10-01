@@ -12,6 +12,11 @@ dependencies:
   dropdown_formfield: ^0.1.2
   intl: ^0.16.1
   flutter_launcher_icons: ^0.8.0
+  printing: ^3.6.1
+  pdf: ^1.11.2
+  image_picker_saver: ^0.3.0
+  path_provider: ^1.6.18
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
