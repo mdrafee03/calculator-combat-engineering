@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:ui' as ui;
 import 'dart:io';
-
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/section_heading.dart';
@@ -15,15 +17,82 @@ import '../models/anti_tank.dart';
 class AntiTankOutput extends StatelessWidget {
   static GlobalKey screen = new GlobalKey();
 
-  screenShot() async {
-    RenderRepaintBoundary boundary = screen.currentContext.findRenderObject();
-    ui.Image image = await boundary.toImage();
+  // screenShot() async {
+  //   RenderRepaintBoundary boundary = screen.currentContext.findRenderObject();
+  //   ui.Image image = await boundary.toImage();
+  //   final directory = '/storage/emulated/0/Download';
+  //   ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+  //   Uint8List pngBytes = byteData.buffer.asUint8List();
+  //   print(pngBytes);
+  //   File imgFile = new File('$directory/screenshot.png');
+  //   imgFile.writeAsBytes(pngBytes);
+  // }
+  printToPdf(AntiTank _model) async {
+    final doc = pw.Document();
+
+    doc.addPage(pw.Page(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return pw.Container(
+            margin: pw.EdgeInsets.all(10),
+            child: pw.Column(
+              children: [
+                pw.Container(
+                  padding: pw.EdgeInsets.only(left: 20),
+                  alignment: pw.Alignment.topLeft,
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        "a. The width of anti-tank ditch = ${_model.width} yards",
+                      ),
+                      pw.Text(
+                        "b. The height of anti-tank ditch = ${_model.height.toStringAsFixed(2)} yards",
+                      ),
+                      pw.Text(
+                        "c. The volume of anti-tank ditch = ${_model.volume.toStringAsFixed(2)} yards",
+                      ),
+                    ],
+                  ),
+                ),
+                pw.Container(
+                  padding: pw.EdgeInsets.only(left: 20),
+                  alignment: pw.Alignment.topLeft,
+                  child: pw.Column(
+                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                    children: [
+                      pw.Text(
+                        "a. Time requirement for 1 Dozon = ${_model.timeRequiredPerDozon.toStringAsFixed(2)} hours",
+                      ),
+                      pw.SizedBox(
+                        height: 10,
+                      ),
+                      pw.Text(
+                        "Note: Capacity of size ii/iv Dozer with 100' half way hauling is 55 cubic yard/hour. (Auth: GSTP-1608Figure 50 page 184)",
+                      ),
+                      pw.SizedBox(
+                        height: 10,
+                      ),
+                      pw.Text(
+                        "b. Total time require for plant platoon = ${_model.totalTimeRequired.toStringAsFixed(2)} Platoon hours",
+                      ),
+                      pw.SizedBox(
+                        height: 10,
+                      ),
+                      pw.Text(
+                        "Note: 1x Plant Platoon has 4x Dozer (2x Size-II 2x Size IV)",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        }));
+
     final directory = '/storage/emulated/0/Download';
-    ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-    Uint8List pngBytes = byteData.buffer.asUint8List();
-    print(pngBytes);
-    File imgFile = new File('$directory/screenshot.png');
-    imgFile.writeAsBytes(pngBytes);
+    final file = File("$directory/example.pdf");
+    await file.writeAsBytes(doc.save());
   }
 
   @override
@@ -45,7 +114,8 @@ class AntiTankOutput extends StatelessWidget {
         ),
         IconButton(
           icon: const Icon(Icons.file_download),
-          onPressed: screenShot,
+          // onPressed: screenShot,
+          onPressed: () => printToPdf(_model),
         ),
       ],
     );
