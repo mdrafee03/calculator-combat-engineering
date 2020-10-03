@@ -9,13 +9,13 @@ import 'package:printing/printing.dart';
 import '../../../../../../../../../shared/models/utility.dart';
 import '../../../../../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../../../../../../../shared/widgets/top_header_pw.dart';
-import './borehole_pier_type.dart';
-import './borehole_pier_calc.dart';
+import 'borehole_charge_type.dart';
+import 'borehole_charge_calc.dart';
 
-class BoreholePier {
+class BoreholeCharge {
   double width;
   double thickness;
-  BoreholePierType typeOfBoreholePier;
+  BoreholeChargeType typeOfBoreholePier;
   int row;
   int noOfPier;
 
@@ -46,11 +46,11 @@ class BoreholePier {
     return (depthOfHole / 2).ceil();
   }
 
-  List<BoreholePierCalc> get chargeAndTimeCalucation {
-    List<BoreholePierCalc> chargesNTimes = [];
+  List<BoreholeChargeCalc> get chargeAndTimeCalucation {
+    List<BoreholeChargeCalc> chargesNTimes = [];
     if (depthOfHole > 40) {
       chargesNTimes.add(
-        new BoreholePierCalc(
+        new BoreholeChargeCalc(
           dia: 2,
           depth: 40 - depthOfHole / 2,
           timeDepth: 40,
@@ -60,7 +60,7 @@ class BoreholePier {
       );
       if (depthOfHole > 60) {
         chargesNTimes.add(
-          new BoreholePierCalc(
+          new BoreholeChargeCalc(
             dia: 1.75,
             depth: 20,
             timeDepth: 20,
@@ -69,7 +69,7 @@ class BoreholePier {
           ),
         );
         chargesNTimes.add(
-          new BoreholePierCalc(
+          new BoreholeChargeCalc(
             dia: 1.5,
             depth: (depthOfHole - 60).toDouble(),
             timeDepth: (depthOfHole - 60).toDouble(),
@@ -79,7 +79,7 @@ class BoreholePier {
         );
       } else {
         chargesNTimes.add(
-          new BoreholePierCalc(
+          new BoreholeChargeCalc(
             dia: 1.75,
             depth: (depthOfHole.toDouble() - 40),
             timeDepth: (depthOfHole.toDouble() - 40),
@@ -90,7 +90,7 @@ class BoreholePier {
       }
     } else {
       chargesNTimes.add(
-        new BoreholePierCalc(
+        new BoreholeChargeCalc(
           dia: 2,
           depth: depthOfHole / 2,
           timeDepth: depthOfHole.toDouble(),

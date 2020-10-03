@@ -15,9 +15,9 @@ const String abutmentInput =
 const String abutmentOutput =
     '/counter-mobility/reserve-demolition/abutment/output';
 const String pierScreen = '/counter-mobility/reserve-demolition/pier';
-const String boreholePierInput =
+const String boreholeChargeInput =
     '/counter-mobility/reserve-demolition/pier/borehole';
-const String boreholePierOutput =
+const String boreholeChargeOutput =
     '/counter-mobility/reserve-demolition/pier/borehole/output';
 const String shapedPierInput =
     '/counter-mobility/reserve-demolition/pier/shaped';

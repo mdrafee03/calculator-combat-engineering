@@ -5,27 +5,27 @@ import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../../../models/counter_mobility.dart';
 import '../../../../../models/reserve_demolition.dart';
-import '../models/borehole_pier_type.dart';
-import '../models/borehole_pier.dart';
+import '../models/borehole_charge_type.dart';
+import '../models/borehole_charge.dart';
 
-class BoreholePierInput extends StatefulWidget {
+class BoreholeChargeInput extends StatefulWidget {
   @override
-  _BoreholePierInputState createState() => _BoreholePierInputState();
+  _BoreholeChargeInputState createState() => _BoreholeChargeInputState();
 }
 
-class _BoreholePierInputState extends State<BoreholePierInput> {
+class _BoreholeChargeInputState extends State<BoreholeChargeInput> {
   final appBar = AppBar(
     title: Text('Borehole Charge'),
   );
 
   final _formKey = GlobalKey<FormState>();
 
-  BoreholePier _model;
+  BoreholeCharge _model;
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
-    Navigator.pushNamed(context, boreholePierOutput, arguments: _model);
+    Navigator.pushNamed(context, boreholeChargeOutput, arguments: _model);
   }
 
   @override
@@ -35,7 +35,7 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
     if (_currentReserveDemolition?.pier?.boreholePier != null) {
       _model = _currentReserveDemolition.pier.boreholePier;
     } else {
-      _model = BoreholePier();
+      _model = BoreholeCharge();
       _currentReserveDemolition.pier.boreholePier = _model;
     }
 
@@ -47,7 +47,7 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
               .contains(_currentReserveDemolition) ==
           false)
         CounterMobility.listOfReserveDemolition.add(_currentReserveDemolition);
-      Navigator.pushNamed(context, boreholePierOutput, arguments: _model);
+      Navigator.pushNamed(context, boreholeChargeOutput, arguments: _model);
     }
 
     return Scaffold(
@@ -93,11 +93,11 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
                   hintText: 'Type of Pier',
                   value: _model.typeOfBoreholePier,
                   filled: false,
-                  dataSource: BoreholePierType.typesOfBoreholePier
+                  dataSource: BoreholeChargeType.typesOfBoreholePier
                       .map(
                           (option) => {"display": option.name, "value": option})
                       .toList(),
-                  onChanged: (BoreholePierType value) {
+                  onChanged: (BoreholeChargeType value) {
                     setState(() {
                       _model.typeOfBoreholePier = value;
                       _model.row = value.row;

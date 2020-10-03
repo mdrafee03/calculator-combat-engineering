@@ -11,8 +11,8 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/
 import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/screens/abutment_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/screens/abutment_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier_screen.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_input.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-pier/screens/borehole_pier_output.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-charge/screens/borehole_charge_input.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-charge/screens/borehole_charge_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/footing-pier/screens/footing_pier_output.dart';
@@ -60,8 +60,8 @@ class Router {
       abutmentInput: (BuildContext ctx) => AbutmentInput(),
       abutmentOutput: (BuildContext ctx) => AbutmentOutput(),
       pierScreen: (BuildContext ctx) => PierScreen(),
-      boreholePierInput: (BuildContext ctx) => BoreholePierInput(),
-      boreholePierOutput: (BuildContext ctx) => BoreholePierOutput(),
+      boreholeChargeInput: (BuildContext ctx) => BoreholeChargeInput(),
+      boreholeChargeOutput: (BuildContext ctx) => BoreholeChargeOutput(),
       shapedPierInput: (BuildContext ctx) => ShapedPierInput(),
       shapedPierOutput: (BuildContext ctx) => ShapedPierOutput(),
       footingPierInput: (BuildContext ctx) => FootingPierInput(),

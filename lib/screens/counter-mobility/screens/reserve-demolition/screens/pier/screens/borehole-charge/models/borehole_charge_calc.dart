@@ -1,10 +1,10 @@
-class BoreholePierCalc {
+class BoreholeChargeCalc {
   double dia;
   double depth;
   double timeDepth;
   double time;
   double charge;
-  BoreholePierCalc({
+  BoreholeChargeCalc({
     this.dia,
     this.depth,
     this.timeDepth,

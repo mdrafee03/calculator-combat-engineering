@@ -16,7 +16,7 @@ class PierScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Button(context, 'Borehole Charge', boreholePierInput),
+            Button(context, 'Borehole Charge', boreholeChargeInput),
             SizedBox(height: 10),
             Button(context, 'Shaped Charge', shapedPierInput),
             SizedBox(height: 10),

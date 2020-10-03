@@ -6,12 +6,12 @@ import '../../../../../widgets/placement_of_charges.dart';
 import '../../../../../widgets/summary_of_calculation.dart';
 import '../../../../../widgets/time_requirement.dart';
 
-import '../models/borehole_pier.dart';
+import '../models/borehole_charge.dart';
 
-class BoreholePierOutput extends StatelessWidget {
+class BoreholeChargeOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final BoreholePier _model = ModalRoute.of(context).settings.arguments;
+    final BoreholeCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
       actions: <Widget>[
         IconButton(
