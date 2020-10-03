@@ -161,7 +161,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Start Time = ${_model.hourFormat(_model.lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == _model.dDay).title})",
+                      "a. Start Time = ${_model.hourFormat(_model.lastLight)} D-Day (${MoonLit.listOfMoonlit.firstWhere((option) => option.value == _model.dDay).title})",
                     ),
                     Text(
                       "b. Completion Time = ${_model.timeRequired.completionTime}",

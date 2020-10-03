@@ -611,7 +611,7 @@ class MinefieldLaying {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
                         pw.Text(
-                          "a. Start Time = ${hourFormat(lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == dDay).title})",
+                          "a. Start Time = ${hourFormat(lastLight)} D-Day (${MoonLit.listOfMoonlit.firstWhere((option) => option.value == dDay).title})",
                         ),
                         pw.Text(
                           "b. Completion Time = ${timeRequired.completionTime}",

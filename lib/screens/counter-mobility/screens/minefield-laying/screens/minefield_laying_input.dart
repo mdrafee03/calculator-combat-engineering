@@ -240,7 +240,7 @@ class _MinefieldLayingInputState extends State<MineFieldLayingInput> {
                   hintText: 'Select D-Day',
                   value: _model.dDay,
                   filled: false,
-                  dataSource: listOfMoonlit
+                  dataSource: MoonLit.listOfMoonlit
                       .map((MoonLit option) =>
                           {"display": option.title, "value": option.value})
                       .toList(),

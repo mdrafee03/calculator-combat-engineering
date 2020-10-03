@@ -71,7 +71,7 @@ class _AbutmentInputState extends State<AbutmentInput> {
                   hintText: 'Type of Target',
                   value: _model.targetFactor,
                   filled: false,
-                  dataSource: typesOfTarget
+                  dataSource: Abutment.typesOfTarget
                       .map((option) =>
                           {"display": option['type'], "value": option['value']})
                       .toList(),
