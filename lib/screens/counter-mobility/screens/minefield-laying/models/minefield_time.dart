@@ -3,10 +3,10 @@ import '../../../../../shared/extension-methods/timeOfDay_apis.dart';
 
 class MinefieldTime {
   int dayTaken;
-  double timeAvailableADay;
+  int timeAvailableADay;
+  int timeRequired;
   TimeOfDay firstLight;
   TimeOfDay lastLight;
-  double timeRequired;
   double totalTimeRequired;
 
   String get timeRequiredInMinutes {
@@ -15,12 +15,12 @@ class MinefieldTime {
 
   String get completionTime {
     TimeOfDay finishTime =
-        lastLight.addMinute(timeRequired - dayTaken * timeAvailableADay);
+        lastLight.addMinutes(timeRequired - dayTaken * timeAvailableADay);
     String finishDay = dayTaken == 0 ? "D-Day" : "D+${dayTaken}Day";
     return "${hourFormat(finishTime)} $finishDay";
   }
 
-  String minuteFormat(double minute) {
+  String minuteFormat(int minute) {
     if (minute > 60) {
       return "${(minute / 60).floor()} hours ${(minute % 60).floor()} minutes";
     } else {

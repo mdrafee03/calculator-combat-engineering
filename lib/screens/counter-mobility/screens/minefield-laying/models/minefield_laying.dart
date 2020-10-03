@@ -1,10 +1,18 @@
 import 'dart:math';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fraction/fraction.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
+import '../../../../../shared/widgets/section_heading_pw.dart';
+import '../../../../../shared/widgets/top_header_pw.dart';
 import '../../../../../shared//extension-methods/double_apis.dart';
 import '../../../../../shared//extension-methods/timeOfDay_apis.dart';
 import './minefield_time.dart';
+import './moon_lit.dart';
 
 enum OuterStrip {
   TripWireCluster,
@@ -31,8 +39,8 @@ class MinefieldLaying {
   int numberOfClusterPerGroup;
   int totalTurningPointsPerStrip;
   int noOfFieldEngineerPlatoon;
-  int noOfInfantryPlatoon = 0;
-  int noOfAssistedByInfantryPlatoon = 0;
+  int noOfInfantryPlatoon;
+  int noOfAssistedByInfantryPlatoon;
   double percentageOfTripWire;
   int noOfantiTankMinePerLorry;
   int noOfantiPersonnelMinePerLorry;
@@ -159,41 +167,39 @@ class MinefieldLaying {
   }
 
   MinefieldTime get timeRequired {
-    final double antiTankClusterPerHourMoonlit =
-        (platoonWeight * 200 * 2 / 3).toDoubleAsPrecision().ceil().toDouble();
-    final double antiTankClusterPerHourDark =
-        (platoonWeight * 200 * 1 / 2).toDoubleAsPrecision().ceil().toDouble();
-    final double mixedClusterPerHourMoonlit =
-        (platoonWeight * 100 * 2 / 3).toDoubleAsPrecision().ceil().toDouble();
-    final double mixedClusterPerHourDark =
-        (platoonWeight * 100 * 1 / 2).toDoubleAsPrecision().ceil().toDouble();
-    final double trippedWirePerHourMoonlit =
-        (platoonWeight * 75 * 2 / 3).toDoubleAsPrecision().ceil().toDouble();
-    final double trippedWirePerHourDark =
-        (platoonWeight * 75 * 1 / 2).toDoubleAsPrecision().ceil().toDouble();
+    final int antiTankClusterPerHourMoonlit =
+        (platoonWeight * 200 * 2 / 3).toDoubleAsPrecision().ceil();
+    final int antiTankClusterPerHourDark =
+        (platoonWeight * 200 * 1 / 2).toDoubleAsPrecision().ceil();
+    final int mixedClusterPerHourMoonlit =
+        (platoonWeight * 100 * 2 / 3).toDoubleAsPrecision().ceil();
+    final int mixedClusterPerHourDark =
+        (platoonWeight * 100 * 1 / 2).toDoubleAsPrecision().ceil();
+    final int trippedWirePerHourMoonlit =
+        (platoonWeight * 75 * 2 / 3).toDoubleAsPrecision().ceil();
+    final int trippedWirePerHourDark =
+        (platoonWeight * 75 * 1 / 2).toDoubleAsPrecision().ceil();
 
-    double darkTime;
-    double moonLitTime;
-    double remainingCluster = numberOfClusterPerStrip.toDouble();
+    int darkTime;
+    int moonLitTime;
+    int remainingCluster = numberOfClusterPerStrip;
     int currentDay = dDay;
-    final double noOfTrippedWireOuterStrip =
+    final int noOfTrippedWireOuterStrip =
         (numberOfClusterPerStrip / 2 * percentageOfTripWire / 100)
             .toDoubleAsPrecision()
-            .ceil()
-            .toDouble();
-    double remainingTrippedWireCluster = noOfTrippedWireOuterStrip;
-    final double timeAvailable = firstLight.differenceInMinutes(lastLight);
+            .ceil();
+    int remainingTrippedWireCluster = noOfTrippedWireOuterStrip;
+    final int timeAvailable = firstLight - lastLight;
     var times = calculateMoonlitnDarkTime(dDay, timeAvailable);
     darkTime = times['darkTime'];
     moonLitTime = times['moonLitTime'];
 
     void calculateTimeForAntiTankCluster() {
-      double estimatedTime;
+      int estimatedTime;
       void calculateTimeForMoonlit() {
         estimatedTime = (remainingCluster * 60 / antiTankClusterPerHourMoonlit)
             .toDoubleAsPrecision()
-            .ceil()
-            .toDouble();
+            .ceil();
         if (estimatedTime <= moonLitTime) {
           moonLitTime -= estimatedTime;
           remainingCluster = 0;
@@ -201,8 +207,7 @@ class MinefieldLaying {
         } else {
           remainingCluster -= (moonLitTime * antiTankClusterPerHourMoonlit / 60)
               .toDoubleAsPrecision()
-              .ceil()
-              .toDouble();
+              .ceil();
           moonLitTime = 0;
           return;
         }
@@ -211,8 +216,7 @@ class MinefieldLaying {
       void calculateTimeForDark() {
         estimatedTime = (remainingCluster * 60 / antiTankClusterPerHourDark)
             .toDoubleAsPrecision()
-            .ceil()
-            .toDouble();
+            .ceil();
         if (estimatedTime <= darkTime) {
           darkTime -= estimatedTime;
           remainingCluster = 0;
@@ -220,8 +224,7 @@ class MinefieldLaying {
         } else {
           remainingCluster -= (darkTime * antiTankClusterPerHourDark / 60)
               .toDoubleAsPrecision()
-              .ceil()
-              .toDouble();
+              .ceil();
           darkTime = 0;
           return;
         }
@@ -254,12 +257,11 @@ class MinefieldLaying {
     }
 
     void calculateTimeForMixedCluster() {
-      double estimatedTime;
+      int estimatedTime;
       void calculateTimeForMoonlit() {
         estimatedTime = (remainingCluster * 60 / mixedClusterPerHourMoonlit)
             .toDoubleAsPrecision()
-            .ceil()
-            .toDouble();
+            .ceil();
         if (estimatedTime <= moonLitTime) {
           moonLitTime -= estimatedTime;
           remainingCluster = 0;
@@ -267,8 +269,7 @@ class MinefieldLaying {
         } else {
           remainingCluster -= (moonLitTime * mixedClusterPerHourMoonlit / 60)
               .toDoubleAsPrecision()
-              .ceil()
-              .toDouble();
+              .ceil();
           moonLitTime = 0;
           return;
         }
@@ -277,8 +278,7 @@ class MinefieldLaying {
       void calculateTimeForDark() {
         estimatedTime = (remainingCluster * 60 / mixedClusterPerHourDark)
             .toDoubleAsPrecision()
-            .ceil()
-            .toDouble();
+            .ceil();
         if (estimatedTime <= darkTime) {
           darkTime -= estimatedTime;
           remainingCluster = 0;
@@ -286,8 +286,7 @@ class MinefieldLaying {
         } else {
           remainingCluster -= (darkTime * mixedClusterPerHourDark / 60)
               .toDoubleAsPrecision()
-              .ceil()
-              .toDouble();
+              .ceil();
           darkTime = 0;
           return;
         }
@@ -320,13 +319,12 @@ class MinefieldLaying {
     }
 
     void calculateTimeForTrippedWireCluster() {
-      double estimatedTime;
+      int estimatedTime;
       void calculateTimeForMoonlit() {
         estimatedTime =
             (remainingTrippedWireCluster * 60 / trippedWirePerHourMoonlit)
                 .toDoubleAsPrecision()
-                .ceil()
-                .toDouble();
+                .ceil();
         if (estimatedTime <= moonLitTime) {
           moonLitTime -= estimatedTime;
           remainingTrippedWireCluster = 0;
@@ -335,8 +333,7 @@ class MinefieldLaying {
           remainingTrippedWireCluster -=
               (moonLitTime * trippedWirePerHourMoonlit / 60)
                   .toDoubleAsPrecision()
-                  .ceil()
-                  .toDouble();
+                  .ceil();
           moonLitTime = 0;
           return;
         }
@@ -346,8 +343,7 @@ class MinefieldLaying {
         estimatedTime =
             (remainingTrippedWireCluster * 60 / trippedWirePerHourDark)
                 .toDoubleAsPrecision()
-                .ceil()
-                .toDouble();
+                .ceil();
         if (estimatedTime <= darkTime) {
           darkTime -= estimatedTime;
           remainingTrippedWireCluster = 0;
@@ -356,8 +352,7 @@ class MinefieldLaying {
           remainingTrippedWireCluster -=
               (darkTime * trippedWirePerHourDark / 60)
                   .toDoubleAsPrecision()
-                  .ceil()
-                  .toDouble();
+                  .ceil();
           darkTime = 0;
           return;
         }
@@ -395,7 +390,7 @@ class MinefieldLaying {
     for (int i = 0; i < numberOfStrips; i++) {
       if ((i == 0 || i == numberOfStrips - 1) &&
           typeOfOuterStrip == OuterStrip.TripWireCluster) {
-        remainingCluster = numberOfClusterPerStrip.toDouble();
+        remainingCluster = numberOfClusterPerStrip;
         remainingTrippedWireCluster = noOfTrippedWireOuterStrip;
         calculateTimeForTrippedWireCluster();
       } else if ((i == 0 || i == numberOfStrips - 1) &&
@@ -403,7 +398,7 @@ class MinefieldLaying {
         calculateTimeForMixedCluster();
       } else if ((i != 0 && i != numberOfStrips - 1) ||
           typeOfOuterStrip == OuterStrip.AntiTankCluster) {
-        remainingCluster = numberOfClusterPerStrip.toDouble();
+        remainingCluster = numberOfClusterPerStrip;
         calculateTimeForAntiTankCluster();
       }
     }
@@ -420,18 +415,17 @@ class MinefieldLaying {
     return minefieldTime;
   }
 
-  Map<String, double> calculateMoonlitnDarkTime(int day, double timeAvailable) {
-    double darkTime;
-    double moonLitTime;
+  Map<String, int> calculateMoonlitnDarkTime(int day, int timeAvailable) {
+    int darkTime;
+    int moonLitTime;
     if (day <= 14) {
-      moonLitTime = (52 * day).toDouble();
-      darkTime = (timeAvailable - moonLitTime) > 0
-          ? (timeAvailable - moonLitTime)
-          : 0.0;
+      moonLitTime = (52 * day);
+      darkTime =
+          (timeAvailable - moonLitTime) > 0 ? (timeAvailable - moonLitTime) : 0;
     } else {
-      darkTime = ((day - 14) * 52).toDouble();
+      darkTime = (day - 14) * 52;
       moonLitTime =
-          (timeAvailable - darkTime) > 0 ? (timeAvailable - darkTime) : 0.0;
+          (timeAvailable - darkTime) > 0 ? (timeAvailable - darkTime) : 0;
     }
     return {'moonLitTime': moonLitTime, 'darkTime': darkTime};
   }
@@ -455,5 +449,218 @@ class MinefieldLaying {
     return double.tryParse(val) != null
         ? Fraction.fromDouble(double.parse(val))
         : Fraction.fromString(val);
+  }
+
+  Future<void> generatePDF(pw.Document doc) async {
+    final PdfImage image = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load('assets/images/minefield_layout.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    doc.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return [
+            TopHeaderPw('Summary of the minefield laying calculation'),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('1. ', 'Strips'),
+                  pw.Container(
+                    padding: pw.EdgeInsets.only(left: 20),
+                    alignment: pw.Alignment.topLeft,
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "a. Number of Strips = $numberOfStrips",
+                        ),
+                        pw.Text(
+                          "b. Number of Anti-Tank Strips = $numberOfAntiTankStrips",
+                        ),
+                        pw.Text(
+                          "c. Number of Mixed Strips = $numberOfMixedStrip",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('2. ', 'Mines'),
+                  pw.Container(
+                    padding: pw.EdgeInsets.only(left: 20),
+                    alignment: pw.Alignment.topLeft,
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "a. Number of Anti-Tank Mines = $antiTankMines",
+                        ),
+                        pw.Text(
+                          "b. Number of Anti-Personnel Mines = $antiPersonnelMines",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('3. ', 'Stores'),
+                  pw.Container(
+                    padding: pw.EdgeInsets.only(left: 20),
+                    alignment: pw.Alignment.topLeft,
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "a. Long Pickets = $longPicket",
+                        ),
+                        pw.Text(
+                          "b. Short Pickets = $shortPicket",
+                        ),
+                        pw.Text(
+                          "c. Barbed Wire = $barbedWire",
+                        ),
+                        pw.Text(
+                          "d. Perimeter Sign Posting = $perimeterSignPosting",
+                        ),
+                        pw.Text(
+                          "e. Tracing Tape = $tracingTape",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('4. ', 'Transport'),
+                  pw.Container(
+                    padding: pw.EdgeInsets.only(left: 20),
+                    alignment: pw.Alignment.topLeft,
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "a. For Anti-Tank Mines = ${totalLorryForAntiTankMine}x 3-ton lorry",
+                        ),
+                        pw.Text(
+                          "b. For Anti-Personnel Mines = ${totalLorryForAntiPersonnelMine}x 3-ton lorry",
+                        ),
+                        pw.Text(
+                          "c. For Perimeter Fencing = ${totalLorryForStores}x 3-ton lorry",
+                        ),
+                        pw.Wrap(
+                          children: [
+                            pw.Text("d. For Personnel "),
+                            pw.Column(
+                              mainAxisAlignment: pw.MainAxisAlignment.start,
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  "= ${totalLorryForPersonnel}x 3-ton lorry",
+                                ),
+                                pw.Text("= 1x 1/4-ton Jeep"),
+                                pw.Text("= 1x 1-ton pickup"),
+                                pw.Text("= 1x Ambulance"),
+                              ],
+                            )
+                          ],
+                        ),
+                        pw.Text(
+                          "e. Total 3-ton Require = $totalTransportRequired",
+                        ),
+                        pw.Wrap(
+                          children: [
+                            pw.Text("f. Total Other Vehicles Require"),
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text("= 1x 1/4-ton Jeep"),
+                                pw.Text("= 1x 1-ton pickup"),
+                                pw.Text("= 1x Ambulance"),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('5. ', 'Time'),
+                  pw.Container(
+                    padding: pw.EdgeInsets.only(left: 20),
+                    alignment: pw.Alignment.topLeft,
+                    child: pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "a. Start Time = ${hourFormat(lastLight)} D-Day (${listOfMoonlit.firstWhere((option) => option.value == dDay).title})",
+                        ),
+                        pw.Text(
+                          "b. Completion Time = ${timeRequired.completionTime}",
+                        ),
+                        pw.Text(
+                          "c. Total Time Require = ${timeRequired.timeRequiredInMinutes}",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            pw.Container(
+              child: pw.Column(
+                children: [
+                  SectionHeadingPw('6. ', 'Layout of Conventional Minefield'),
+                  pw.Container(
+                    child: pw.Image(image),
+                  ),
+                ],
+              ),
+            ),
+          ];
+        },
+      ),
+    );
+  }
+
+  void savePDF(BuildContext ctx) async {
+    var doc = pw.Document();
+    await generatePDF(doc);
+    final directory = '/storage/emulated/0/Download';
+    final file = File("$directory/Minefield-Laying.pdf");
+    await file.writeAsBytes(doc.save());
+    _showPrintedToast(ctx);
+  }
+
+  void sharePDF() async {
+    var doc = pw.Document();
+    await generatePDF(doc);
+    await Printing.sharePdf(
+        bytes: doc.save(), filename: 'Minefield-Laying.pdf');
+  }
+
+  void _showPrintedToast(BuildContext context) {
+    final snackbar = SnackBar(
+      content: Text('Pdf saved in Downloads'),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
   }
 }

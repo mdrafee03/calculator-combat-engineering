@@ -11,7 +11,6 @@ class MinefieldLayingOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final MinefieldLaying _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Minefield Laying Result'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
@@ -22,14 +21,24 @@ class MinefieldLayingOutput extends StatelessWidget {
               ModalRoute.withName(counterMobilityScreen),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all(20),
           child: Column(
             children: [
               TopHeader('Summary of the minefield laying calculation'),
@@ -47,7 +56,7 @@ class MinefieldLayingOutput extends StatelessWidget {
                       "b. Number of Anti-Tank Strips = ${_model.numberOfAntiTankStrips}",
                     ),
                     Text(
-                      "c. Number of Mixed Strips = ${_model.numberOfMixedStrip.ceil()}",
+                      "c. Number of Mixed Strips = ${_model.numberOfMixedStrip}",
                     ),
                   ],
                 ),
@@ -109,13 +118,10 @@ class MinefieldLayingOutput extends StatelessWidget {
                     Text(
                       "c. For Perimeter Fencing = ${_model.totalLorryForStores}x 3-ton lorry",
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Wrap(
                       children: [
                         Text("d. For Personnel "),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -131,12 +137,10 @@ class MinefieldLayingOutput extends StatelessWidget {
                     Text(
                       "e. Total 3-ton Require = ${_model.totalTransportRequired}",
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    Wrap(
                       children: [
                         Text("f. Total Other Vehicles Require"),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("= 1x 1/4-ton Jeep"),
