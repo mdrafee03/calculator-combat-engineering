@@ -7,6 +7,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
+import '../../../../../shared/models/utility.dart';
 import '../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../../../shared/widgets/top_header_pw.dart';
 import '../../../../../shared//extension-methods/double_apis.dart';
@@ -647,7 +648,7 @@ class MinefieldLaying {
     final directory = '/storage/emulated/0/Download';
     final file = File("$directory/Minefield-Laying.pdf");
     await file.writeAsBytes(doc.save());
-    _showPrintedToast(ctx);
+    Utility.showPrintedToast(ctx);
   }
 
   void sharePDF() async {
@@ -655,12 +656,5 @@ class MinefieldLaying {
     await generatePDF(doc);
     await Printing.sharePdf(
         bytes: doc.save(), filename: 'Minefield-Laying.pdf');
-  }
-
-  void _showPrintedToast(BuildContext context) {
-    final snackbar = SnackBar(
-      content: Text('Pdf saved in Downloads'),
-    );
-    Scaffold.of(context).showSnackBar(snackbar);
   }
 }

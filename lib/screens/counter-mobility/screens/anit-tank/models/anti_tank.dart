@@ -5,6 +5,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
+import '../../../../../shared/models/utility.dart';
 import '../../../../../shared/widgets/section_heading_pw.dart';
 
 class AntiTank {
@@ -123,19 +124,12 @@ class AntiTank {
     final directory = '/storage/emulated/0/Download';
     final file = File("$directory/Anti-tank.pdf");
     await file.writeAsBytes(doc.save());
-    _showPrintedToast(ctx);
+    Utility.showPrintedToast(ctx);
   }
 
   void sharePDF() async {
     var doc = pw.Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Anti-tank.pdf');
-  }
-
-  void _showPrintedToast(BuildContext context) {
-    final snackbar = SnackBar(
-      content: Text('Pdf saved in Downloads'),
-    );
-    Scaffold.of(context).showSnackBar(snackbar);
   }
 }

@@ -23,7 +23,17 @@ class BoreholePierOutput extends StatelessWidget {
               ModalRoute.withName(reserveDemolitionChildren),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
     return Scaffold(

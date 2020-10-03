@@ -1,12 +1,13 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:combat_engineering/shared/models/pdfTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
+import '../../../../../../../shared/models/pdfTheme.dart';
+import '../../../../../../../shared/models/utility.dart';
 import '../../../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../../../../../shared/widgets/top_header_pw.dart';
 
@@ -182,8 +183,7 @@ class Abutment {
                         pw.SizedBox(
                           height: 10,
                         ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.end,
+                        pw.Wrap(
                           children: [
                             pw.Text(
                               "b. Total Time Require for $craterNo craters ",
@@ -242,19 +242,12 @@ class Abutment {
     final directory = '/storage/emulated/0/Download';
     final file = File("$directory/Abutment.pdf");
     await file.writeAsBytes(doc.save());
-    _showPrintedToast(ctx);
+    Utility.showPrintedToast(ctx);
   }
 
   void sharePDF() async {
     var doc = pw.Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Abutment.pdf');
-  }
-
-  void _showPrintedToast(BuildContext context) {
-    final snackbar = SnackBar(
-      content: Text('Pdf saved in Downloads'),
-    );
-    Scaffold.of(context).showSnackBar(snackbar);
   }
 }

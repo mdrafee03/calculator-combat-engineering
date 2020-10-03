@@ -93,7 +93,7 @@ class _BoreholePierInputState extends State<BoreholePierInput> {
                   hintText: 'Type of Pier',
                   value: _model.typeOfBoreholePier,
                   filled: false,
-                  dataSource: typesOfBoreholePier
+                  dataSource: BoreholePierType.typesOfBoreholePier
                       .map(
                           (option) => {"display": option.name, "value": option})
                       .toList(),

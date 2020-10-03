@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Utility {
   static String romanize(int number) {
     Map<String, int> lookup = {
@@ -24,5 +26,12 @@ class Utility {
       }
     });
     return roman;
+  }
+
+  static void showPrintedToast(BuildContext context) {
+    final snackbar = SnackBar(
+      content: Text('Pdf saved in Downloads'),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
   }
 }
