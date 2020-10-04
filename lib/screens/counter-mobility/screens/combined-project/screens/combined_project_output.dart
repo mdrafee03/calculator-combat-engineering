@@ -12,12 +12,8 @@ class CombinedProjectOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CombinedProject _model = ModalRoute.of(context).settings.arguments;
-    if (_model.minefields.length > 0 &&
-        _model.reserveDemolitions.length > 0 &&
-        _model.wireObstacles.length > 0 &&
-        _model.antiTanks.length > 0) {
-      _model.taskDistributionCalculation();
-    }
+    _model.taskDistributionCalculation();
+
     final AppBar appbar = new AppBar(
       title: Text('Combined Project'),
     );
@@ -35,16 +31,8 @@ class CombinedProjectOutput extends StatelessWidget {
                 ReserveDemolitionCombined(model: _model.reserveDemolitions),
               if (_model.wireObstacles.length > 0)
                 WireObstacleCombined(model: _model.wireObstacles),
-              if (_model.minefields.length > 0 &&
-                  _model.reserveDemolitions.length > 0 &&
-                  _model.wireObstacles.length > 0 &&
-                  _model.antiTanks.length > 0)
-                StoreListCombined(model: _model),
-              if (_model.minefields.length > 0 &&
-                  _model.reserveDemolitions.length > 0 &&
-                  _model.wireObstacles.length > 0 &&
-                  _model.antiTanks.length > 0)
-                TimeCombined(model: _model),
+              StoreListCombined(model: _model),
+              TimeCombined(model: _model),
             ],
           ),
         ),

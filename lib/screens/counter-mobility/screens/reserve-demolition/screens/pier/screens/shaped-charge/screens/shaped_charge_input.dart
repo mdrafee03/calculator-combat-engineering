@@ -15,25 +15,24 @@ class _ShapedChargeInputState extends State<ShapedChargeInput> {
   final appBar = AppBar(
     title: Text('Shaped Charge'),
   );
-
+  ReserveDemolition _currentReserveDemolition;
   final _formKey = GlobalKey<FormState>();
   ShapedCharge _model;
 
   @override
   Widget build(BuildContext context) {
-    ReserveDemolition _currentReserveDemolition =
-        ReserveDemolition.currentReserveDemolition;
+    _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
     if (_currentReserveDemolition?.pier?.shapedPier != null) {
       _model = _currentReserveDemolition.pier.shapedPier;
     } else {
       _model = ShapedCharge();
-      _currentReserveDemolition.pier.shapedPier = _model;
     }
 
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
 
+      _currentReserveDemolition.pier.shapedPier = _model;
       if (CounterMobility.listOfReserveDemolition
               .contains(_currentReserveDemolition) ==
           false)

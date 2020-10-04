@@ -17,15 +17,9 @@ class ReserveDemolition {
                     element.totalChargeRequired(element.craterNo ?? 0) ??
                 0) ??
         0;
-    double borehole = pier?.boreholePier?.width != null
-        ? pier?.boreholePier?.totalChargeRequired ?? 0
-        : 0;
-    double pierFooting = pier?.footingPier?.width != null
-        ? pier?.footingPier?.totalAmountOfCharge ?? 0
-        : 0;
-    double span = spanBeamGirder?.length != null
-        ? spanBeamGirder?.totalChargeRequired ?? 0
-        : 0;
+    double borehole = pier?.boreholePier?.totalChargeRequired ?? 0;
+    double pierFooting = pier?.footingPier?.totalAmountOfCharge ?? 0;
+    double span = spanBeamGirder?.totalChargeRequired ?? 0;
 
     return abutment + borehole + span + pierFooting;
   }
@@ -39,8 +33,6 @@ class ReserveDemolition {
   }
 
   int get hayrics {
-    return pier?.shapedPier?.dia != null
-        ? pier?.shapedPier?.totalNoOfHyrics ?? 0
-        : 0;
+    return pier?.shapedPier?.totalNoOfHyrics ?? 0;
   }
 }

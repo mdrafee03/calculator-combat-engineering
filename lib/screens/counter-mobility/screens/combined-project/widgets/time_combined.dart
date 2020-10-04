@@ -36,15 +36,26 @@ class TimeCombined extends StatelessWidget {
     );
   }
 
+  Container buildTableCell(String cell, {bool isCenter = false}) {
+    return Container(
+      alignment: isCenter ? Alignment.center : Alignment.centerLeft,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1),
+        ),
+      ),
+      child: Text(cell),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SectionHeading('5. ', 'Work Program'),
         Container(
-          width: 1400,
-          height: _model.totalCount * 30.toDouble(),
           child: ListView(
+            shrinkWrap: true,
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -84,7 +95,8 @@ class TimeCombined extends StatelessWidget {
                         i++)
                       TableRow(
                         decoration:
-                            TaskDistribution.taskDistributions[i].startForce
+                            TaskDistribution.taskDistributions[i].startForce &&
+                                    i != 0
                                 ? BoxDecoration(
                                     border: Border(
                                       top: BorderSide(width: 2),
@@ -102,11 +114,11 @@ class TimeCombined extends StatelessWidget {
                                     border: Border(top: BorderSide(width: 1)))
                                 : null,
                             alignment: Alignment.center,
-                            child: Text(TaskDistribution
-                                    .taskDistributions[i].showTaskforce
-                                ? TaskDistribution
-                                    .taskDistributions[i].force.name
-                                : ''),
+                            child: Text(
+                                TaskDistribution.taskDistributions[i].startForce
+                                    ? TaskDistribution
+                                        .taskDistributions[i].force.name
+                                    : ''),
                           ),
                           buildTableCell(
                               TaskDistribution.taskDistributions[i].priority
@@ -185,19 +197,8 @@ class TimeCombined extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 20)
       ],
-    );
-  }
-
-  Container buildTableCell(String cell, {bool isCenter = false}) {
-    return Container(
-      alignment: isCenter ? Alignment.center : Alignment.centerLeft,
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: 1),
-        ),
-      ),
-      child: Text(cell),
     );
   }
 }

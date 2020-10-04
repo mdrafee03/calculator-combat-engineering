@@ -15,24 +15,23 @@ class _SpanBeamGirderInputState extends State<SpanBeamGirderInput> {
   final appBar = AppBar(
     title: Text('Span, Beam and Girder Demolition'),
   );
-
+  ReserveDemolition _currentReserveDemolition;
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    ReserveDemolition _currentReserveDemolition =
-        ReserveDemolition.currentReserveDemolition;
+    _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
     SpanBeamGirder _model;
     if (_currentReserveDemolition.spanBeamGirder != null) {
       _model = _currentReserveDemolition.spanBeamGirder;
     } else {
       _model = SpanBeamGirder();
-      _currentReserveDemolition.spanBeamGirder = _model;
     }
 
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
+      _currentReserveDemolition.spanBeamGirder = _model;
 
       if (CounterMobility.listOfReserveDemolition
               .contains(_currentReserveDemolition) ==

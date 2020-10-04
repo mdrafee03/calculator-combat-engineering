@@ -15,9 +15,8 @@ class _FootingState extends State<PierFootingChargeInput> {
   final appBar = AppBar(
     title: Text('Pier Footing Charge'),
   );
-
+  ReserveDemolition _currentReserveDemolition;
   final _formKey = GlobalKey<FormState>();
-
   PierFootingCharge _model;
 
   void handleSubmit(BuildContext context) {
@@ -28,18 +27,17 @@ class _FootingState extends State<PierFootingChargeInput> {
 
   @override
   Widget build(BuildContext context) {
-    ReserveDemolition _currentReserveDemolition =
-        ReserveDemolition.currentReserveDemolition;
+    _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
     if (_currentReserveDemolition?.pier?.footingPier != null) {
       _model = _currentReserveDemolition.pier.footingPier;
     } else {
       _model = PierFootingCharge();
-      _currentReserveDemolition.pier.footingPier = _model;
     }
 
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
+      _currentReserveDemolition.pier.footingPier = _model;
 
       if (CounterMobility.listOfReserveDemolition
               .contains(_currentReserveDemolition) ==
