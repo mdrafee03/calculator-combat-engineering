@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/top_header.dart';
-import '../../../../../widgets/placement_of_charges.dart';
 import '../../../../../widgets/summary_of_calculation.dart';
 import '../../../../../widgets/time_requirement.dart';
 
@@ -23,7 +22,17 @@ class ShapedChargeOutput extends StatelessWidget {
               ModalRoute.withName(reserveDemolitionChildren),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
     return Scaffold(
@@ -100,7 +109,6 @@ class ShapedChargeOutput extends StatelessWidget {
                   ],
                 ),
               ),
-              PlacementOfCharges(),
             ],
           ),
         ),
