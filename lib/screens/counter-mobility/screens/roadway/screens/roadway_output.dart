@@ -1,11 +1,11 @@
-import 'package:combat_engineering/router/route_const.dart';
 import 'package:flutter/material.dart';
 
-import '../models/roadway.dart';
-import '../../../widgets/summary_of_calculation.dart';
-import '../../../../../../../shared/widgets/top_header.dart';
-import '../../../widgets/time_requirement.dart';
+import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/top_header.dart';
 import '../../../widgets/placement_of_charges.dart';
+import '../../../widgets/summary_of_calculation.dart';
+import '../../../widgets/time_requirement.dart';
+import '../models/roadway.dart';
 
 class RoadwayOutput extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class RoadwayOutput extends StatelessWidget {
             Navigator.pushNamedAndRemoveUntil(
               context,
               roadwayList,
-              ModalRoute.withName(reserveDemolitionChildren),
+              ModalRoute.withName(counterMobilityScreen),
             );
           },
         )

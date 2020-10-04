@@ -38,8 +38,6 @@ class ReserveDemolitionChildren extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Span, Beam and Girder', spanBeamGirderInput),
             SizedBox(height: 10),
-            Button(context, 'Roadway', roadwayList),
-            SizedBox(height: 10),
             Button(context, 'Summary of Reserve Demolition',
                 reserveDemolitionSummary),
           ],

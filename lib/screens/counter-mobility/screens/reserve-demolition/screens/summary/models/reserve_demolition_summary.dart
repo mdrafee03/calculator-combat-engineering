@@ -19,8 +19,7 @@ class ReserveDemolitionSummary {
           _current.pier.boreholePier != null &&
           _current.pier.boreholePier.width != null &&
           _current.listOfAbutment.length > 0 &&
-          _current.spanBeamGirder.length != null &&
-          _current.listOfRoadway.length > 0) {
+          _current.spanBeamGirder.length != null) {
         _current.listOfAbutment.forEach((element) {
           abutmentCharge += element?.totalChargeRequired(element.craterNo) ?? 0;
           abutmentTime += element?.totalTimeRequired ?? 0;
@@ -31,11 +30,6 @@ class ReserveDemolitionSummary {
         spanCharge = _current?.spanBeamGirder?.totalChargeRequired ?? 0;
         spanTime = _current?.spanBeamGirder?.totalTimeRequired ?? 0;
         sandbag = _current?.spanBeamGirder?.totalSandbagRequired ?? 0;
-
-        _current.listOfRoadway.forEach((element) {
-          roadwayCharge += element.totalChargeRequired ?? 0;
-          roadwayTime += element.totalTimeRequired ?? 0;
-        });
       }
     }
   }

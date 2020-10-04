@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/top_header.dart';
-import '../../../../../widgets/placement_of_charges.dart';
-import '../../../../../widgets/summary_of_calculation.dart';
-import '../../../../../widgets/time_requirement.dart';
+import '../../../../../../../widgets/placement_of_charges.dart';
+import '../../../../../../../widgets/summary_of_calculation.dart';
+import '../../../../../../../widgets/time_requirement.dart';
 
 import '../models/pier_footing_charge.dart';
 

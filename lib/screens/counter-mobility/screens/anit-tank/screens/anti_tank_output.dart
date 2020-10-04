@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/top_header.dart';
 import '../../../../../shared/widgets/section_heading.dart';
-import '../../reserve-demolition/widgets/summary_of_calculation.dart';
-import '../../reserve-demolition/widgets/time_requirement.dart';
+import '../../../widgets/summary_of_calculation.dart';
+import '../../../widgets/time_requirement.dart';
 import '../models/anti_tank.dart';
 
 class AntiTankOutput extends StatelessWidget {

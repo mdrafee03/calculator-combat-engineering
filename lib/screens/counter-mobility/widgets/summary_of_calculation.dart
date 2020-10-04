@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../shared/widgets/section_heading.dart';
+import '../../../shared/widgets/section_heading.dart';
 
 class SummaryOfCalculation extends StatelessWidget {
   const SummaryOfCalculation({

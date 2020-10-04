@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../router/route_const.dart';
-import '../../../../../../../shared/widgets/list_builder.dart';
-import '../../../models/reserve_demolition.dart';
+import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/list_builder.dart';
+import '../../../models/counter_mobility.dart';
 import '../models/roadway.dart';
 
 class RoadwayList extends StatefulWidget {
@@ -13,9 +13,7 @@ class RoadwayList extends StatefulWidget {
 class _RoadwayListState extends State<RoadwayList> {
   @override
   Widget build(BuildContext context) {
-    ReserveDemolition _currentReserveDemolition =
-        ReserveDemolition.currentReserveDemolition;
-    List<Roadway> _listOfRoadway = _currentReserveDemolition.listOfRoadway;
+    final List<Roadway> _listOfRoadway = CounterMobility.listOfRoadway;
     return ListBuilder(
       args: Roadway(),
       input: roadwayInput,

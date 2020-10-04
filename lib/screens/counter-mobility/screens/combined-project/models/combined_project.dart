@@ -1,10 +1,11 @@
 import 'package:intl/intl.dart';
 
 import '../../../models/counter_mobility.dart';
-import '../../anit-tank/models/anti_tank.dart';
 import '../../minefield-laying/models/minefield_laying.dart';
 import '../../reserve-demolition/models/reserve_demolition.dart';
 import '../../wire-obstacle/models/wire_obstacle.dart';
+import '../../roadway/models/roadway.dart';
+import '../../anit-tank/models/anti_tank.dart';
 import './taskforce.dart';
 import './task_distribution.dart';
 
@@ -13,6 +14,7 @@ class CombinedProject {
   List<ReserveDemolition> reserveDemolitions =
       CounterMobility.listOfReserveDemolition;
   List<WireObstacle> wireObstacles = CounterMobility.listOfWireObstacle;
+  List<Roadway> roadways = CounterMobility.listOfRoadway;
   List<AntiTank> antiTanks = CounterMobility.listOfAntiTank;
 
   DateTime startDate = DateTime.now();
@@ -21,6 +23,7 @@ class CombinedProject {
     return minefields.length +
         reserveDemolitions.length +
         wireObstacles.length +
+        roadways.length +
         antiTanks.length;
   }
 
@@ -81,6 +84,17 @@ class CombinedProject {
           wireObstacleByForces[2];
     }
 
+    List<int> roadwayByForces = [0, 0, 0];
+    int roadwaysPerForce = (roadways.length / 3).ceil();
+    if (roadways.length <= 1) {
+      roadwayByForces[0] = roadwaysPerForce;
+    } else {
+      roadwayByForces[1] = roadwaysPerForce;
+      roadwayByForces[2] = ((roadways.length - roadwaysPerForce) / 2).ceil();
+      roadwayByForces[0] =
+          roadways.length - roadwayByForces[1] - roadwayByForces[2];
+    }
+
     List<int> antiTankByForces = [0, 0, 0];
     int antiTankPerForce = (antiTanks.length / 3).ceil();
     if (antiTanks.length <= 1) {
@@ -94,6 +108,7 @@ class CombinedProject {
     int minefieldCounter = 0;
     int reserveDemolitionCounter = 0;
     int wireObstacleCounter = 0;
+    int roadwayCounter = 0;
     int antiTankCounter = 0;
     for (int i = 0; i < 3; i++) {
       bool start = i == 0 ? false : true;
@@ -156,6 +171,25 @@ class CombinedProject {
         start = false;
         startDay = endDay;
         wireObstacleCounter += 1;
+        priority += 1;
+      }
+      for (int j = 0; j < roadwayByForces[i]; j++) {
+        double time = roadways[roadwayCounter].totalTimeRequired;
+        double endDay = startDay + dayTaken(time);
+        TaskDistribution.taskDistributions.add(
+          new TaskDistribution(
+            name: "Roadway ${roadwayCounter + 1}",
+            time: time,
+            force: Taskforce.taskforces[i],
+            priority: priority,
+            startDay: startDay,
+            endDay: endDay,
+            startForce: start,
+          ),
+        );
+        start = false;
+        startDay = endDay;
+        roadwayCounter += 1;
         priority += 1;
       }
       for (int j = 0; j < antiTankByForces[i]; j++) {

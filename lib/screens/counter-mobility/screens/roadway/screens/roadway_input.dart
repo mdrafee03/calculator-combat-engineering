@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../router/route_const.dart';
-import '../../../../../../../shared/widgets/input_submit_button.dart';
-import '../../../../../models/counter_mobility.dart';
-import '../../../models/reserve_demolition.dart';
+import '../../../../../router/route_const.dart';
+import '../../../../../shared/widgets/input_submit_button.dart';
+import '../../../models/counter_mobility.dart';
 import '../models/roadway.dart';
 
 class RoadwayInput extends StatefulWidget {
@@ -21,20 +20,13 @@ class _RoadwayInputState extends State<RoadwayInput> {
   @override
   Widget build(BuildContext context) {
     Roadway _model = ModalRoute.of(context).settings.arguments;
-    ReserveDemolition _currentReserveDemolition =
-        ReserveDemolition.currentReserveDemolition;
-
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
-
-      if (_currentReserveDemolition.listOfRoadway.contains(_model) == false)
-        _currentReserveDemolition.listOfRoadway.add(_model);
-
-      if (CounterMobility.listOfReserveDemolition
-              .contains(_currentReserveDemolition) ==
-          false)
-        CounterMobility.listOfReserveDemolition.add(_currentReserveDemolition);
+      var isEdit = CounterMobility.listOfRoadway.contains(_model);
+      if (isEdit == false) {
+        CounterMobility.listOfRoadway.add(_model);
+      }
       Navigator.pushNamed(context, roadwayOutput, arguments: _model);
     }
 
