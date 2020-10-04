@@ -4,20 +4,20 @@ import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../../../models/counter_mobility.dart';
 import '../../../../../models/reserve_demolition.dart';
-import '../models/shaped_pier.dart';
+import '../models/shaped_charge.dart';
 
-class ShapedPierInput extends StatefulWidget {
+class ShapedChargeInput extends StatefulWidget {
   @override
-  _ShapedPierInputState createState() => _ShapedPierInputState();
+  _ShapedChargeInputState createState() => _ShapedChargeInputState();
 }
 
-class _ShapedPierInputState extends State<ShapedPierInput> {
+class _ShapedChargeInputState extends State<ShapedChargeInput> {
   final appBar = AppBar(
     title: Text('Shaped Charge'),
   );
 
   final _formKey = GlobalKey<FormState>();
-  ShapedPier _model;
+  ShapedCharge _model;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
     if (_currentReserveDemolition?.pier?.shapedPier != null) {
       _model = _currentReserveDemolition.pier.shapedPier;
     } else {
-      _model = ShapedPier();
+      _model = ShapedCharge();
       _currentReserveDemolition.pier.shapedPier = _model;
     }
 
@@ -38,7 +38,7 @@ class _ShapedPierInputState extends State<ShapedPierInput> {
               .contains(_currentReserveDemolition) ==
           false)
         CounterMobility.listOfReserveDemolition.add(_currentReserveDemolition);
-      Navigator.pushNamed(context, shapedPierOutput, arguments: _model);
+      Navigator.pushNamed(context, shapedChargeOutput, arguments: _model);
     }
 
     return Scaffold(

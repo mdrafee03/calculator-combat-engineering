@@ -6,12 +6,12 @@ import '../../../../../widgets/placement_of_charges.dart';
 import '../../../../../widgets/summary_of_calculation.dart';
 import '../../../../../widgets/time_requirement.dart';
 
-import '../models/shaped_pier.dart';
+import '../models/shaped_charge.dart';
 
-class ShapedPierOutput extends StatelessWidget {
+class ShapedChargeOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ShapedPier _model = ModalRoute.of(context).settings.arguments;
+    final ShapedCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
       title: Text('Shaped Charge'),
       actions: <Widget>[

@@ -13,8 +13,8 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/abutment/
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier_screen.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-charge/screens/borehole_charge_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-charge/screens/borehole_charge_output.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_input.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-pier/screens/shaped_pier_output.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-charge/screens/shaped_charge_input.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-charge/screens/shaped_charge_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/footing-pier/screens/footing_pier_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/footing-pier/screens/footing_pier_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/span-beam-girder/screens/span_beam_girder_input.dart';
@@ -62,8 +62,8 @@ class Router {
       pierScreen: (BuildContext ctx) => PierScreen(),
       boreholeChargeInput: (BuildContext ctx) => BoreholeChargeInput(),
       boreholeChargeOutput: (BuildContext ctx) => BoreholeChargeOutput(),
-      shapedPierInput: (BuildContext ctx) => ShapedPierInput(),
-      shapedPierOutput: (BuildContext ctx) => ShapedPierOutput(),
+      shapedChargeInput: (BuildContext ctx) => ShapedChargeInput(),
+      shapedChargeOutput: (BuildContext ctx) => ShapedChargeOutput(),
       footingPierInput: (BuildContext ctx) => FootingPierInput(),
       footingPierOutput: (BuildContext ctx) => FootingPierOutput(),
       spanBeamGirderInput: (BuildContext ctx) => SpanBeamGirderInput(),

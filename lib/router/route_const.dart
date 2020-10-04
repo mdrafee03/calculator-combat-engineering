@@ -19,9 +19,9 @@ const String boreholeChargeInput =
     '/counter-mobility/reserve-demolition/pier/borehole';
 const String boreholeChargeOutput =
     '/counter-mobility/reserve-demolition/pier/borehole/output';
-const String shapedPierInput =
+const String shapedChargeInput =
     '/counter-mobility/reserve-demolition/pier/shaped';
-const String shapedPierOutput =
+const String shapedChargeOutput =
     '/counter-mobility/reserve-demolition/pier/shaped/output';
 const String footingPierInput =
     '/counter-mobility/reserve-demolition/pier/footing';

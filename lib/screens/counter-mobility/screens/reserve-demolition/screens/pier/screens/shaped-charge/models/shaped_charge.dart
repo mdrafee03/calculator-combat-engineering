@@ -1,4 +1,4 @@
-class ShapedPier {
+class ShapedCharge {
   double dia;
   int noOfPier;
 
