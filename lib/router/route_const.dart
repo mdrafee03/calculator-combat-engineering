@@ -23,9 +23,9 @@ const String shapedChargeInput =
     '/counter-mobility/reserve-demolition/pier/shaped';
 const String shapedChargeOutput =
     '/counter-mobility/reserve-demolition/pier/shaped/output';
-const String footingPierInput =
+const String pierFootingChargeInput =
     '/counter-mobility/reserve-demolition/pier/footing';
-const String footingPierOutput =
+const String pierFootingChargeOutput =
     '/counter-mobility/reserve-demolition/pier/footing/output';
 const String spanBeamGirderInput =
     '/counter-mobility/reserve-demolition/span-beam-girder';

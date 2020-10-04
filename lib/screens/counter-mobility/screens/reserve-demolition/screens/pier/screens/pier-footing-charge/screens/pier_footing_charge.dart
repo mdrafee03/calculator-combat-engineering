@@ -4,26 +4,26 @@ import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/input_submit_button.dart';
 import '../../../../../../../models/counter_mobility.dart';
 import '../../../../../models/reserve_demolition.dart';
-import '../models/footing_pier.dart';
+import '../models/pier_footing_charge.dart';
 
-class FootingPierInput extends StatefulWidget {
+class PierFootingChargeInput extends StatefulWidget {
   @override
   _FootingState createState() => _FootingState();
 }
 
-class _FootingState extends State<FootingPierInput> {
+class _FootingState extends State<PierFootingChargeInput> {
   final appBar = AppBar(
     title: Text('Pier Footing Charge'),
   );
 
   final _formKey = GlobalKey<FormState>();
 
-  FootingPier _model;
+  PierFootingCharge _model;
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
     form.save();
-    Navigator.pushNamed(context, footingPierOutput, arguments: _model);
+    Navigator.pushNamed(context, pierFootingChargeOutput, arguments: _model);
   }
 
   @override
@@ -33,7 +33,7 @@ class _FootingState extends State<FootingPierInput> {
     if (_currentReserveDemolition?.pier?.footingPier != null) {
       _model = _currentReserveDemolition.pier.footingPier;
     } else {
-      _model = FootingPier();
+      _model = PierFootingCharge();
       _currentReserveDemolition.pier.footingPier = _model;
     }
 
@@ -45,7 +45,7 @@ class _FootingState extends State<FootingPierInput> {
               .contains(_currentReserveDemolition) ==
           false)
         CounterMobility.listOfReserveDemolition.add(_currentReserveDemolition);
-      Navigator.pushNamed(context, footingPierOutput, arguments: _model);
+      Navigator.pushNamed(context, pierFootingChargeOutput, arguments: _model);
     }
 
     return Scaffold(

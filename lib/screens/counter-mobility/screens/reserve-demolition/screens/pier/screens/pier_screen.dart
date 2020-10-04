@@ -20,7 +20,7 @@ class PierScreen extends StatelessWidget {
             SizedBox(height: 10),
             Button(context, 'Shaped Charge', shapedChargeInput),
             SizedBox(height: 10),
-            Button(context, 'Pier Footing Charge', footingPierInput),
+            Button(context, 'Pier Footing Charge', pierFootingChargeInput),
           ],
         ),
       ),

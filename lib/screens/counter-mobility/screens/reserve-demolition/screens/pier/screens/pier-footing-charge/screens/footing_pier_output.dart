@@ -6,12 +6,12 @@ import '../../../../../widgets/placement_of_charges.dart';
 import '../../../../../widgets/summary_of_calculation.dart';
 import '../../../../../widgets/time_requirement.dart';
 
-import '../models/footing_pier.dart';
+import '../models/pier_footing_charge.dart';
 
-class FootingPierOutput extends StatelessWidget {
+class PierFootingChargeOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final FootingPier _model = ModalRoute.of(context).settings.arguments;
+    final PierFootingCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
       title: Text('Pier Footing Charge'),
       actions: <Widget>[

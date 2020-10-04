@@ -1,4 +1,4 @@
-class FootingPier {
+class PierFootingCharge {
   double width;
   double thickness;
   int noOfPier;
