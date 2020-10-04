@@ -10,7 +10,6 @@ import 'package:printing/printing.dart';
 import '../../../../../../../shared/models/utility.dart';
 import '../../../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../../../../../shared/widgets/top_header_pw.dart';
-
 import './time_manpower.dart';
 
 class SpanBeamGirder {

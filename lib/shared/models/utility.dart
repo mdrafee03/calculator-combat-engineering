@@ -30,7 +30,7 @@ class Utility {
 
   static void showPrintedToast(BuildContext context) {
     final snackbar = SnackBar(
-      content: Text('Pdf saved in Downloads'),
+      content: Text('Pdf Saved in Downloads'),
     );
     Scaffold.of(context).showSnackBar(snackbar);
   }

@@ -1,16 +1,37 @@
-import 'package:combat_engineering/shared/widgets/section_heading.dart';
 import 'package:flutter/material.dart';
 
-import '../models/reserve_demolition_summary.dart';
+import '../../../../../../../router/route_const.dart';
+import '../../../../../../../shared/widgets/section_heading.dart';
 import '../../../../../../../shared/widgets/top_header.dart';
+import '../models/reserve_demolition_summary.dart';
 
 class ReserveDemolitionSummaryScreen extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Reserve Demolition Summary'),
-  );
   @override
   Widget build(BuildContext context) {
     final ReserveDemolitionSummary _model = ReserveDemolitionSummary();
+    final AppBar appbar = AppBar(
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(reserveDemolitionChildren),
+            );
+          },
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
+      ],
+    );
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
