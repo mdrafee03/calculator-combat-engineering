@@ -10,8 +10,8 @@ import '../models/span_beam_girder.dart';
 class SpanBeamGirderOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final SpanBeamGirder _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Span, Beam and Girder Demolition'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
@@ -21,11 +21,20 @@ class SpanBeamGirderOutput extends StatelessWidget {
               ModalRoute.withName(reserveDemolitionChildren),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
 
-    final SpanBeamGirder _model = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar,
       body: SingleChildScrollView(
