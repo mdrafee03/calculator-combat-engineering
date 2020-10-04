@@ -94,29 +94,33 @@ class ShapedCharge {
                     child: pw.Column(
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
-                          "a. Time require for demolition of $noOfPier piers",
-                          style: pw.TextStyle(
-                            color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
-                          ),
-                        ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        pw.Wrap(
                           children: [
                             pw.Text(
-                              "= $totalTimeRequiredPerSection section hours ",
+                              "a. Time require for demolition of $noOfPier piers ",
                               style: pw.TextStyle(
                                 color: PDFTheme.color,
                                 fontWeight: pw.FontWeight.bold,
                               ),
                             ),
-                            pw.Text(
-                              "= ${totalTimeRequired.toStringAsFixed(2)} Platoon hours",
-                              style: pw.TextStyle(
-                                color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
-                              ),
+                            pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Text(
+                                  "= $totalTimeRequiredPerSection section hours ",
+                                  style: pw.TextStyle(
+                                    color: PDFTheme.color,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                                pw.Text(
+                                  "= ${totalTimeRequired.toStringAsFixed(2)} Platoon hours",
+                                  style: pw.TextStyle(
+                                    color: PDFTheme.color,
+                                    fontWeight: pw.FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

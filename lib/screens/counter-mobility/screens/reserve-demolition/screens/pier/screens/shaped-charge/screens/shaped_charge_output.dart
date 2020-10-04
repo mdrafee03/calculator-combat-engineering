@@ -4,7 +4,6 @@ import '../../../../../../../../../router/route_const.dart';
 import '../../../../../../../../../shared/widgets/top_header.dart';
 import '../../../../../widgets/summary_of_calculation.dart';
 import '../../../../../widgets/time_requirement.dart';
-
 import '../models/shaped_charge.dart';
 
 class ShapedChargeOutput extends StatelessWidget {
@@ -12,7 +11,6 @@ class ShapedChargeOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final ShapedCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Shaped Charge'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

@@ -15,8 +15,8 @@ import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/scre
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/borehole-charge/screens/borehole_charge_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-charge/screens/shaped_charge_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/shaped-charge/screens/shaped_charge_output.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier-footing-charge/screens/footing_pier_output.dart';
-import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier-footing-charge/screens/pier_footing_charge.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier-footing-charge/screens/pier_footing_charge_output.dart';
+import '../screens/counter-mobility/screens/reserve-demolition/screens/pier/screens/pier-footing-charge/screens/pier_footing_charge_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/span-beam-girder/screens/span_beam_girder_input.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/span-beam-girder/screens/span_beam_girder_output.dart';
 import '../screens/counter-mobility/screens/reserve-demolition/screens/roadway/screens/roadway_list.dart';

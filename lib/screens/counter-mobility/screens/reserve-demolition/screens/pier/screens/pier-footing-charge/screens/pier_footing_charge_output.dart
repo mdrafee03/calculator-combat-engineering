@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/widgets/section_sub_heading.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
@@ -13,7 +14,6 @@ class PierFootingChargeOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final PierFootingCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Pier Footing Charge'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
@@ -23,7 +23,17 @@ class PierFootingChargeOutput extends StatelessWidget {
               ModalRoute.withName(reserveDemolitionChildren),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
     return Scaffold(
@@ -63,23 +73,7 @@ class PierFootingChargeOutput extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              "e. ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "Spacing of charge",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
+                        SectionSubHeading('e. ', "Spacing of Charge"),
                         Padding(
                           padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
                           child: Column(
