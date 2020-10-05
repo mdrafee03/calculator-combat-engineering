@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/widgets/background_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../router/route_const.dart';
@@ -27,20 +28,22 @@ class ReserveDemolitionChildren extends StatelessWidget {
     ReserveDemolition.currentReserveDemolition = _reserveDemolition;
     return Scaffold(
       appBar: appBar,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Button(context, 'Abutment (Masonry/Concrete)', abutmentList),
-            SizedBox(height: 10),
-            Button(context, 'Pier (Masonry/Concrete/RCC/Steel)', pierScreen),
-            SizedBox(height: 10),
-            Button(context, 'Span, Beam and Girder', spanBeamGirderInput),
-            SizedBox(height: 10),
-            Button(context, 'Summary of Reserve Demolition',
-                reserveDemolitionSummary),
-          ],
+      body: BackgroundContainer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Button(context, 'Abutment (Masonry/Concrete)', abutmentList),
+              SizedBox(height: 10),
+              Button(context, 'Pier (Masonry/Concrete/RCC/Steel)', pierScreen),
+              SizedBox(height: 10),
+              Button(context, 'Span, Beam and Girder', spanBeamGirderInput),
+              SizedBox(height: 10),
+              Button(context, 'Summary of Reserve Demolition',
+                  reserveDemolitionSummary),
+            ],
+          ),
         ),
       ),
     );

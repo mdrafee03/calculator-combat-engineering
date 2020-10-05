@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/widgets/background_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../router/route_const.dart';
@@ -11,17 +12,19 @@ class PierScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Button(context, 'Borehole Charge', boreholeChargeInput),
-            SizedBox(height: 10),
-            Button(context, 'Shaped Charge', shapedChargeInput),
-            SizedBox(height: 10),
-            Button(context, 'Pier Footing Charge', pierFootingChargeInput),
-          ],
+      body: BackgroundContainer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Button(context, 'Borehole Charge', boreholeChargeInput),
+              SizedBox(height: 10),
+              Button(context, 'Shaped Charge', shapedChargeInput),
+              SizedBox(height: 10),
+              Button(context, 'Pier Footing Charge', pierFootingChargeInput),
+            ],
+          ),
         ),
       ),
     );
