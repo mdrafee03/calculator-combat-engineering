@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/widgets/background_container.dart';
 import 'package:flutter/material.dart';
 
 class ListBuilder extends StatelessWidget {
@@ -43,63 +44,95 @@ class ListBuilder extends StatelessWidget {
           arguments: args,
         ),
       ),
-      body: list.length > 0
-          ? SingleChildScrollView(
-              child: Column(
-                children: list
-                    .asMap()
-                    .map(
-                      (i, model) => MapEntry(
-                        i,
-                        ListTile(
-                          key: ValueKey(i),
-                          title: Text(
-                            "$title ${i + 1}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (output != null)
-                                IconButton(
-                                  icon: const Icon(Icons.remove_red_eye),
-                                  color: Theme.of(context).primaryColor,
-                                  onPressed: () => Navigator.pushNamed(
-                                    context,
-                                    output,
-                                    arguments: model,
+      body: Stack(
+        children: [
+          BackgroundContainer(),
+          list.length > 0
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: list
+                        .asMap()
+                        .map(
+                          (i, model) => MapEntry(
+                            i,
+                            Container(
+                              margin: EdgeInsets.all(5),
+                              decoration: new BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.green, spreadRadius: 1),
+                                ],
+                              ),
+                              child: ListTile(
+                                key: ValueKey(i),
+                                title: Text(
+                                  "$title ${i + 1}",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              IconButton(
-                                icon: const Icon(Icons.edit),
-                                color: Color(0xffffc107),
-                                onPressed: () => Navigator.pushNamed(
-                                  context,
-                                  input,
-                                  arguments: model,
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    if (output != null)
+                                      IconButton(
+                                        icon: const Icon(Icons.remove_red_eye),
+                                        color: Theme.of(context).primaryColor,
+                                        onPressed: () => Navigator.pushNamed(
+                                          context,
+                                          output,
+                                          arguments: model,
+                                        ),
+                                      ),
+                                    IconButton(
+                                      icon: const Icon(Icons.edit),
+                                      color: Color(0xffffc107),
+                                      onPressed: () => Navigator.pushNamed(
+                                        context,
+                                        input,
+                                        arguments: model,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.delete),
+                                      color: Color(0xffdc3545),
+                                      onPressed: () => onDelete(i),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.delete),
-                                color: Color(0xffdc3545),
-                                onPressed: () => onDelete(i),
-                              ),
-                            ],
+                            ),
                           ),
+                        )
+                        .values
+                        .toList(),
+                  ),
+                )
+              : Container(
+                  child: Center(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(color: Colors.green, spreadRadius: 1),
+                        ],
+                      ),
+                      child: Text(
+                        "No $title",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    )
-                    .values
-                    .toList(),
-              ),
-            )
-          : Container(
-              child: Center(
-                child: Text("No $title"),
-              ),
-            ),
+                    ),
+                  ),
+                ),
+        ],
+      ),
     );
   }
 }
