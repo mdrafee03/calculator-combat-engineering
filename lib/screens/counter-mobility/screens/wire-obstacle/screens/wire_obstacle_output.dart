@@ -6,9 +6,6 @@ import '../../../../../shared/widgets/section_heading.dart';
 import '../models/wire_obstacle.dart';
 
 class WireObstacleOutput extends StatelessWidget {
-  final AppBar appbar = new AppBar(
-    title: Text('Wire Obstacle'),
-  );
   @override
   Widget build(BuildContext context) {
     final WireObstacle _model = ModalRoute.of(context).settings.arguments;
@@ -24,6 +21,16 @@ class WireObstacleOutput extends StatelessWidget {
               ModalRoute.withName(counterMobilityScreen),
             );
           },
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
         )
       ],
     );
