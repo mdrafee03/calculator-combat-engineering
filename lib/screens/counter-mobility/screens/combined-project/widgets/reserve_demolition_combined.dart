@@ -4,25 +4,21 @@ import '../../../../../shared/widgets/section_heading.dart';
 import '../../../screens/reserve-demolition/models/reserve_demolition.dart';
 
 class ReserveDemolitionCombined extends StatelessWidget {
-  const ReserveDemolitionCombined({
-    Key key,
-    @required List<ReserveDemolition> model,
-  })  : _model = model,
-        super(key: key);
-
-  final List<ReserveDemolition> _model;
+  final List<ReserveDemolition> model;
+  final String sl;
+  ReserveDemolitionCombined({this.model, this.sl});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('2. ', 'Store Calculation for Reserve Demoltion'),
+        SectionHeading('$sl. ', 'Store Calculation for Reserve Demoltion'),
         Container(
           padding: EdgeInsets.only(left: 20),
           alignment: Alignment.topLeft,
           child: Column(
             children: [
-              for (int i = 0; i < _model.length; i++)
+              for (int i = 0; i < model.length; i++)
                 Container(
                   alignment: Alignment.topLeft,
                   child: Column(
@@ -46,10 +42,10 @@ class ReserveDemolitionCombined extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "(i) Plastic Explosive = ${_model[i].plasticExplosive.toStringAsFixed(2)}",
+                              "(i) Plastic Explosive = ${model[i].plasticExplosive.toStringAsFixed(2)}",
                             ),
                             Text(
-                              "(ii) Hayrick = ${_model[i]?.pier?.shapedPier?.totalNoOfHyrics ?? 0}",
+                              "(ii) Hayrick = ${model[i]?.pier?.shapedPier?.totalNoOfHyrics ?? 0}",
                             ),
                           ],
                         ),
@@ -80,10 +76,10 @@ class ReserveDemolitionCombined extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "(i) Plastic Explosive = ${_model.fold<double>(0, (previousValue, element) => previousValue + element.plasticExplosive).toStringAsFixed(2)}",
+                            "(i) Plastic Explosive = ${model.fold<double>(0, (previousValue, element) => previousValue + element.plasticExplosive).toStringAsFixed(2)}",
                           ),
                           Text(
-                            "(ii) Hayrick = ${_model?.fold(0, (previousValue, element) => previousValue + element.hayrics) ?? 0}",
+                            "(ii) Hayrick = ${model?.fold(0, (previousValue, element) => previousValue + element.hayrics) ?? 0}",
                           ),
                         ],
                       ),

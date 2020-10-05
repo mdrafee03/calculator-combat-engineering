@@ -4,25 +4,21 @@ import '../../../../../shared/widgets/section_heading.dart';
 import '../../../screens/wire-obstacle/models/wire_obstacle.dart';
 
 class WireObstacleCombined extends StatelessWidget {
-  const WireObstacleCombined({
-    Key key,
-    @required List<WireObstacle> model,
-  })  : _model = model,
-        super(key: key);
-
-  final List<WireObstacle> _model;
+  final List<WireObstacle> model;
+  final String sl;
+  WireObstacleCombined({this.model, this.sl});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('3. ', 'Store Calculation for Wire Obstacle'),
+        SectionHeading('$sl. ', 'Store Calculation for Wire Obstacle'),
         Container(
           padding: EdgeInsets.only(left: 20),
           alignment: Alignment.topLeft,
           child: Column(
             children: [
-              for (int i = 0; i < _model.length; i++)
+              for (int i = 0; i < model.length; i++)
                 Container(
                   alignment: Alignment.topLeft,
                   child: Column(
@@ -45,35 +41,35 @@ class WireObstacleCombined extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (_model[i].task.barbedWire != null)
+                            if (model[i].task.barbedWire != null)
                               Text(
-                                "(i) Barbed Wire = ${_model[i].getValueByFrontage(_model[i].task.barbedWire)}",
+                                "(i) Barbed Wire = ${model[i].getValueByFrontage(model[i].task.barbedWire)}",
                               ),
-                            if (_model[i].task.barbedWireConcertina != null)
+                            if (model[i].task.barbedWireConcertina != null)
                               Text(
-                                  "(ii) barbed Wire Concertina = ${_model[i].getValueByFrontage(_model[i].task.barbedWireConcertina)}"),
+                                  "(ii) barbed Wire Concertina = ${model[i].getValueByFrontage(model[i].task.barbedWireConcertina)}"),
                             Text(
-                              "(iii) Long Picket = ${_model[i].getValueByFrontage(_model[i].task.longPicket)}",
+                              "(iii) Long Picket = ${model[i].getValueByFrontage(model[i].task.longPicket)}",
                             ),
-                            if (_model[i].task.shortPiquet != null)
+                            if (model[i].task.shortPiquet != null)
                               Text(
-                                "(iv) Short Picket = ${_model[i].getValueByFrontage(_model[i].task.shortPiquet)}",
+                                "(iv) Short Picket = ${model[i].getValueByFrontage(model[i].task.shortPiquet)}",
                               ),
-                            if (_model[i].task.mauls != null)
+                            if (model[i].task.mauls != null)
                               Text(
-                                "(v) Sledge Hammer = ${_model[i].getValueBySection(_model[i].task.mauls)}",
+                                "(v) Sledge Hammer = ${model[i].getValueBySection(model[i].task.mauls)}",
                               ),
-                            if (_model[i].task.tracingTapRoll != null)
+                            if (model[i].task.tracingTapRoll != null)
                               Text(
-                                "(vi) Tracing Tape Roll = ${_model[i].getValueBySection(_model[i].task.tracingTapRoll)}",
+                                "(vi) Tracing Tape Roll = ${model[i].getValueBySection(model[i].task.tracingTapRoll)}",
                               ),
-                            if (_model[i].task.wireCutter != null)
+                            if (model[i].task.wireCutter != null)
                               Text(
-                                "(vii) Wire Cutter = ${_model[i].getValueBySection(_model[i].task.wireCutter)}",
+                                "(vii) Wire Cutter = ${model[i].getValueBySection(model[i].task.wireCutter)}",
                               ),
-                            if (_model[i].task.windlassingStick != null)
+                            if (model[i].task.windlassingStick != null)
                               Text(
-                                "(viii) Windlassing Sticks = ${_model[i].getValueBySection(_model[i].task.windlassingStick)}",
+                                "(viii) Windlassing Sticks = ${model[i].getValueBySection(model[i].task.windlassingStick)}",
                               ),
                           ],
                         ),
@@ -104,28 +100,28 @@ class WireObstacleCombined extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "(i) Barbed Wire= ${_model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWire ?? 0))}",
+                            "(i) Barbed Wire= ${model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWire ?? 0))}",
                           ),
                           Text(
-                            "(ii) Barbed Wire Concertina = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWireConcertina ?? 0))}",
+                            "(ii) Barbed Wire Concertina = ${model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWireConcertina ?? 0))}",
                           ),
                           Text(
-                            "(iii) Long Picket = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.longPicket ?? 0))}",
+                            "(iii) Long Picket = ${model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.longPicket ?? 0))}",
                           ),
                           Text(
-                            "(iv) Short Picket = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.shortPiquet ?? 0))}",
+                            "(iv) Short Picket = ${model.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.shortPiquet ?? 0))}",
                           ),
                           Text(
-                            "(v) Sledge Hammer = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.mauls ?? 0))}",
+                            "(v) Sledge Hammer = ${model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.mauls ?? 0))}",
                           ),
                           Text(
-                            "(vi) Tracing Tape Roll = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.tracingTapRoll ?? 0))}",
+                            "(vi) Tracing Tape Roll = ${model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.tracingTapRoll ?? 0))}",
                           ),
                           Text(
-                            "(vii) Wire Cutter = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.wireCutter ?? 0))}",
+                            "(vii) Wire Cutter = ${model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.wireCutter ?? 0))}",
                           ),
                           Text(
-                            "(viii) Windlassing Sticks = ${_model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.windlassingStick ?? 0))}",
+                            "(viii) Windlassing Sticks = ${model.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.windlassingStick ?? 0))}",
                           ),
                         ],
                       ),

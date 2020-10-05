@@ -4,25 +4,21 @@ import '../../../../../shared/widgets/section_heading.dart';
 import '../../minefield-laying/models/minefield_laying.dart';
 
 class MinefieldLayingCombined extends StatelessWidget {
-  const MinefieldLayingCombined({
-    Key key,
-    @required List<MinefieldLaying> model,
-  })  : _model = model,
-        super(key: key);
-
-  final List<MinefieldLaying> _model;
+  final List<MinefieldLaying> model;
+  final String sl;
+  MinefieldLayingCombined({this.model, this.sl});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('1. ', 'Store Calculation for Minefield Laying'),
+        SectionHeading('$sl. ', 'Store Calculation for Minefield Laying'),
         Container(
           padding: EdgeInsets.only(left: 20),
           alignment: Alignment.topLeft,
           child: Column(
             children: [
-              for (int i = 0; i < _model.length; i++)
+              for (int i = 0; i < model.length; i++)
                 Container(
                   alignment: Alignment.topLeft,
                   child: Column(
@@ -46,25 +42,25 @@ class MinefieldLayingCombined extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "(i) Anti-Tank Mines = ${_model[i].antiTankMines}",
+                              "(i) Anti-Tank Mines = ${model[i].antiTankMines}",
                             ),
                             Text(
-                              "(ii) Anti-Personnel Mines = ${_model[i].antiPersonnelMines}",
+                              "(ii) Anti-Personnel Mines = ${model[i].antiPersonnelMines}",
                             ),
                             Text(
-                              "(iii) Long Picket = ${_model[i].longPicket}",
+                              "(iii) Long Picket = ${model[i].longPicket}",
                             ),
                             Text(
-                              "(iv) Short Picket = ${_model[i].shortPicket}",
+                              "(iv) Short Picket = ${model[i].shortPicket}",
                             ),
                             Text(
-                              "(v) Barbed Wire = ${_model[i].barbedWire}",
+                              "(v) Barbed Wire = ${model[i].barbedWire}",
                             ),
                             Text(
-                              "(vi) Perimeter Post = ${_model[i].perimeterSignPosting}",
+                              "(vi) Perimeter Post = ${model[i].perimeterSignPosting}",
                             ),
                             Text(
-                              "(vii) Tracing Tape = ${_model[i].tracingTape}",
+                              "(vii) Tracing Tape = ${model[i].tracingTape}",
                             ),
                           ],
                         ),
@@ -95,20 +91,20 @@ class MinefieldLayingCombined extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "(i) Anti-Tank Mines = ${_model.fold(0, (previousValue, element) => previousValue + element.antiTankMines)}",
+                            "(i) Anti-Tank Mines = ${model.fold(0, (previousValue, element) => previousValue + element.antiTankMines)}",
                           ),
                           Text(
-                              "(ii) Anti-Personnel Mines = ${_model.fold(0, (previousValue, element) => previousValue + element.antiPersonnelMines)}"),
+                              "(ii) Anti-Personnel Mines = ${model.fold(0, (previousValue, element) => previousValue + element.antiPersonnelMines)}"),
                           Text(
-                              "(iii) Long Picket = ${_model.fold(0, (previousValue, element) => previousValue + element.longPicket)}"),
+                              "(iii) Long Picket = ${model.fold(0, (previousValue, element) => previousValue + element.longPicket)}"),
                           Text(
-                              "(iv) Short Picket = ${_model.fold(0, (previousValue, element) => previousValue + element.shortPicket)}"),
+                              "(iv) Short Picket = ${model.fold(0, (previousValue, element) => previousValue + element.shortPicket)}"),
                           Text(
-                              "(v) Barbed Wire = ${_model.fold(0, (previousValue, element) => previousValue + element.barbedWire)}"),
+                              "(v) Barbed Wire = ${model.fold(0, (previousValue, element) => previousValue + element.barbedWire)}"),
                           Text(
-                              "(vi) Perimeter Post = ${_model.fold(0, (previousValue, element) => previousValue + element.perimeterSignPosting)}"),
+                              "(vi) Perimeter Post = ${model.fold(0, (previousValue, element) => previousValue + element.perimeterSignPosting)}"),
                           Text(
-                              "(vii) Tracing Tape = ${_model.fold(0, (previousValue, element) => previousValue + element.tracingTape)}"),
+                              "(vii) Tracing Tape = ${model.fold(0, (previousValue, element) => previousValue + element.tracingTape)}"),
                         ],
                       ),
                     ),

@@ -4,19 +4,15 @@ import '../../../../../shared/widgets/section_heading.dart';
 import '../models/combined_project.dart';
 
 class StoreListCombined extends StatelessWidget {
-  const StoreListCombined({
-    Key key,
-    @required CombinedProject model,
-  })  : _model = model,
-        super(key: key);
-
-  final CombinedProject _model;
+  final CombinedProject model;
+  final String sl;
+  StoreListCombined({this.model, this.sl});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('4. ', 'Store List for Combined Engineer Project'),
+        SectionHeading('$sl. ', 'Store List for Combined Engineer Project'),
         Container(
           padding: EdgeInsets.only(left: 20),
           alignment: Alignment.topLeft,
@@ -28,40 +24,40 @@ class StoreListCombined extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "a. Anti Tank Mines = ${_model.antiTankMines}",
+                      "a. Anti Tank Mines = ${model.antiTankMines}",
                     ),
                     Text(
-                      "b. Anti Personnel Mines = ${_model.antiPersonnelMines}",
+                      "b. Anti Personnel Mines = ${model.antiPersonnelMines}",
                     ),
                     Text(
-                      "c. Long Picket = ${_model.longPickets}",
+                      "c. Long Picket = ${model.longPickets}",
                     ),
                     Text(
-                      "d. Short Picket = ${_model.shortPickets}",
+                      "d. Short Picket = ${model.shortPickets}",
                     ),
                     Text(
-                      "e. Barbed Wire Coil = ${_model.barbedWireCoil}",
+                      "e. Barbed Wire Coil = ${model.barbedWireCoil}",
                     ),
                     Text(
-                      "f. Perimeter Sign Posting = ${_model.perimeterPosting}",
+                      "f. Perimeter Sign Posting = ${model.perimeterPosting}",
                     ),
                     Text(
-                      "g. Tracing Tape = ${_model.tracingTape}",
+                      "g. Tracing Tape = ${model.tracingTape}",
                     ),
                     Text(
-                      "h. Plastic Explosive = ${_model.plasticExplosive.toStringAsFixed(2)}",
+                      "h. Plastic Explosive = ${model.plasticExplosive.toStringAsFixed(2)}",
                     ),
                     Text(
-                      "j. Sledge hammer = ${_model.sledgeHammer}",
+                      "j. Sledge hammer = ${model.sledgeHammer}",
                     ),
                     Text(
-                      "k. Wire Cutter = ${_model.wireCutter}",
+                      "k. Wire Cutter = ${model.wireCutter}",
                     ),
                     Text(
-                      "l. Sand Bag = ${_model.sandbag}",
+                      "l. Sand Bag = ${model.sandbag}",
                     ),
                     Text(
-                      "m. Windlassing Stick = ${_model.windlassingStick}",
+                      "m. Windlassing Stick = ${model.windlassingStick}",
                     ),
                     SizedBox(
                       height: 10,

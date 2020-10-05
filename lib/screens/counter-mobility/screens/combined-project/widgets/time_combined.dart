@@ -5,13 +5,10 @@ import '../models/combined_project.dart';
 import '../models/task_distribution.dart';
 
 class TimeCombined extends StatelessWidget {
-  const TimeCombined({
-    Key key,
-    @required CombinedProject model,
-  })  : _model = model,
-        super(key: key);
+  final CombinedProject model;
+  final String sl;
+  TimeCombined({this.model, this.sl});
 
-  final CombinedProject _model;
   int get numberOfCol => TaskDistribution.taskDistributions.fold(
         0,
         (previousValue, element) => element.endDay > previousValue
@@ -52,7 +49,7 @@ class TimeCombined extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeading('5. ', 'Work Program'),
+        SectionHeading('$sl. ', 'Work Program'),
         Container(
           child: ListView(
             shrinkWrap: true,
@@ -86,8 +83,8 @@ class TimeCombined extends StatelessWidget {
                         buildTableHeader('Pri'),
                         buildTableHeader('Pl Hr'),
                         for (int i = 0; i < numberOfCol; i++)
-                          buildTableHeader((_model.dateTableHeaderFormat(
-                              _model.startDate.add(Duration(days: i))))),
+                          buildTableHeader((model.dateTableHeaderFormat(
+                              model.startDate.add(Duration(days: i))))),
                       ],
                     ),
                     for (int i = 0;
