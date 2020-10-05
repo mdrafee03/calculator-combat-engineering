@@ -33,8 +33,8 @@ class _BoreholeChargeInputState extends State<BoreholeChargeInput> {
   @override
   Widget build(BuildContext context) {
     _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
-    if (_currentReserveDemolition?.pier?.boreholePier != null) {
-      _model = _currentReserveDemolition.pier.boreholePier;
+    if (_currentReserveDemolition?.pier?.boreholeCharge != null) {
+      _model = _currentReserveDemolition.pier.boreholeCharge;
     } else {
       _model = BoreholeCharge();
     }
@@ -42,7 +42,7 @@ class _BoreholeChargeInputState extends State<BoreholeChargeInput> {
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
-      _currentReserveDemolition.pier.boreholePier = _model;
+      _currentReserveDemolition.pier.boreholeCharge = _model;
       if (CounterMobility.listOfReserveDemolition
               .contains(_currentReserveDemolition) ==
           false)

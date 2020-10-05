@@ -31,9 +31,9 @@ const String spanBeamGirderInput =
     '/counter-mobility/reserve-demolition/span-beam-girder';
 const String spanBeamGirderOutput =
     '/counter-mobility/reserve-demolition/span-beam-girder/output';
-const String roadwayList = '/counter-mobility/roadway';
-const String roadwayInput = '/counter-mobility/roadway/input';
-const String roadwayOutput =
+const String roadCraterList = '/counter-mobility/roadway';
+const String roadCraterInput = '/counter-mobility/roadway/input';
+const String roadCraterOutput =
     '/counter-mobility/reserve-demolition/roadway/output';
 const String reserveDemolitionSummary =
     '/counter-mobility/reserve-demolition/summary';

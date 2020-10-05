@@ -3,7 +3,7 @@ import '../screens/shaped-charge/models/shaped_charge.dart';
 import '../screens/pier-footing-charge/models/pier_footing_charge.dart';
 
 class Pier {
-  BoreholeCharge boreholePier;
-  ShapedCharge shapedPier;
-  PierFootingCharge footingPier;
+  BoreholeCharge boreholeCharge;
+  ShapedCharge shapedCharge;
+  PierFootingCharge pierFootingCharge;
 }

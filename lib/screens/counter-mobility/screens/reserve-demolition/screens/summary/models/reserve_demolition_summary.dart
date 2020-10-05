@@ -27,8 +27,8 @@ class ReserveDemolitionSummary {
         abutmentCharge += element?.totalChargeRequired(element.craterNo) ?? 0;
         abutmentTime += element?.totalTimeRequired ?? 0;
       });
-      pierCharge = _current?.pier?.boreholePier?.totalChargeRequired ?? 0;
-      pierTime = _current?.pier?.boreholePier?.totalTimeRequired ?? 0;
+      pierCharge = _current?.pier?.boreholeCharge?.totalChargeRequired ?? 0;
+      pierTime = _current?.pier?.boreholeCharge?.totalTimeRequired ?? 0;
 
       spanCharge = _current?.spanBeamGirder?.totalChargeRequired ?? 0;
       spanTime = _current?.spanBeamGirder?.totalTimeRequired ?? 0;

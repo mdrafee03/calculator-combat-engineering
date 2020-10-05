@@ -1,4 +1,4 @@
-class Roadway {
+class RoadCrater {
   double width;
   double length;
   final dia = 20;

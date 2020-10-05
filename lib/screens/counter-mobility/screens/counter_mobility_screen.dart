@@ -1,7 +1,7 @@
-import 'package:combat_engineering/shared/widgets/background_container.dart';
 import 'package:flutter/material.dart';
 
 import '../../../router/route_const.dart';
+import '../../../shared/widgets/background_container.dart';
 import '../../../shared/widgets/button_with_image.dart';
 
 class CounterMobilityScreen extends StatelessWidget {
@@ -39,8 +39,8 @@ class CounterMobilityScreen extends StatelessWidget {
                   ),
                   ButtonWithImage(
                     context: context,
-                    imageUrl: 'assets/images/icons/road_catering.png',
-                    routeName: roadwayList,
+                    imageUrl: 'assets/images/icons/road_crater.png',
+                    routeName: roadCraterList,
                   ),
                   ButtonWithImage(
                     context: context,

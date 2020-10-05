@@ -17,8 +17,8 @@ class ReserveDemolition {
                     element.totalChargeRequired(element.craterNo ?? 0) ??
                 0) ??
         0;
-    double borehole = pier?.boreholePier?.totalChargeRequired ?? 0;
-    double pierFooting = pier?.footingPier?.totalAmountOfCharge ?? 0;
+    double borehole = pier?.boreholeCharge?.totalChargeRequired ?? 0;
+    double pierFooting = pier?.pierFootingCharge?.totalAmountOfCharge ?? 0;
     double span = spanBeamGirder?.totalChargeRequired ?? 0;
 
     return abutment + borehole + span + pierFooting;
@@ -27,12 +27,12 @@ class ReserveDemolition {
   double get totalTimeRequired {
     double abutmentTime = listOfAbutment.fold(0,
         (previousValue, element) => previousValue + element.totalTimeRequired);
-    double pierTime = pier?.boreholePier?.totalChargeRequired ?? 0;
+    double pierTime = pier?.boreholeCharge?.totalChargeRequired ?? 0;
     double spanTime = spanBeamGirder?.totalTimeRequired ?? 0;
     return abutmentTime + pierTime + spanTime;
   }
 
   int get hayrics {
-    return pier?.shapedPier?.totalNoOfHyrics ?? 0;
+    return pier?.shapedCharge?.totalNoOfHyrics ?? 0;
   }
 }

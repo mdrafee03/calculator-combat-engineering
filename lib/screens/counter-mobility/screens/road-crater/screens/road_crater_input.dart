@@ -3,31 +3,31 @@ import 'package:flutter/material.dart';
 import '../../../../../router/route_const.dart';
 import '../../../../../shared/widgets/input_submit_button.dart';
 import '../../../models/counter_mobility.dart';
-import '../models/roadway.dart';
+import '../models/road_crater.dart';
 
-class RoadwayInput extends StatefulWidget {
+class RoadCraterInput extends StatefulWidget {
   @override
-  _RoadwayInputState createState() => _RoadwayInputState();
+  _RoadCraterInputState createState() => _RoadCraterInputState();
 }
 
-class _RoadwayInputState extends State<RoadwayInput> {
+class _RoadCraterInputState extends State<RoadCraterInput> {
   final appBar = AppBar(
-    title: Text('Demolition of Roadway'),
+    title: Text('Road Crater'),
   );
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    Roadway _model = ModalRoute.of(context).settings.arguments;
+    RoadCrater _model = ModalRoute.of(context).settings.arguments;
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
-      var isEdit = CounterMobility.listOfRoadway.contains(_model);
+      var isEdit = CounterMobility.listOfRoadCrater.contains(_model);
       if (isEdit == false) {
-        CounterMobility.listOfRoadway.add(_model);
+        CounterMobility.listOfRoadCrater.add(_model);
       }
-      Navigator.pushNamed(context, roadwayOutput, arguments: _model);
+      Navigator.pushNamed(context, roadCraterOutput, arguments: _model);
     }
 
     return Scaffold(

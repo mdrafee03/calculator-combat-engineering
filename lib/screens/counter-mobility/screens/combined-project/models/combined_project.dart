@@ -4,7 +4,7 @@ import '../../../models/counter_mobility.dart';
 import '../../minefield-laying/models/minefield_laying.dart';
 import '../../reserve-demolition/models/reserve_demolition.dart';
 import '../../wire-obstacle/models/wire_obstacle.dart';
-import '../../roadway/models/roadway.dart';
+import '../../road-crater/models/road_crater.dart';
 import '../../anit-tank/models/anti_tank.dart';
 import './taskforce.dart';
 import './task_distribution.dart';
@@ -14,7 +14,7 @@ class CombinedProject {
   List<ReserveDemolition> reserveDemolitions =
       CounterMobility.listOfReserveDemolition;
   List<WireObstacle> wireObstacles = CounterMobility.listOfWireObstacle;
-  List<Roadway> roadways = CounterMobility.listOfRoadway;
+  List<RoadCrater> roadcraters = CounterMobility.listOfRoadCrater;
   List<AntiTank> antiTanks = CounterMobility.listOfAntiTank;
 
   DateTime startDate = DateTime.now();
@@ -23,7 +23,7 @@ class CombinedProject {
     return minefields.length +
         reserveDemolitions.length +
         wireObstacles.length +
-        roadways.length +
+        roadcraters.length +
         antiTanks.length;
   }
 
@@ -91,16 +91,17 @@ class CombinedProject {
       }
     }
 
-    List<int> roadwayByForces = [0, 0, 0];
-    if (roadways.length > 0) {
-      int roadwaysPerForce = (roadways.length / 3).ceil();
-      if (roadways.length <= 1) {
-        roadwayByForces[0] = roadwaysPerForce;
+    List<int> roadCraterByForces = [0, 0, 0];
+    if (roadcraters.length > 0) {
+      int roadCraterPerForce = (roadcraters.length / 3).ceil();
+      if (roadcraters.length <= 1) {
+        roadCraterByForces[0] = roadCraterPerForce;
       } else {
-        roadwayByForces[1] = roadwaysPerForce;
-        roadwayByForces[2] = ((roadways.length - roadwaysPerForce) / 2).ceil();
-        roadwayByForces[0] =
-            roadways.length - roadwayByForces[1] - roadwayByForces[2];
+        roadCraterByForces[1] = roadCraterPerForce;
+        roadCraterByForces[2] =
+            ((roadcraters.length - roadCraterPerForce) / 2).ceil();
+        roadCraterByForces[0] =
+            roadcraters.length - roadCraterByForces[1] - roadCraterByForces[2];
       }
     }
 
@@ -121,7 +122,7 @@ class CombinedProject {
     int minefieldCounter = 0;
     int reserveDemolitionCounter = 0;
     int wireObstacleCounter = 0;
-    int roadwayCounter = 0;
+    int roadCraterCounter = 0;
     int antiTankCounter = 0;
     for (int i = 0; i < 3; i++) {
       bool start = true;
@@ -186,12 +187,12 @@ class CombinedProject {
         wireObstacleCounter += 1;
         priority += 1;
       }
-      for (int j = 0; j < roadwayByForces[i]; j++) {
-        double time = roadways[roadwayCounter].totalTimeRequired;
+      for (int j = 0; j < roadCraterByForces[i]; j++) {
+        double time = roadcraters[roadCraterCounter].totalTimeRequired;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
           new TaskDistribution(
-            name: "Roadway ${roadwayCounter + 1}",
+            name: "Road Crater ${roadCraterCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],
             priority: priority,
@@ -202,7 +203,7 @@ class CombinedProject {
         );
         start = false;
         startDay = endDay;
-        roadwayCounter += 1;
+        roadCraterCounter += 1;
         priority += 1;
       }
       for (int j = 0; j < antiTankByForces[i]; j++) {

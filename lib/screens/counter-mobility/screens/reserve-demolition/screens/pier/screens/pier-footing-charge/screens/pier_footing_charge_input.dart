@@ -28,8 +28,8 @@ class _FootingState extends State<PierFootingChargeInput> {
   @override
   Widget build(BuildContext context) {
     _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
-    if (_currentReserveDemolition?.pier?.footingPier != null) {
-      _model = _currentReserveDemolition.pier.footingPier;
+    if (_currentReserveDemolition?.pier?.pierFootingCharge != null) {
+      _model = _currentReserveDemolition.pier.pierFootingCharge;
     } else {
       _model = PierFootingCharge();
     }
@@ -37,7 +37,7 @@ class _FootingState extends State<PierFootingChargeInput> {
     void handleSubmit(BuildContext context) {
       final form = _formKey.currentState;
       form.save();
-      _currentReserveDemolition.pier.footingPier = _model;
+      _currentReserveDemolition.pier.pierFootingCharge = _model;
 
       if (CounterMobility.listOfReserveDemolition
               .contains(_currentReserveDemolition) ==

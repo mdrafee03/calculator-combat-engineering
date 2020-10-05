@@ -5,21 +5,21 @@ import '../../../../../shared/widgets/top_header.dart';
 import '../../../widgets/placement_of_charges.dart';
 import '../../../widgets/summary_of_calculation.dart';
 import '../../../widgets/time_requirement.dart';
-import '../models/roadway.dart';
+import '../models/road_crater.dart';
 
-class RoadwayOutput extends StatelessWidget {
+class RoadCraterOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Roadway _model = ModalRoute.of(context).settings.arguments;
+    final RoadCrater _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
-      title: Text('Demolition of Roadway'),
+      title: Text('Road Crater'),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),
           onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
               context,
-              roadwayList,
+              roadCraterList,
               ModalRoute.withName(counterMobilityScreen),
             );
           },

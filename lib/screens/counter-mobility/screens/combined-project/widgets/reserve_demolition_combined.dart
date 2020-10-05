@@ -45,7 +45,7 @@ class ReserveDemolitionCombined extends StatelessWidget {
                               "(i) Plastic Explosive = ${model[i].plasticExplosive.toStringAsFixed(2)}",
                             ),
                             Text(
-                              "(ii) Hayrick = ${model[i]?.pier?.shapedPier?.totalNoOfHyrics ?? 0}",
+                              "(ii) Hayrick = ${model[i]?.pier?.shapedCharge?.totalNoOfHyrics ?? 0}",
                             ),
                           ],
                         ),
