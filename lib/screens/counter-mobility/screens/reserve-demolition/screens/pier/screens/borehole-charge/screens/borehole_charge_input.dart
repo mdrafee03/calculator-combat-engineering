@@ -19,10 +19,9 @@ class _BoreholeChargeInputState extends State<BoreholeChargeInput> {
   );
 
   ReserveDemolition _currentReserveDemolition;
+  BoreholeCharge _model;
 
   final _formKey = GlobalKey<FormState>();
-
-  BoreholeCharge _model;
 
   void handleSubmit(BuildContext context) {
     final form = _formKey.currentState;
@@ -35,7 +34,7 @@ class _BoreholeChargeInputState extends State<BoreholeChargeInput> {
     _currentReserveDemolition = ReserveDemolition.currentReserveDemolition;
     if (_currentReserveDemolition?.pier?.boreholeCharge != null) {
       _model = _currentReserveDemolition.pier.boreholeCharge;
-    } else {
+    } else if (_model == null) {
       _model = BoreholeCharge();
     }
 

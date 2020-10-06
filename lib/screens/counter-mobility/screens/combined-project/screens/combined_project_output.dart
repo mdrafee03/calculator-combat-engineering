@@ -1,3 +1,4 @@
+import 'package:combat_engineering/router/route_const.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/models/serial_manage.dart';
@@ -19,6 +20,28 @@ class CombinedProjectOutput extends StatelessWidget {
 
     final AppBar appbar = new AppBar(
       title: Text('Combined Project'),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.list),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              counterMobilityScreen,
+              ModalRoute.withName(home),
+            );
+          },
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
+      ],
     );
     return Scaffold(
       appBar: appbar,

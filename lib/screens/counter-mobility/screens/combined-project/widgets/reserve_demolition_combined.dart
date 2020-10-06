@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/widgets/section_sub_heading.dart';
 import '../../../../../shared/widgets/section_heading.dart';
 import '../../../screens/reserve-demolition/models/reserve_demolition.dart';
 
@@ -20,24 +21,15 @@ class ReserveDemolitionCombined extends StatelessWidget {
             children: [
               for (int i = 0; i < model.length; i++)
                 Container(
-                  alignment: Alignment.topLeft,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text("${String.fromCharCode(97 + i)}. "),
-                          Text(
-                            "Reserve Demolition ${i + 1}",
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ],
+                      SectionSubHeading(
+                        "${String.fromCharCode(97 + i)}. ",
+                        "Reserve Demolition ${i + 1}",
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 20),
-                        alignment: Alignment.topLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -64,7 +56,7 @@ class ReserveDemolitionCombined extends StatelessWidget {
                     Text(
                       "Total Stores for all Reserve Demolition",
                       style: TextStyle(
-                        color: Color(0xFF00008B),
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                       ),

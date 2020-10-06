@@ -1,5 +1,17 @@
+import 'dart:math';
+import 'package:combat_engineering/shared/models/pdfTheme.dart';
+import 'package:combat_engineering/shared/models/serial_manage.dart';
+import 'package:combat_engineering/shared/widgets/section_sub_heading_pw.dart';
+import 'package:combat_engineering/shared/widgets/top_header_pw.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
+import 'package:flutter/material.dart' as m;
 
+import '../../../../../shared/models/utility.dart';
+import '../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../models/counter_mobility.dart';
 import '../../minefield-laying/models/minefield_laying.dart';
 import '../../reserve-demolition/models/reserve_demolition.dart';
@@ -28,12 +40,14 @@ class CombinedProject {
   }
 
   double get totalTimeADay {
+    if (minefields.length == 0) {
+      return 12;
+    }
     int time = minefields[0]?.timeRequired?.timeAvailableADay ?? 0;
     if (time != 0) {
       return time / 60;
-    } else {
-      return 12;
     }
+    return 12;
   }
 
   double dayTaken(double time) {
@@ -42,6 +56,10 @@ class CombinedProject {
 
   String dateTableHeaderFormat(DateTime date) {
     return "${(date.day)}/${(date.day + 1)} ${(new DateFormat.MMM()).format(date)}";
+  }
+
+  String dateTableHeaderFormatPw(DateTime date) {
+    return "${(date.day)}/${(date.day + 1)}-${(new DateFormat.MMM()).format(date)}";
   }
 
   void taskDistributionCalculation() {
@@ -339,5 +357,567 @@ class CombinedProject {
               1.1)
           .ceil();
     });
+  }
+
+  Future<void> generatePDF(Document doc) async {
+    final slForParent = SerialManage();
+    final format = PdfPageFormat.a4;
+    int numberOfCol = TaskDistribution.taskDistributions.fold(
+      0,
+      (previousValue, element) => element.endDay > previousValue
+          ? element.endDay.ceil()
+          : previousValue,
+    );
+    Container buildTableHeader(String title) {
+      return Container(
+        height: 80,
+        alignment: Alignment.bottomCenter,
+        padding: const EdgeInsets.only(top: 5.0, bottom: 20),
+        child: Transform.rotate(
+          angle: pi / 2,
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    }
+
+    Container buildTableCell(String cell, {bool isCenter = false}) {
+      return Container(
+        alignment: isCenter ? Alignment.center : Alignment.centerLeft,
+        decoration: BoxDecoration(
+          border: TableBorder(
+            top: true,
+          ),
+        ),
+        child: Text(cell),
+      );
+    }
+
+    doc.addPage(
+      MultiPage(
+        pageFormat: format,
+        build: (Context context) {
+          return [
+            TopHeaderPw("Combined Project"),
+            if (minefields.length > 0)
+              SectionHeadingPw(
+                '${slForParent.serialNum} ',
+                'Store Calculation for Minefield Laying',
+              ),
+            // minefield
+            if (minefields.length > 0)
+              for (int i = 0; i < minefields.length; i++)
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SectionSubHeadingPw(
+                        "${String.fromCharCode(97 + i)}. ",
+                        "Minefield Laying ${i + 1}",
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 20),
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "(i) Anti-Tank Mines = ${minefields[i].antiTankMines}",
+                            ),
+                            Text(
+                              "(ii) Anti-Personnel Mines = ${minefields[i].antiPersonnelMines}",
+                            ),
+                            Text(
+                              "(iii) Long Picket = ${minefields[i].longPicket}",
+                            ),
+                            Text(
+                              "(iv) Short Picket = ${minefields[i].shortPicket}",
+                            ),
+                            Text(
+                              "(v) Barbed Wire = ${minefields[i].barbedWire}",
+                            ),
+                            Text(
+                              "(vi) Perimeter Post = ${minefields[i].perimeterSignPosting}",
+                            ),
+                            Text(
+                              "(vii) Tracing Tape = ${minefields[i].tracingTape}",
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ],
+                  ),
+                ),
+            if (minefields.length > 0)
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total Stores for all Minefield Laying",
+                      style: TextStyle(
+                        color: PDFTheme.color,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "(i) Anti-Tank Mines = ${minefields.fold(0, (previousValue, element) => previousValue + element.antiTankMines)}",
+                          ),
+                          Text(
+                              "(ii) Anti-Personnel Mines = ${minefields.fold(0, (previousValue, element) => previousValue + element.antiPersonnelMines)}"),
+                          Text(
+                              "(iii) Long Picket = ${minefields.fold(0, (previousValue, element) => previousValue + element.longPicket)}"),
+                          Text(
+                              "(iv) Short Picket = ${minefields.fold(0, (previousValue, element) => previousValue + element.shortPicket)}"),
+                          Text(
+                              "(v) Barbed Wire = ${minefields.fold(0, (previousValue, element) => previousValue + element.barbedWire)}"),
+                          Text(
+                              "(vi) Perimeter Post = ${minefields.fold(0, (previousValue, element) => previousValue + element.perimeterSignPosting)}"),
+                          Text(
+                              "(vii) Tracing Tape = ${minefields.fold(0, (previousValue, element) => previousValue + element.tracingTape)}"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            // reserve Demolition
+            if (reserveDemolitions.length > 0)
+              SectionHeadingPw(
+                '${slForParent.serialNum}. ',
+                'Store Calculation for Reserve Demoltion',
+              ),
+            if (reserveDemolitions.length > 0)
+              for (int i = 0; i < reserveDemolitions.length; i++)
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SectionSubHeadingPw(
+                        "${String.fromCharCode(97 + i)}. ",
+                        "Reserve Demolition ${i + 1}",
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "(i) Plastic Explosive = ${reserveDemolitions[i].plasticExplosive.toStringAsFixed(2)}",
+                            ),
+                            Text(
+                              "(ii) Hayrick = ${reserveDemolitions[i]?.pier?.shapedCharge?.totalNoOfHyrics ?? 0}",
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+            if (reserveDemolitions.length > 0)
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total Stores for all Reserve Demolition",
+                      style: TextStyle(
+                        color: PDFTheme.color,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "(i) Plastic Explosive = ${reserveDemolitions.fold<double>(0, (previousValue, element) => previousValue + element.plasticExplosive).toStringAsFixed(2)}",
+                          ),
+                          Text(
+                            "(ii) Hayrick = ${reserveDemolitions?.fold(0, (previousValue, element) => previousValue + element.hayrics) ?? 0}",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            // wire obstacle
+            if (wireObstacles.length > 0)
+              SectionHeadingPw(
+                '${slForParent.serialNum}. ',
+                'Store Calculation for Wire Obstacle',
+              ),
+            if (wireObstacles.length > 0)
+              for (int i = 0; i < wireObstacles.length; i++)
+                Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SectionSubHeadingPw(
+                        "${String.fromCharCode(97 + i)}. ",
+                        "Wire Obstacle ${i + 1}",
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (wireObstacles[i].task.barbedWire != null)
+                              Text(
+                                "(i) Barbed Wire = ${wireObstacles[i].getValueByFrontage(wireObstacles[i].task.barbedWire)}",
+                              ),
+                            if (wireObstacles[i].task.barbedWireConcertina !=
+                                null)
+                              Text(
+                                  "(ii) barbed Wire Concertina = ${wireObstacles[i].getValueByFrontage(wireObstacles[i].task.barbedWireConcertina)}"),
+                            Text(
+                              "(iii) Long Picket = ${wireObstacles[i].getValueByFrontage(wireObstacles[i].task.longPicket)}",
+                            ),
+                            if (wireObstacles[i].task.shortPiquet != null)
+                              Text(
+                                "(iv) Short Picket = ${wireObstacles[i].getValueByFrontage(wireObstacles[i].task.shortPiquet)}",
+                              ),
+                            if (wireObstacles[i].task.mauls != null)
+                              Text(
+                                "(v) Sledge Hammer = ${wireObstacles[i].getValueBySection(wireObstacles[i].task.mauls)}",
+                              ),
+                            if (wireObstacles[i].task.tracingTapRoll != null)
+                              Text(
+                                "(vi) Tracing Tape Roll = ${wireObstacles[i].getValueBySection(wireObstacles[i].task.tracingTapRoll)}",
+                              ),
+                            if (wireObstacles[i].task.wireCutter != null)
+                              Text(
+                                "(vii) Wire Cutter = ${wireObstacles[i].getValueBySection(wireObstacles[i].task.wireCutter)}",
+                              ),
+                            if (wireObstacles[i].task.windlassingStick != null)
+                              Text(
+                                "(viii) Windlassing Sticks = ${wireObstacles[i].getValueBySection(wireObstacles[i].task.windlassingStick)}",
+                              ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+            if (wireObstacles.length > 0)
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total Stores for all Wire Obstacle",
+                      style: TextStyle(
+                        color: PDFTheme.color,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 20),
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "(i) Barbed Wire= ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWire ?? 0))}",
+                          ),
+                          Text(
+                            "(ii) Barbed Wire Concertina = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.barbedWireConcertina ?? 0))}",
+                          ),
+                          Text(
+                            "(iii) Long Picket = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.longPicket ?? 0))}",
+                          ),
+                          Text(
+                            "(iv) Short Picket = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueByFrontage(element.task.shortPiquet ?? 0))}",
+                          ),
+                          Text(
+                            "(v) Sledge Hammer = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.mauls ?? 0))}",
+                          ),
+                          Text(
+                            "(vi) Tracing Tape Roll = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.tracingTapRoll ?? 0))}",
+                          ),
+                          Text(
+                            "(vii) Wire Cutter = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.wireCutter ?? 0))}",
+                          ),
+                          Text(
+                            "(viii) Windlassing Sticks = ${wireObstacles.fold(0, (previousValue, element) => previousValue + element.getValueBySection(element.task.windlassingStick ?? 0))}",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            // Store List Combined
+            SectionHeadingPw(
+              '${slForParent.serialNum}. ',
+              'Store List for Combined Engineer Project',
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a. Anti Tank Mines = $antiTankMines",
+                        ),
+                        Text(
+                          "b. Anti Personnel Mines = $antiPersonnelMines",
+                        ),
+                        Text(
+                          "c. Long Picket = $longPickets",
+                        ),
+                        Text(
+                          "d. Short Picket = $shortPickets",
+                        ),
+                        Text(
+                          "e. Barbed Wire Coil = $barbedWireCoil",
+                        ),
+                        Text(
+                          "f. Perimeter Sign Posting = $perimeterPosting",
+                        ),
+                        Text(
+                          "g. Tracing Tape = $tracingTape",
+                        ),
+                        Text(
+                          "h. Plastic Explosive = ${plasticExplosive.toStringAsFixed(2)}",
+                        ),
+                        Text(
+                          "j. Sledge hammer = $sledgeHammer",
+                        ),
+                        Text(
+                          "k. Wire Cutter = $wireCutter",
+                        ),
+                        Text(
+                          "l. Sand Bag = $sandbag",
+                        ),
+                        Text(
+                          "m. Windlassing Stick = $windlassingStick",
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+            ),
+
+            SectionHeadingPw('${slForParent.serialNum}. ', 'Work Program'),
+            Table(
+              defaultColumnWidth: FlexColumnWidth(20),
+              border: TableBorder(
+                verticalInside: true,
+                top: true,
+                left: true,
+                right: true,
+                bottom: true,
+              ),
+              columnWidths: {
+                0: FixedColumnWidth(20),
+                1: FixedColumnWidth(140),
+                2: FixedColumnWidth(20),
+                3: FixedColumnWidth(20),
+                4: FixedColumnWidth(50),
+                for (int i = 0; i < numberOfCol; i++)
+                  i + 5: FixedColumnWidth(20),
+              },
+              children: [
+                TableRow(
+                  children: [
+                    buildTableHeader('Ser'),
+                    buildTableHeader('Task'),
+                    buildTableHeader('Task-Force'),
+                    buildTableHeader('Pri'),
+                    buildTableHeader('Pl Hr'),
+                    for (int i = 0; i < numberOfCol; i++)
+                      buildTableHeader((dateTableHeaderFormatPw(
+                          startDate.add(Duration(days: i))))),
+                  ],
+                ),
+                for (int i = 0;
+                    i < TaskDistribution.taskDistributions.length;
+                    i++)
+                  TableRow(
+                    decoration:
+                        TaskDistribution.taskDistributions[i].startForce &&
+                                i != 0
+                            ? BoxDecoration(
+                                border: BoxBorder(top: true, width: 2),
+                              )
+                            : null,
+                    children: [
+                      buildTableCell((i + 1).toString(), isCenter: true),
+                      buildTableCell(
+                        TaskDistribution.taskDistributions[i].name,
+                      ),
+                      Container(
+                        decoration: i == 0
+                            ? BoxDecoration(border: BoxBorder(top: true))
+                            : null,
+                        alignment: Alignment.center,
+                        child: Text(TaskDistribution
+                                .taskDistributions[i].startForce
+                            ? TaskDistribution.taskDistributions[i].force.name
+                            : ''),
+                      ),
+                      buildTableCell(
+                          TaskDistribution.taskDistributions[i].priority
+                              .toString(),
+                          isCenter: true),
+                      buildTableCell(
+                        TaskDistribution.taskDistributions[i].time
+                            .toStringAsFixed(2),
+                      ),
+                      ...List.generate(numberOfCol, (index) {
+                        Widget temp;
+                        if ((index >=
+                                TaskDistribution.taskDistributions[i].startDay
+                                    .floor() &&
+                            index <=
+                                TaskDistribution.taskDistributions[i].endDay)) {
+                          double startDay =
+                              TaskDistribution.taskDistributions[i].startDay;
+                          double endDay =
+                              TaskDistribution.taskDistributions[i].endDay;
+                          if (startDay - index < 1 &&
+                              startDay - index >= 0 &&
+                              endDay - index < 1 &&
+                              endDay - index >= 0) {
+                            temp = Container(
+                              margin: EdgeInsets.only(
+                                  left: 20 * (startDay - index),
+                                  right: 20 * (1 - (endDay - index))),
+                              color: TaskDistribution
+                                  .taskDistributions[i].force.pdfColor,
+                              child: Text(
+                                '.',
+                                style: TextStyle(
+                                  color: TaskDistribution
+                                      .taskDistributions[i].force.pdfColor,
+                                ),
+                              ),
+                            );
+                          } else if (startDay - index < 1 &&
+                              startDay - index >= 0) {
+                            temp = Container(
+                              margin: EdgeInsets.only(
+                                  left: 20 * (startDay - index)),
+                              color: TaskDistribution
+                                  .taskDistributions[i].force.pdfColor,
+                              child: Text(
+                                '.',
+                                style: TextStyle(
+                                  color: TaskDistribution
+                                      .taskDistributions[i].force.pdfColor,
+                                ),
+                              ),
+                            );
+                          } else if (endDay - index < 1 &&
+                              endDay - index >= 0) {
+                            temp = Container(
+                              margin: EdgeInsets.only(
+                                  right: 20 * (1 - (endDay - index))),
+                              color: TaskDistribution
+                                  .taskDistributions[i].force.pdfColor,
+                              child: Text(
+                                '.',
+                                style: TextStyle(
+                                  color: TaskDistribution
+                                      .taskDistributions[i].force.pdfColor,
+                                ),
+                              ),
+                            );
+                          } else {
+                            temp = Container(
+                              color: TaskDistribution
+                                  .taskDistributions[i].force.pdfColor,
+                              child: Text(
+                                '.',
+                                style: TextStyle(
+                                  color: TaskDistribution
+                                      .taskDistributions[i].force.pdfColor,
+                                ),
+                              ),
+                            );
+                          }
+                        } else {
+                          temp = Text("");
+                        }
+                        return Container(
+                            decoration: BoxDecoration(
+                              border: BoxBorder(
+                                top: true,
+                              ),
+                            ),
+                            child: temp);
+                      }),
+                    ],
+                  ),
+              ],
+            ),
+          ];
+        },
+      ),
+    );
+  }
+
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
+    await generatePDF(doc);
+    final directory = '/storage/emulated/0/Download';
+    final file = File("$directory/Combined-Project-Engineering.pdf");
+    await file.writeAsBytes(doc.save());
+    Utility.showPrintedToast(ctx);
+  }
+
+  void sharePDF() async {
+    var doc = Document();
+    await generatePDF(doc);
+    await Printing.sharePdf(
+      bytes: doc.save(),
+      filename: 'Combined-Project-Engineering.pdf',
+    );
   }
 }

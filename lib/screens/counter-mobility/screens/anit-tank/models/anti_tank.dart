@@ -7,6 +7,7 @@ import 'package:printing/printing.dart';
 
 import '../../../../../shared/models/utility.dart';
 import '../../../../../shared/widgets/section_heading_pw.dart';
+import '../../../../../shared/widgets/top_header_pw.dart';
 
 class AntiTank {
   double length;
@@ -43,19 +44,7 @@ class AntiTank {
             margin: pw.EdgeInsets.all(10),
             child: pw.Column(
               children: [
-                pw.Container(
-                  alignment: pw.Alignment.center,
-                  child: pw.Text(
-                    "Calculation of Anti-tank ditch".toUpperCase(),
-                    style: pw.TextStyle(
-                      fontWeight: pw.FontWeight.bold,
-                      fontSize: 15,
-                      color: PdfColor.fromInt(0xFF00008B),
-                      decoration: pw.TextDecoration.underline,
-                    ),
-                    textAlign: pw.TextAlign.center,
-                  ),
-                ),
+                TopHeaderPw("Calculation of Anti-tank ditch"),
                 SectionHeadingPw("1. ", "Summary of Calculation"),
                 pw.Container(
                   padding: pw.EdgeInsets.only(left: 20),
