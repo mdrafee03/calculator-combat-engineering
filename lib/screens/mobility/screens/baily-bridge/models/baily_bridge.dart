@@ -1,7 +1,21 @@
-import './launching_data.dart';
+import 'dart:io';
+import 'package:flutter/material.dart' as m;
+import 'package:flutter/services.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
+
+import '../../../../../shared/models/serial_manage.dart';
+import '../../../../../shared/widgets/reference_text_pw.dart';
+import '../../../../../shared/widgets/section_sub_heading_pw.dart';
+import '../../../../../shared/models/utility.dart';
+import '../../../../../shared/widgets/top_header_pw.dart';
 import '../models/bridge_part.dart';
 import '../models/launching_calc.dart';
 import '../models/store_bridge.dart';
+import '../widgets/store_cal_bb_widget_pw.dart';
+import '../widgets/launching_calc_pw.dart';
+import './launching_data.dart';
 import './bridge_construction.dart';
 import './grillage_construction.dart';
 import './grillage_load.dart';
@@ -144,18 +158,6 @@ class BailyBridge {
     }
     return results;
   }
-
-  // void removeUnusedGroundLevels() {
-  //   [PositionRollers.Roller102, PositionRollers.Roller77].forEach((element) {
-  //     if (existingGroundLevels.containsKey(element) &&
-  //         !positionOfConstructionRoller.contains(element)) {
-  //       existingGroundLevels.remove(element);
-  //     } else if (!existingGroundLevels.containsKey(element) &&
-  //         positionOfConstructionRoller.contains(element)) {
-  //       existingGroundLevels[element] = 0;
-  //     }
-  //   });
-  // }
 
   List<Map<String, int>> get numberOfConstructionRollerEachSide {
     List<Map<String, int>> result = [];
@@ -553,5 +555,366 @@ class BailyBridge {
     return value % type != 0
         ? (value + type - (value % type)).round()
         : value.toInt();
+  }
+
+  Future<void> generatePDF(Document doc) async {
+    final slForParent = SerialManage();
+    final slForVehicle = SerialManage();
+    final PdfImage image1 = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load('assets/images/baily-bridge/bb1.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    final PdfImage image2 = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load('assets/images/baily-bridge/bb2.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    final PdfImage image3 = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load('assets/images/baily-bridge/bb2.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    doc.addPage(
+      MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (Context context) {
+          return [
+            TopHeaderPw('Summary of Baily Bridge'),
+            SectionSubHeadingPw(
+              "${slForParent.serialNum} .",
+              "Lenght of Baily Bridge and Type of Construction",
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 20),
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "a. Length of Baily Bridge = $lengthOfBailyBridge ft",
+                  ),
+                  Text(
+                    "b. Type of Construction of Baily Bridge = ${typesOfConstructionString[typeOfConstructionOfBridge]}",
+                  ),
+                  ReferenceTextPw(
+                    "(Auth: ERPB-1964, Section 16, Para 6, Table 1)",
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SectionSubHeadingPw(
+                    "${slForParent.serialNum} .",
+                    "Launching Nose and Position of Launching Link",
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a. Length of Nose = $lengthOfNose ft = ${(lengthOfNose / 10).round()} Bay ",
+                        ),
+                        Wrap(
+                          children: [
+                            Text(
+                              "b. Type of Construction of of Nose = ${typeOfConstructionOfNose[0]} SS",
+                            ),
+                            if (typeOfConstructionOfNose[1] != 0)
+                              Text(
+                                " and ${typeOfConstructionOfNose[1]} DS",
+                              ),
+                            if (typeOfConstructionOfNose[2] != 0)
+                              Text(
+                                " and ${typeOfConstructionOfNose[2]} DD",
+                              ),
+                          ],
+                        ),
+                        ReferenceTextPw(
+                            "(Authorization: ME Volume III, Part III, Figure 33, 34, 35, or 36), Page 149-152"),
+                        Text(
+                          "c. Corrected Length of Nose = $lengthOfNoseCorrected ft = ${(lengthOfNose / 10).round()} Bay ",
+                        ),
+                        ReferenceTextPw(
+                            "(Authorization: ME Volume III, Part III, Figure 33, 34, 35, or 36), Page 149-152"),
+                        Text(
+                          "d. Position of Launching Link = $positionOfLaunchingLink Bay ",
+                        ),
+                        ReferenceTextPw(
+                          "[Auth: ME Volume III, Part III, Section 8, Para 3a] (Page-33)",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SectionSubHeadingPw(
+                    "${slForParent.serialNum} .",
+                    "Roller Layout",
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a. Construction Space = $constructionSpaceRollerLayout ft",
+                        ),
+                        Text(
+                          "b. Position of Construction Roller = At a Distance of ${positionOfConstructionRoller.sublist(0, positionOfConstructionRoller.length - 1).map((element) => positionRollersString[element]).join("', ")}' and ${positionRollersString[positionOfConstructionRoller.last]}'",
+                        ),
+                        ReferenceTextPw(
+                          "[Auth: ME Volume III, Part III, Section 8, Part 3a] (Page-33)",
+                        ),
+                        Row(
+                          children: [
+                            Text("c. "),
+                            Text(
+                              "No. of Construction rollers at each side",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                          alignment: Alignment.topLeft,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: numberOfConstructionRollerEachSide
+                                  .asMap()
+                                  .map((i, element) => MapEntry(
+                                      i,
+                                      Text(
+                                          "(${i + 1}) At ${element.keys.first}' : ${element.values.first} Nos")))
+                                  .values
+                                  .toList()),
+                        ),
+                        ReferenceTextPw(
+                          "(Auth: ERPB Section 16 Para 4c, Page-67; ME Volumne III, Part III, Section 6, Para -4, Page-30)",
+                        ),
+                        Text(
+                          "d. No. of Launching Roller = $numberOfLaunchingRoller Nos",
+                        ),
+                        ReferenceTextPw(
+                          "[Auth: ME Volumne III, Part III, Annex A (Page-132) and Section 4, Para 1 (Page-29), Section 6, Para 2 & ERPB Section 16 Para 2 (Page-66)]",
+                        ),
+                        Text(
+                          "e. No. of Landing Roller = $numberOfLandingRoller Nos",
+                        ),
+                        ReferenceTextPw(
+                          "(Auth: ME Volume III, Part III, Section 6, Para-3)",
+                        ),
+                        Row(
+                          children: [
+                            Text("f. "),
+                            Text(
+                              "Total Required of Rollers",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                          alignment: Alignment.topLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "(1) Rocking Rollers = ${numberOfLaunchingRoller + numberOfLandingRoller} Nos",
+                              ),
+                              Text(
+                                "(2) Plain Rollers = $plainRoller Nos",
+                              ),
+                              Text(
+                                "(3) Total Rollers = $totalRoller Nos",
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SectionSubHeadingPw(
+                    "${slForParent.serialNum} .",
+                    "Grillage",
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a. Maximum base plate reaction = $maxReactionOfBasePlate ton",
+                        ),
+                        ReferenceTextPw(
+                          "(Auth: ERPB, Section 16, table under para 13) (Page-83)",
+                        ),
+                        Text(
+                          "b. Size of the Baseplate  = $sizeOfBaseplate sq ft",
+                        ),
+                        ReferenceTextPw("(Auth: ERPB, Section 16, Para 03)"),
+                        Text(
+                          "c. Given Bearing pressure on soil  = $pressureOfSoil ton/sq ft",
+                        ),
+                        Text(
+                          "d. Max Bearing Pressure on soil  = ${maxPressureOnSoil.toStringAsFixed(2)} ton/sq ft",
+                        ),
+                        isGrillageRequire
+                            ? Text("e. Grillage is required")
+                            : Text("e. Grillage is not required"),
+                        if (isGrillageRequire)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "f. Type of Grillage = ${getGrillageLoads.type}, Baseplate = ${getGrillageLoads.basePlate}, template = ${getGrillageLoads.template},",
+                              ),
+                              Text(
+                                "g. Total no of Grillage = $numberOfGrillage Nos",
+                              ),
+                            ],
+                          ),
+                        ReferenceTextPw(
+                            "(Auth: ME Volume III, Part III, Fig: 37"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SectionSubHeadingPw(
+                    "${slForParent.serialNum} .",
+                    "Jacks",
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a .Weight on Jack = ${weightOfJack.toStringAsFixed(2)} tons",
+                        ),
+                        Text(
+                          "b. No of Jack require = $numberOfJack Nos",
+                        ),
+                        ReferenceTextPw(
+                          "(Auth: ME Volume III part III, Section: 15, Para 1) (Page-42)",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  if (isLunching)
+                    LaunchingCalcBailyBridgePw(
+                      sl: slForParent.serialNum,
+                      lauchings: launchingCalculations,
+                      positions: positionOfConstructionRoller,
+                      farbank: waterGap,
+                    ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  StoreCalcBBWidgetPw(
+                    sl: slForParent.serialNum,
+                    stores: storeCalculation,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  SectionSubHeadingPw(
+                      "${slForParent.serialNum} .", "Vehicle Require"),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${slForVehicle.serial}. Lorry for Panels = $lorryForPanels",
+                        ),
+                        Text(
+                          "${slForVehicle.serial}. Lorry for Decking  = $lorryForDecking",
+                        ),
+                        Text(
+                          "${slForVehicle.serial}. Ramps  = 2 x Lorry",
+                        ),
+                        if (isGrillageRequire)
+                          Text(
+                            "${slForVehicle.serial}. Grillage  = $lorryForGrillage",
+                          ),
+                        Text(
+                          "${slForVehicle.serial}. Total Lorry= $totalLorry",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Image(image1),
+            Image(image2),
+            Image(image3),
+          ];
+        },
+      ),
+    );
+  }
+
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
+    await generatePDF(doc);
+    final directory = '/storage/emulated/0/Download';
+    final file = File("$directory/Baily-Bridge.pdf");
+    await file.writeAsBytes(doc.save());
+    Utility.showPrintedToast(ctx);
+  }
+
+  void sharePDF() async {
+    var doc = Document();
+    await generatePDF(doc);
+    await Printing.sharePdf(bytes: doc.save(), filename: 'Baily-Bridge.pdf');
   }
 }

@@ -70,6 +70,7 @@ class LaunchingCalcBailyBridge extends StatelessWidget {
                                         bottom: BorderSide(width: 1),
                                       ),
                                     ),
+                                    alignment: Alignment.center,
                                     child:
                                         Text("Rollers at different positions"),
                                   ),
