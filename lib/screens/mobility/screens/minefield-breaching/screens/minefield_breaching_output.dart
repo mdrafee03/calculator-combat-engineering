@@ -37,7 +37,17 @@ class MinefieldBreachingOutput extends StatelessWidget {
               ModalRoute.withName(mobilityScreen),
             );
           },
-        )
+        ),
+        Builder(builder: (BuildContext ctx) {
+          return IconButton(
+            icon: const Icon(Icons.file_download),
+            onPressed: () => _model.savePDF(ctx),
+          );
+        }),
+        IconButton(
+          icon: const Icon(Icons.share),
+          onPressed: () => _model.sharePDF(),
+        ),
       ],
     );
     return Scaffold(
@@ -85,31 +95,31 @@ class MinefieldBreachingOutput extends StatelessWidget {
                                 ),
                                 TableCell(
                                   child: Text(
-                                    "party",
+                                    "Party",
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 TableCell(
                                   child: Text(
-                                    "task",
+                                    "Task",
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 TableCell(
                                   child: Text(
-                                    "time",
+                                    "Time",
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 TableCell(
                                   child: Text(
-                                    "from",
+                                    "From",
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 TableCell(
                                   child: Text(
-                                    "to",
+                                    "To",
                                     textAlign: TextAlign.center,
                                   ),
                                 ),

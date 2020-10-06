@@ -1,5 +1,16 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/material.dart' as m;
+import 'package:flutter/services.dart';
 import 'package:fraction/fraction.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
+
+import '../../../../../shared/models/serial_manage.dart';
+import '../../../../../shared/widgets/section_heading_pw.dart';
+import '../../../../../shared/widgets/section_sub_heading_pw.dart';
+import '../../../../../shared/models/utility.dart';
+import '../../../../../shared/widgets/top_header_pw.dart';
 
 import "../../../../../shared/extension-methods/timeOfDay_apis.dart";
 import '../models/breaching_lane.dart';
@@ -9,29 +20,29 @@ class MinefieldBreaching {
   int noOfFieldEngineerPlatoon;
   int noOfInfantryPlatoon;
   int noOfAssaultPioneerPlatoon;
-  TimeOfDay firstLight = TimeOfDay.now();
-  TimeOfDay lastLight = TimeOfDay.now();
-  TimeOfDay startTime = TimeOfDay.now();
+  m.TimeOfDay firstLight = m.TimeOfDay.now();
+  m.TimeOfDay lastLight = m.TimeOfDay.now();
+  m.TimeOfDay startTime = m.TimeOfDay.now();
   int branchingLaneDepth;
   int restTime;
-  TimeOfDay completionTime;
+  m.TimeOfDay completionTime;
   int completionDay;
 
   List<BreachingLaneList> get timeCalculation {
     List<BreachingLaneList> breachingLaneList =
         determineSteps(branchingLaneDepth);
     int day = 0;
-    TimeOfDay currentTime = startTime;
+    m.TimeOfDay currentTime = startTime;
 
     List<BreachingLane> createBreachingLane(
       int type,
-      TimeOfDay start,
+      m.TimeOfDay start,
       bool first,
       bool last,
     ) {
-      TimeOfDay current = start;
+      m.TimeOfDay current = start;
       List<BreachingLane> breachingLanes = [];
-      TimeOfDay addedTime;
+      m.TimeOfDay addedTime;
       bool isDayIncrease = false;
       void checkIfDayEnd(int duration) {
         addedTime = current.addMinutes(duration);
@@ -350,7 +361,7 @@ class MinefieldBreaching {
     return ((2 * branchingLaneDepth / 50) * 1.1).ceil();
   }
 
-  String hourFormat(TimeOfDay time) {
+  String hourFormat(m.TimeOfDay time) {
     String hour = "00" + time.hour.toString();
     String minute = "00" + time.minute.toString();
     return (hour.substring(hour.length - 2) +
@@ -361,5 +372,233 @@ class MinefieldBreaching {
     return double.tryParse(val) != null
         ? Fraction.fromDouble(double.parse(val))
         : Fraction.fromString(val);
+  }
+
+  Future<void> generatePDF(Document doc) async {
+    final slForParent = SerialManage();
+    final PdfImage image1 = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load(
+              'assets/images/minefield-breaching/minefield-breaching1.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    final PdfImage image2 = PdfImage.file(
+      doc.document,
+      bytes: (await rootBundle.load(
+              'assets/images/minefield-breaching/minefield-breaching2.jpg'))
+          .buffer
+          .asUint8List(),
+    );
+    Container buildTableCell(String cell, {bool isCenter = false}) {
+      return Container(
+        decoration: BoxDecoration(
+          border: BoxBorder(
+            top: true,
+          ),
+        ),
+        padding: !isCenter ? EdgeInsets.only(left: 5) : null,
+        alignment: isCenter ? Alignment.center : Alignment.centerLeft,
+        child: Text(cell),
+      );
+    }
+
+    Container buildTableHeader(String text) {
+      return Container(
+        alignment: Alignment.center,
+        child: Text(
+          text,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      );
+    }
+
+    doc.addPage(
+      MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        build: (Context context) {
+          return [
+            TopHeaderPw('Summary of Minefield Breaching'),
+            SectionHeadingPw(
+              "${slForParent.serialNum} .",
+              "Time Calculation",
+            ),
+            for (int i = 0; i < timeCalculation.length; i++)
+              Column(
+                children: [
+                  SectionSubHeadingPw("${String.fromCharCode(i + 97)}. ",
+                      "For${i != 0 ? " Next" : ""} ${timeCalculation[i].type} yards (Depth ${timeCalculation[i].depth} yards)"),
+                  Table(
+                    border: TableBorder(
+                      horizontalInside: false,
+                    ),
+                    columnWidths: {
+                      0: FixedColumnWidth(25),
+                      3: FixedColumnWidth(40),
+                      4: FixedColumnWidth(50),
+                      5: FixedColumnWidth(50),
+                    },
+                    children: [
+                      TableRow(
+                        children: [
+                          buildTableHeader("Ser"),
+                          buildTableHeader("Party"),
+                          buildTableHeader("Task"),
+                          buildTableHeader("Time"),
+                          buildTableHeader("From"),
+                          buildTableHeader("To"),
+                        ],
+                      ),
+                      ...timeCalculation[i].branchingLane.map((lane) {
+                        return TableRow(
+                          children: [
+                            lane.startParty
+                                ? buildTableCell(lane.serial.toString())
+                                : Text(""),
+                            lane.startParty
+                                ? buildTableCell(lane.party)
+                                : Text(""),
+                            buildTableCell(lane.task),
+                            buildTableCell(lane.time.toString(),
+                                isCenter: true),
+                            buildTableCell(hourFormat(lane.from),
+                                isCenter: true),
+                            buildTableCell(hourFormat(lane.to), isCenter: true),
+                          ],
+                        );
+                      }).toList(),
+                    ],
+                  ),
+                ],
+              ),
+            SectionHeadingPw(
+              "${slForParent.serialNum} .",
+              "Store Calculation",
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 20),
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "a. Prismatic Compass = 03 Nos",
+                  ),
+                  Text(
+                    "b. Short Prodder = 30 Nos",
+                  ),
+                  Text(
+                    "c. Trip Wine Feeler = 30 Nos",
+                  ),
+                  Text(
+                    "d. Wire Cutters = 150 Nos",
+                  ),
+                  Text(
+                    "e. Eye Protector = One Per man",
+                  ),
+                  Text(
+                    "f. Reel of Fish line = 30 Nos",
+                  ),
+                  Text(
+                    "g. Store for lane marking",
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 20),
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "(1) Long Picket = $longPicket Nos",
+                        ),
+                        Text(
+                          "(2) Barbed Wire Coil = $barbedWire Nos",
+                        ),
+                        Text(
+                          "(3) Safe Lane Marker = $safeLaneMarker Nos",
+                        ),
+                        Text(
+                          "(4) Green Light = Yellow light = $greenYellowLight Nos",
+                        ),
+                        Text(
+                          "(5) Cncertina Coil = 4 Coils",
+                        ),
+                        Text(
+                          "(6) Tape = $tape Nos",
+                        ),
+                        Text(
+                          "(7) Minefield Marker = $minefieldMarker Nos",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SectionHeadingPw(
+              "${slForParent.serialNum} .",
+              "Summary of Calculation",
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 20),
+              alignment: Alignment.topLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "(1) Start Time = ${hourFormat(startTime)} hours D Day",
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(color: PdfColors.black),
+                      children: [
+                        TextSpan(
+                          text:
+                              "(2) Completion Time = ${hourFormat(completionTime)} hours D",
+                        ),
+                        if (completionDay != 0)
+                          TextSpan(
+                            text: "+$completionDay",
+                          ),
+                        TextSpan(
+                          text: " Day",
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Image(image1),
+            Image(image2),
+          ];
+        },
+      ),
+    );
+  }
+
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
+    await generatePDF(doc);
+    final directory = '/storage/emulated/0/Download';
+    final file = File("$directory/Minefield-Breaching.pdf");
+    await file.writeAsBytes(doc.save());
+    Utility.showPrintedToast(ctx);
+  }
+
+  void sharePDF() async {
+    var doc = Document();
+    await generatePDF(doc);
+    await Printing.sharePdf(
+        bytes: doc.save(), filename: 'Minefield-Breaching.pdf');
   }
 }
