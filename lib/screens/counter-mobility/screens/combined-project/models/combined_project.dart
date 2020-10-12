@@ -746,14 +746,7 @@ class CombinedProject {
 
             SectionHeadingPw('${slForParent.serialNum}. ', 'Work Program'),
             Table(
-              defaultColumnWidth: FlexColumnWidth(20),
-              border: TableBorder(
-                verticalInside: true,
-                top: true,
-                left: true,
-                right: true,
-                bottom: true,
-              ),
+              border: TableBorder(horizontalInside: false),
               columnWidths: {
                 0: FixedColumnWidth(20),
                 1: FixedColumnWidth(140),
@@ -831,13 +824,6 @@ class CombinedProject {
                                   right: 20 * (1 - (endDay - index))),
                               color: TaskDistribution
                                   .taskDistributions[i].force.pdfColor,
-                              child: Text(
-                                '.',
-                                style: TextStyle(
-                                  color: TaskDistribution
-                                      .taskDistributions[i].force.pdfColor,
-                                ),
-                              ),
                             );
                           } else if (startDay - index < 1 &&
                               startDay - index >= 0) {
@@ -846,13 +832,6 @@ class CombinedProject {
                                   left: 20 * (startDay - index)),
                               color: TaskDistribution
                                   .taskDistributions[i].force.pdfColor,
-                              child: Text(
-                                '.',
-                                style: TextStyle(
-                                  color: TaskDistribution
-                                      .taskDistributions[i].force.pdfColor,
-                                ),
-                              ),
                             );
                           } else if (endDay - index < 1 &&
                               endDay - index >= 0) {
@@ -861,25 +840,11 @@ class CombinedProject {
                                   right: 20 * (1 - (endDay - index))),
                               color: TaskDistribution
                                   .taskDistributions[i].force.pdfColor,
-                              child: Text(
-                                '.',
-                                style: TextStyle(
-                                  color: TaskDistribution
-                                      .taskDistributions[i].force.pdfColor,
-                                ),
-                              ),
                             );
                           } else {
                             temp = Container(
                               color: TaskDistribution
                                   .taskDistributions[i].force.pdfColor,
-                              child: Text(
-                                '.',
-                                style: TextStyle(
-                                  color: TaskDistribution
-                                      .taskDistributions[i].force.pdfColor,
-                                ),
-                              ),
                             );
                           }
                         } else {
@@ -887,10 +852,9 @@ class CombinedProject {
                         }
                         return Container(
                             decoration: BoxDecoration(
-                              border: BoxBorder(
-                                top: true,
-                              ),
+                              border: BoxBorder(top: true),
                             ),
+                            height: 13,
                             child: temp);
                       }),
                     ],
