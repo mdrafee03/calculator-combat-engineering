@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/launching_calc.dart';
-import '../models/baily_bridge.dart';
+import '../../../../../shared/models/utility.dart';
 import '../../../../../shared/widgets/section_sub_heading.dart';
+import '../models/baily_bridge.dart';
+import '../models/launching_calc.dart';
 
 class LaunchingCalcBailyBridge extends StatelessWidget {
   final List<PositionRollers> positions;
@@ -71,8 +72,12 @@ class LaunchingCalcBailyBridge extends StatelessWidget {
                                       ),
                                     ),
                                     alignment: Alignment.center,
-                                    child:
-                                        Text("Rollers at different positions"),
+                                    child: Text(
+                                      "Rollers at different positions",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ]),
@@ -96,41 +101,23 @@ class LaunchingCalcBailyBridge extends StatelessWidget {
                               right: BorderSide(width: 1),
                             ),
                             children: [
-                              TableRow(children: [
-                                TableCell(
-                                  child: Text("Ser"),
-                                ),
-                                TableCell(
-                                  child: Text("Consideration"),
-                                ),
-                                if (positions
-                                    .contains(PositionRollers.Roller102))
-                                  TableCell(
-                                    child: Text("102'"),
-                                  ),
-                                if (positions
-                                    .contains(PositionRollers.Roller77))
-                                  TableCell(
-                                    child: Text("77'"),
-                                  ),
-                                TableCell(
-                                  child: Text("52'"),
-                                ),
-                                TableCell(
-                                  child: Text("27'"),
-                                ),
-                                TableCell(
-                                  child: Text("3.5'"),
-                                ),
-                                TableCell(
-                                  child: Text("0'"),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    farbank.toString(),
-                                  ),
-                                ),
-                              ]),
+                              TableRow(
+                                children: [
+                                  Utility.buildTableHeader("Ser"),
+                                  Utility.buildTableHeader("Consideration"),
+                                  if (positions
+                                      .contains(PositionRollers.Roller102))
+                                    Utility.buildTableHeader("102'"),
+                                  if (positions
+                                      .contains(PositionRollers.Roller77))
+                                    Utility.buildTableHeader("77'"),
+                                  Utility.buildTableHeader("52'"),
+                                  Utility.buildTableHeader("27'"),
+                                  Utility.buildTableHeader("3.5'"),
+                                  Utility.buildTableHeader("0'"),
+                                  Utility.buildTableHeader("$farbank'"),
+                                ],
+                              ),
                             ],
                           ),
                           Table(
@@ -148,46 +135,47 @@ class LaunchingCalcBailyBridge extends StatelessWidget {
                             border: TableBorder.all(),
                             children: lauchings
                                 .map(
-                                  (element) => TableRow(children: [
-                                    TableCell(
-                                      child: Text(element.sl.toString()),
-                                    ),
-                                    TableCell(
-                                      child: Text(element.consideration),
-                                    ),
-                                    if (positions
-                                        .contains(PositionRollers.Roller102))
-                                      TableCell(
-                                        child: Text(element.roller102
-                                            .toStringAsFixed(2)),
+                                  (element) => TableRow(
+                                    children: [
+                                      Utility.buildTableCell(
+                                          element.sl.toString(),
+                                          isCenter: true),
+                                      Utility.buildTableCell(
+                                          element.consideration),
+                                      if (positions
+                                          .contains(PositionRollers.Roller102))
+                                        Utility.buildTableCell(
+                                          element.roller102.toStringAsFixed(2),
+                                          isCenter: true,
+                                        ),
+                                      if (positions
+                                          .contains(PositionRollers.Roller77))
+                                        Utility.buildTableCell(
+                                          element.roller77.toStringAsFixed(2),
+                                          isCenter: true,
+                                        ),
+                                      Utility.buildTableCell(
+                                        element.roller52.toStringAsFixed(2),
+                                        isCenter: true,
                                       ),
-                                    if (positions
-                                        .contains(PositionRollers.Roller77))
-                                      TableCell(
-                                        child: Text(element.roller77
-                                            .toStringAsFixed(2)),
+                                      Utility.buildTableCell(
+                                        element.roller27.toStringAsFixed(2),
+                                        isCenter: true,
                                       ),
-                                    TableCell(
-                                      child: Text(
-                                          element.roller52.toStringAsFixed(2)),
-                                    ),
-                                    TableCell(
-                                      child: Text(
-                                          element.roller27.toStringAsFixed(2)),
-                                    ),
-                                    TableCell(
-                                      child: Text(
-                                          element.roller3p5.toStringAsFixed(2)),
-                                    ),
-                                    TableCell(
-                                      child: Text(
-                                          element.roller0.toStringAsFixed(2)),
-                                    ),
-                                    TableCell(
-                                      child: Text(
-                                          element.farBank.toStringAsFixed(2)),
-                                    ),
-                                  ]),
+                                      Utility.buildTableCell(
+                                        element.roller3p5.toStringAsFixed(2),
+                                        isCenter: true,
+                                      ),
+                                      Utility.buildTableCell(
+                                        element.roller0.toStringAsFixed(2),
+                                        isCenter: true,
+                                      ),
+                                      Utility.buildTableCell(
+                                        element.farBank.toStringAsFixed(2),
+                                        isCenter: true,
+                                      ),
+                                    ],
+                                  ),
                                 )
                                 .toList(),
                           ),

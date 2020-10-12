@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/models/utility.dart';
 import '../../../../../shared/widgets/reference_text.dart';
 import '../../../../../shared/widgets/section_sub_heading.dart';
 import '../models/store_bridge.dart';
@@ -12,10 +13,10 @@ class StoreCalcBBWidget extends StatelessWidget {
     @required this.stores,
   });
 
-  Text buildTextDash(int element) {
+  Container buildTextDash(int element) {
     return element != 0
-        ? Text(element.toString())
-        : Text("-", textAlign: TextAlign.center);
+        ? Utility.buildTableCell(element.toString(), isCenter: true)
+        : Utility.buildTableCell("-", isCenter: true);
   }
 
   @override
@@ -70,6 +71,7 @@ class StoreCalcBBWidget extends StatelessWidget {
                               child: Text(
                                 "Main Bridge",
                                 textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -99,35 +101,15 @@ class StoreCalcBBWidget extends StatelessWidget {
                       ),
                       children: [
                         TableRow(children: [
-                          TableCell(
-                            child: Text("Ser"),
-                          ),
-                          TableCell(
-                            child: Text("Name of Parts"),
-                          ),
-                          TableCell(
-                            child: Text("Head"),
-                          ),
-                          TableCell(
-                            child: Text("Intermediate"),
-                          ),
-                          TableCell(
-                            child: Text("Tail"),
-                          ),
-                          TableCell(
-                            child: Text("Nose"),
-                          ),
-                          TableCell(
-                            child: Text("Total"),
-                          ),
-                          TableCell(
-                            child: Text("10% extra"),
-                          ),
-                          TableCell(
-                            child: Text(
-                              "Grand Total",
-                            ),
-                          ),
+                          Utility.buildTableHeader("Ser"),
+                          Utility.buildTableHeader("Name of Parts"),
+                          Utility.buildTableHeader("Head"),
+                          Utility.buildTableHeader("Intermediate"),
+                          Utility.buildTableHeader("Tail"),
+                          Utility.buildTableHeader("Nose"),
+                          Utility.buildTableHeader("Total"),
+                          Utility.buildTableHeader("10% extra"),
+                          Utility.buildTableHeader("Grand Total"),
                         ]),
                       ],
                     ),
@@ -146,30 +128,31 @@ class StoreCalcBBWidget extends StatelessWidget {
                       border: TableBorder.all(),
                       children: stores
                           .map(
-                            (element) => TableRow(children: [
-                              TableCell(
-                                child: Text(element.sl.toString()),
-                              ),
-                              TableCell(
-                                child: Text(element.name),
-                              ),
-                              TableCell(
-                                child: buildTextDash(element.head),
-                              ),
-                              TableCell(
-                                  child: buildTextDash(element.intermediate)),
-                              TableCell(child: buildTextDash(element.tail)),
-                              TableCell(child: buildTextDash(element.nose)),
-                              TableCell(
-                                child: Text(element.total.toString()),
-                              ),
-                              TableCell(
-                                child: Text(element.percentage.toString()),
-                              ),
-                              TableCell(
-                                child: Text(element.grandTotal.toString()),
-                              ),
-                            ]),
+                            (element) => TableRow(
+                              children: [
+                                Utility.buildTableCell(
+                                  element.sl.toString(),
+                                  isCenter: true,
+                                ),
+                                Utility.buildTableCell(element.name),
+                                buildTextDash(element.head),
+                                buildTextDash(element.intermediate),
+                                buildTextDash(element.tail),
+                                buildTextDash(element.nose),
+                                Utility.buildTableCell(
+                                  element.total.toString(),
+                                  isCenter: true,
+                                ),
+                                Utility.buildTableCell(
+                                  element.percentage.toString(),
+                                  isCenter: true,
+                                ),
+                                Utility.buildTableCell(
+                                  element.grandTotal.toString(),
+                                  isCenter: true,
+                                ),
+                              ],
+                            ),
                           )
                           .toList(),
                     ),

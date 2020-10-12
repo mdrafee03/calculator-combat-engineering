@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:pdf/widgets.dart';
 
+import '../../../../../shared/models/utility_pw.dart';
 import '../../../../../shared/widgets/section_sub_heading_pw.dart';
 import '../models/launching_calc.dart';
 import '../models/baily_bridge.dart';
@@ -33,12 +34,7 @@ class LaunchingCalcBailyBridgePw extends StatelessWidget {
                 ? 280
                 : positions.contains(PositionRollers.Roller77) ? 240 : 200),
           },
-          border: TableBorder(
-            top: true,
-            verticalInside: true,
-            left: true,
-            right: true,
-          ),
+          border: TableBorder(horizontalInside: false, bottom: false),
           children: [
             TableRow(
               children: [
@@ -46,12 +42,15 @@ class LaunchingCalcBailyBridgePw extends StatelessWidget {
                 Text(""),
                 Container(
                   decoration: BoxDecoration(
-                    border: BoxBorder(
-                      bottom: true,
-                    ),
+                    border: BoxBorder(bottom: true),
                   ),
                   alignment: Alignment.center,
-                  child: Text("Rollers at different positions"),
+                  child: Text(
+                    "Rollers at different positions",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -70,22 +69,24 @@ class LaunchingCalcBailyBridgePw extends StatelessWidget {
             8: FixedColumnWidth(40),
           },
           border: TableBorder(
-            verticalInside: true,
-            left: true,
-            right: true,
+            top: false,
+            bottom: false,
+            horizontalInside: false,
           ),
           children: [
             TableRow(
               children: [
-                Text("Ser"),
-                Text("Consideration"),
-                if (positions.contains(PositionRollers.Roller102)) Text("102'"),
-                if (positions.contains(PositionRollers.Roller77)) Text("77'"),
-                Text("52'"),
-                Text("27'"),
-                Text("3.5'"),
-                Text("0'"),
-                Text(farbank.toString()),
+                UtilityPw.buildTableHeader("Ser"),
+                UtilityPw.buildTableHeader("Consideration"),
+                if (positions.contains(PositionRollers.Roller102))
+                  UtilityPw.buildTableHeader("102'"),
+                if (positions.contains(PositionRollers.Roller77))
+                  UtilityPw.buildTableHeader("77'"),
+                UtilityPw.buildTableHeader("52'"),
+                UtilityPw.buildTableHeader("27'"),
+                UtilityPw.buildTableHeader("3.5'"),
+                UtilityPw.buildTableHeader("0'"),
+                UtilityPw.buildTableHeader("${farbank.ceil()}'"),
               ],
             ),
           ],
@@ -107,17 +108,39 @@ class LaunchingCalcBailyBridgePw extends StatelessWidget {
               .map(
                 (element) => TableRow(
                   children: [
-                    Text(element.sl.toString()),
-                    Text(element.consideration),
+                    UtilityPw.buildTableCell(element.sl.toString(),
+                        isCenter: true),
+                    UtilityPw.buildTableCell(element.consideration),
                     if (positions.contains(PositionRollers.Roller102))
-                      Text(element.roller102.toStringAsFixed(2)),
+                      UtilityPw.buildTableCell(
+                        element.roller102.toStringAsFixed(2),
+                        isCenter: true,
+                      ),
                     if (positions.contains(PositionRollers.Roller77))
-                      Text(element.roller77.toStringAsFixed(2)),
-                    Text(element.roller52.toStringAsFixed(2)),
-                    Text(element.roller27.toStringAsFixed(2)),
-                    Text(element.roller3p5.toStringAsFixed(2)),
-                    Text(element.roller0.toStringAsFixed(2)),
-                    Text(element.farBank.toStringAsFixed(2)),
+                      UtilityPw.buildTableCell(
+                        element.roller77.toStringAsFixed(2),
+                        isCenter: true,
+                      ),
+                    UtilityPw.buildTableCell(
+                      element.roller52.toStringAsFixed(2),
+                      isCenter: true,
+                    ),
+                    UtilityPw.buildTableCell(
+                      element.roller27.toStringAsFixed(2),
+                      isCenter: true,
+                    ),
+                    UtilityPw.buildTableCell(
+                      element.roller3p5.toStringAsFixed(2),
+                      isCenter: true,
+                    ),
+                    UtilityPw.buildTableCell(
+                      element.roller0.toStringAsFixed(2),
+                      isCenter: true,
+                    ),
+                    UtilityPw.buildTableCell(
+                      element.farBank.toStringAsFixed(2),
+                      isCenter: true,
+                    ),
                   ],
                 ),
               )

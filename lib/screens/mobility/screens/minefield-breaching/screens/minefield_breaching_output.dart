@@ -1,3 +1,4 @@
+import 'package:combat_engineering/shared/models/utility.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/models/serial_manage.dart';
@@ -9,16 +10,6 @@ import '../models/minefield_breaching.dart';
 
 class MinefieldBreachingOutput extends StatelessWidget {
   final SerialManage slForParent = SerialManage();
-  Container buildTableCell(String cell) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(width: 1),
-        ),
-      ),
-      child: Text(cell),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,63 +78,46 @@ class MinefieldBreachingOutput extends StatelessWidget {
                             },
                             children: [
                               TableRow(children: [
-                                TableCell(
-                                  child: Text(
-                                    "Ser",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    "Party",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    "Task",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    "Time",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    "From",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Text(
-                                    "To",
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
+                                Utility.buildTableHeader("Ser"),
+                                Utility.buildTableHeader("Party"),
+                                Utility.buildTableHeader("Task"),
+                                Utility.buildTableHeader("Time"),
+                                Utility.buildTableHeader("From"),
+                                Utility.buildTableHeader("To"),
                               ]),
                               ...breachingList.branchingLane.map((lane) {
                                 return TableRow(children: [
                                   lane.startParty
-                                      ? buildTableCell(lane.serial.toString())
+                                      ? Utility.buildTableCell(
+                                          lane.serial.toString(),
+                                          isCenter: true,
+                                        )
                                       : TableCell(
                                           child: Text(""),
                                         ),
                                   lane.startParty
-                                      ? buildTableCell(lane.party)
+                                      ? Utility.buildTableCell(lane.party)
                                       : TableCell(
                                           child: Text(""),
                                         ),
-                                  buildTableCell(lane.task),
-                                  buildTableCell(lane.time.toString()),
-                                  buildTableCell(_model.hourFormat(lane.from)),
-                                  buildTableCell(_model.hourFormat(lane.to)),
+                                  Utility.buildTableCell(lane.task),
+                                  Utility.buildTableCell(
+                                    lane.time.toString(),
+                                    isCenter: true,
+                                  ),
+                                  Utility.buildTableCell(
+                                    _model.hourFormat(lane.from),
+                                    isCenter: true,
+                                  ),
+                                  Utility.buildTableCell(
+                                    _model.hourFormat(lane.to),
+                                    isCenter: true,
+                                  ),
                                 ]);
                               }).toList(),
                             ],
                           ),
+                          SizedBox(height: 20),
                         ],
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:combat_engineering/shared/models/utility_pw.dart';
 import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:fraction/fraction.dart';
@@ -390,28 +391,6 @@ class MinefieldBreaching {
           .buffer
           .asUint8List(),
     );
-    Container buildTableCell(String cell, {bool isCenter = false}) {
-      return Container(
-        decoration: BoxDecoration(
-          border: BoxBorder(
-            top: true,
-          ),
-        ),
-        padding: !isCenter ? EdgeInsets.only(left: 5) : null,
-        alignment: isCenter ? Alignment.center : Alignment.centerLeft,
-        child: Text(cell),
-      );
-    }
-
-    Container buildTableHeader(String text) {
-      return Container(
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      );
-    }
 
     doc.addPage(
       MultiPage(
@@ -441,34 +420,39 @@ class MinefieldBreaching {
                     children: [
                       TableRow(
                         children: [
-                          buildTableHeader("Ser"),
-                          buildTableHeader("Party"),
-                          buildTableHeader("Task"),
-                          buildTableHeader("Time"),
-                          buildTableHeader("From"),
-                          buildTableHeader("To"),
+                          UtilityPw.buildTableHeader("Ser"),
+                          UtilityPw.buildTableHeader("Party"),
+                          UtilityPw.buildTableHeader("Task"),
+                          UtilityPw.buildTableHeader("Time"),
+                          UtilityPw.buildTableHeader("From"),
+                          UtilityPw.buildTableHeader("To"),
                         ],
                       ),
                       ...timeCalculation[i].branchingLane.map((lane) {
                         return TableRow(
                           children: [
                             lane.startParty
-                                ? buildTableCell(lane.serial.toString())
+                                ? UtilityPw.buildTableCell(
+                                    lane.serial.toString(),
+                                    isCenter: true,
+                                  )
                                 : Text(""),
                             lane.startParty
-                                ? buildTableCell(lane.party)
+                                ? UtilityPw.buildTableCell(lane.party)
                                 : Text(""),
-                            buildTableCell(lane.task),
-                            buildTableCell(lane.time.toString(),
+                            UtilityPw.buildTableCell(lane.task),
+                            UtilityPw.buildTableCell(lane.time.toString(),
                                 isCenter: true),
-                            buildTableCell(hourFormat(lane.from),
+                            UtilityPw.buildTableCell(hourFormat(lane.from),
                                 isCenter: true),
-                            buildTableCell(hourFormat(lane.to), isCenter: true),
+                            UtilityPw.buildTableCell(hourFormat(lane.to),
+                                isCenter: true),
                           ],
                         );
                       }).toList(),
                     ],
                   ),
+                  SizedBox(height: 20),
                 ],
               ),
             SectionHeadingPw(

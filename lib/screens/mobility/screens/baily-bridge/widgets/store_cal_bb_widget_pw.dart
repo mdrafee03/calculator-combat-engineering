@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:pdf/widgets.dart';
 
+import '../../../../../shared/models/utility_pw.dart';
 import '../../../../../shared/widgets/reference_text_pw.dart';
 import '../../../../../shared/widgets/section_sub_heading_pw.dart';
 import '../models/store_bridge.dart';
@@ -13,10 +14,10 @@ class StoreCalcBBWidgetPw extends StatelessWidget {
     @required this.stores,
   });
 
-  Text buildTextDash(int element) {
+  Container buildTextDash(int element) {
     return element != 0
-        ? Text(element.toString())
-        : Text("-", textAlign: TextAlign.center);
+        ? UtilityPw.buildTableCell(element.toString(), isCenter: true)
+        : UtilityPw.buildTableCell("-", isCenter: true);
   }
 
   @override
@@ -46,16 +47,15 @@ class StoreCalcBBWidgetPw extends StatelessWidget {
                       6: FixedColumnWidth(40),
                     },
                     border: TableBorder(
-                      top: true,
-                      verticalInside: true,
-                      left: true,
-                      right: true,
+                      horizontalInside: false,
+                      bottom: false,
                     ),
                     children: [
                       TableRow(children: [
                         Text(""),
                         Text(""),
                         Container(
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
                             border: BoxBorder(
                               bottom: true,
@@ -64,6 +64,7 @@ class StoreCalcBBWidgetPw extends StatelessWidget {
                           child: Text(
                             "Main Bridge",
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text(""),
@@ -86,21 +87,21 @@ class StoreCalcBBWidgetPw extends StatelessWidget {
                       8: FixedColumnWidth(40),
                     },
                     border: TableBorder(
-                      verticalInside: true,
-                      left: true,
-                      right: true,
+                      top: false,
+                      bottom: false,
+                      horizontalInside: false,
                     ),
                     children: [
                       TableRow(children: [
-                        Text("Ser"),
-                        Text("Name of Parts"),
-                        Text("Head"),
-                        Text("Intermediate"),
-                        Text("Tail"),
-                        Text("Nose"),
-                        Text("Total"),
-                        Text("10% extra"),
-                        Text("Grand Total"),
+                        UtilityPw.buildTableHeader("Ser"),
+                        UtilityPw.buildTableHeader("Name of Parts"),
+                        UtilityPw.buildTableHeader("Head"),
+                        UtilityPw.buildTableHeader("Intermediate"),
+                        UtilityPw.buildTableHeader("Tail"),
+                        UtilityPw.buildTableHeader("Nose"),
+                        UtilityPw.buildTableHeader("Total"),
+                        UtilityPw.buildTableHeader("10% extra"),
+                        UtilityPw.buildTableHeader("Grand Total"),
                       ]),
                     ],
                   ),
@@ -121,15 +122,27 @@ class StoreCalcBBWidgetPw extends StatelessWidget {
                         .map(
                           (element) => TableRow(
                             children: [
-                              Text(element.sl.toString()),
-                              Text(element.name),
+                              UtilityPw.buildTableCell(
+                                element.sl.toString(),
+                                isCenter: true,
+                              ),
+                              UtilityPw.buildTableCell(element.name),
                               buildTextDash(element.head),
                               buildTextDash(element.intermediate),
                               buildTextDash(element.tail),
                               buildTextDash(element.nose),
-                              Text(element.total.toString()),
-                              Text(element.percentage.toString()),
-                              Text(element.grandTotal.toString()),
+                              UtilityPw.buildTableCell(
+                                element.total.toString(),
+                                isCenter: true,
+                              ),
+                              UtilityPw.buildTableCell(
+                                element.percentage.toString(),
+                                isCenter: true,
+                              ),
+                              UtilityPw.buildTableCell(
+                                element.grandTotal.toString(),
+                                isCenter: true,
+                              ),
                             ],
                           ),
                         )

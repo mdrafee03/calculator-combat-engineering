@@ -578,30 +578,40 @@ class BailyBridge {
           .buffer
           .asUint8List(),
     );
+
     doc.addPage(
       MultiPage(
         pageFormat: PdfPageFormat.a4,
         build: (Context context) {
           return [
             TopHeaderPw('Summary of Baily Bridge'),
-            SectionSubHeadingPw(
-              "${slForParent.serialNum} .",
-              "Lenght of Baily Bridge and Type of Construction",
-            ),
             Container(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 10),
               alignment: Alignment.topLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "a. Length of Baily Bridge = $lengthOfBailyBridge ft",
+                  SectionSubHeadingPw(
+                    "${slForParent.serialNum} .",
+                    "Lenght of Baily Bridge and Type of Construction",
                   ),
-                  Text(
-                    "b. Type of Construction of Baily Bridge = ${typesOfConstructionString[typeOfConstructionOfBridge]}",
-                  ),
-                  ReferenceTextPw(
-                    "(Auth: ERPB-1964, Section 16, Para 6, Table 1)",
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "a. Length of Baily Bridge = $lengthOfBailyBridge ft",
+                        ),
+                        Text(
+                          "b. Type of Construction of Baily Bridge = ${typesOfConstructionString[typeOfConstructionOfBridge]}",
+                        ),
+                        ReferenceTextPw(
+                          "(Auth: ERPB-1964, Section 16, Para 6, Table 1)",
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
