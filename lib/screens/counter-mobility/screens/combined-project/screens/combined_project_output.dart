@@ -18,7 +18,7 @@ class CombinedProjectOutput extends StatelessWidget {
     final CombinedProject _model = ModalRoute.of(context).settings.arguments;
     _model.taskDistributionCalculation();
 
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Combined Project'),
       actions: [
         IconButton(

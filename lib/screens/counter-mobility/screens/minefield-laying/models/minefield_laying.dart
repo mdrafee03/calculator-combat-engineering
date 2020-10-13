@@ -404,7 +404,7 @@ class MinefieldLaying {
       }
     }
 
-    MinefieldTime minefieldTime = new MinefieldTime();
+    MinefieldTime minefieldTime = MinefieldTime();
     minefieldTime.firstLight = firstLight;
     minefieldTime.lastLight = lastLight;
     minefieldTime.dayTaken = (currentDay - dDay);

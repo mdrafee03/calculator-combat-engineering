@@ -38,7 +38,7 @@ class WireObstacleTask {
 }
 
 List<WireObstacleTask> listOfWireObstackleTasks = [
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 1,
     task: "Double Apron Fence",
     timesForday: 100,
@@ -54,7 +54,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     windlassingStick: 10,
     mauls: 5,
   ),
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 2,
     task: "Catwire Fence (Type-3)",
     timesForday: 25,
@@ -67,7 +67,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     barbedWire: 12,
     longPicket: 128,
   ),
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 3,
     task: "Standardize Triple Concertina Fence",
     timesForday: 100,
@@ -86,7 +86,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     wireCutter: 1,
     windlassingStick: 7,
   ),
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 4,
     task: "High Wire Fence",
     timesForday: 160,
@@ -106,7 +106,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     wireCutter: 2,
     windlassingStick: 14,
   ),
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 5,
     task: "Catwire Fence (Type-2)",
     timesForday: 40,
@@ -122,7 +122,7 @@ List<WireObstacleTask> listOfWireObstackleTasks = [
     wireCutter: 1,
     windlassingStick: 1,
   ),
-  new WireObstacleTask(
+  WireObstacleTask(
     id: 6,
     task: "Catwire Fence (Type-1)",
     timesForday: 50,

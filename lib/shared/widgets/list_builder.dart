@@ -58,7 +58,7 @@ class ListBuilder extends StatelessWidget {
                             i,
                             Container(
                               margin: EdgeInsets.all(5),
-                              decoration: new BoxDecoration(
+                              decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
@@ -115,7 +115,7 @@ class ListBuilder extends StatelessWidget {
                   child: Center(
                     child: Container(
                       padding: EdgeInsets.all(10),
-                      decoration: new BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: [

@@ -17,7 +17,7 @@ class BailyBridgeOutput extends StatelessWidget {
     final BailyBridge _model = ModalRoute.of(context).settings.arguments;
     slForVehicle.reset();
     slForParent.reset();
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Baily Bridge'),
       actions: <Widget>[
         IconButton(

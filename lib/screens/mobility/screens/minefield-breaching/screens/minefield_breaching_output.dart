@@ -16,7 +16,7 @@ class MinefieldBreachingOutput extends StatelessWidget {
     final MinefieldBreaching _model = ModalRoute.of(context).settings.arguments;
     _model.timeCalculation;
     slForParent.reset();
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Minefield Breaching'),
       actions: <Widget>[
         IconButton(

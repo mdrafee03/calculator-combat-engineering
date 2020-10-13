@@ -50,7 +50,7 @@ class BoreholeCharge {
     List<BoreholeChargeCalc> chargesNTimes = [];
     if (depthOfHole > 40) {
       chargesNTimes.add(
-        new BoreholeChargeCalc(
+        BoreholeChargeCalc(
           dia: 2,
           depth: 40 - depthOfHole / 2,
           timeDepth: 40,
@@ -60,7 +60,7 @@ class BoreholeCharge {
       );
       if (depthOfHole > 60) {
         chargesNTimes.add(
-          new BoreholeChargeCalc(
+          BoreholeChargeCalc(
             dia: 1.75,
             depth: 20,
             timeDepth: 20,
@@ -69,7 +69,7 @@ class BoreholeCharge {
           ),
         );
         chargesNTimes.add(
-          new BoreholeChargeCalc(
+          BoreholeChargeCalc(
             dia: 1.5,
             depth: (depthOfHole - 60).toDouble(),
             timeDepth: (depthOfHole - 60).toDouble(),
@@ -79,7 +79,7 @@ class BoreholeCharge {
         );
       } else {
         chargesNTimes.add(
-          new BoreholeChargeCalc(
+          BoreholeChargeCalc(
             dia: 1.75,
             depth: (depthOfHole.toDouble() - 40),
             timeDepth: (depthOfHole.toDouble() - 40),
@@ -90,7 +90,7 @@ class BoreholeCharge {
       }
     } else {
       chargesNTimes.add(
-        new BoreholeChargeCalc(
+        BoreholeChargeCalc(
           dia: 2,
           depth: depthOfHole / 2,
           timeDepth: depthOfHole.toDouble(),

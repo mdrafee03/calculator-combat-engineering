@@ -13,7 +13,7 @@ class PierFootingChargeOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PierFootingCharge _model = ModalRoute.of(context).settings.arguments;
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text("Pier Footing Charge"),
       actions: <Widget>[
         IconButton(

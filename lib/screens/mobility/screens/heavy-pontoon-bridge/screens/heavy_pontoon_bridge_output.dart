@@ -15,7 +15,7 @@ class HeavyPontoonBridgeOutput extends StatelessWidget {
     final HeavyPontoonBridge _model = ModalRoute.of(context).settings.arguments;
     slForBankPart.reset();
     slForParent.reset();
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Heavy Pontoon Bridge'),
       actions: <Widget>[
         IconButton(

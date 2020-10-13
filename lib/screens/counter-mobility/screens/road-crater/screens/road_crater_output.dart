@@ -11,7 +11,7 @@ class RoadCraterOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RoadCrater _model = ModalRoute.of(context).settings.arguments;
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Road Crater'),
       actions: <Widget>[
         IconButton(

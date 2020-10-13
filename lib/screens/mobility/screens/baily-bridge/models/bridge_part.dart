@@ -7,59 +7,59 @@ class BridgePart {
   MainBarPart tail;
   BridgePart(this.name, this.head, this.intermediate, this.tail);
   static List<BridgePart> listOfBridgePart = [
-    new BridgePart(
+    BridgePart(
       "Baseplate",
-      new MainBarPart(2, 2, 2, 2),
-      new MainBarPart(0, 0, 0, 0),
-      new MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
+      MainBarPart(0, 0, 0, 0),
+      MainBarPart(2, 2, 2, 2),
     ),
-    new BridgePart(
+    BridgePart(
       "Footwalk",
-      new MainBarPart(6, 6, 6, 6),
-      new MainBarPart(4, 4, 4, 4),
-      new MainBarPart(4, 4, 4, 4),
+      MainBarPart(6, 6, 6, 6),
+      MainBarPart(4, 4, 4, 4),
+      MainBarPart(4, 4, 4, 4),
     ),
-    new BridgePart(
+    BridgePart(
       "Panel",
-      new MainBarPart(2, 4, 8, 8),
-      new MainBarPart(2, 4, 8, 12),
-      new MainBarPart(2, 4, 8, 8),
+      MainBarPart(2, 4, 8, 8),
+      MainBarPart(2, 4, 8, 12),
+      MainBarPart(2, 4, 8, 8),
     ),
-    new BridgePart(
+    BridgePart(
       "End post",
-      new MainBarPart(2, 4, 4, 4),
-      new MainBarPart(0, 0, 0, 0),
-      new MainBarPart(2, 4, 4, 4),
+      MainBarPart(2, 4, 4, 4),
+      MainBarPart(0, 0, 0, 0),
+      MainBarPart(2, 4, 4, 4),
     ),
-    new BridgePart(
+    BridgePart(
       "Raker",
-      new MainBarPart(4, 4, 4, 4),
-      new MainBarPart(2, 2, 2, 2),
-      new MainBarPart(2, 2, 2, 2),
+      MainBarPart(4, 4, 4, 4),
+      MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
     ),
-    new BridgePart(
+    BridgePart(
       "Sway Brace",
-      new MainBarPart(2, 2, 2, 2),
-      new MainBarPart(2, 2, 2, 4),
-      new MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 4),
+      MainBarPart(2, 2, 2, 2),
     ),
-    new BridgePart(
+    BridgePart(
       "Stringer, button",
-      new MainBarPart(2, 2, 2, 2),
-      new MainBarPart(2, 2, 2, 2),
-      new MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
+      MainBarPart(2, 2, 2, 2),
     ),
-    new BridgePart(
+    BridgePart(
       "Stringer, plain",
-      new MainBarPart(3, 3, 3, 3),
-      new MainBarPart(3, 3, 3, 3),
-      new MainBarPart(3, 3, 3, 3),
+      MainBarPart(3, 3, 3, 3),
+      MainBarPart(3, 3, 3, 3),
+      MainBarPart(3, 3, 3, 3),
     ),
-    new BridgePart(
+    BridgePart(
       "Transom",
-      new MainBarPart(4, 4, 4, 4),
-      new MainBarPart(2, 2, 2, 3),
-      new MainBarPart(2, 2, 2, 2),
+      MainBarPart(4, 4, 4, 4),
+      MainBarPart(2, 2, 2, 3),
+      MainBarPart(2, 2, 2, 2),
     ),
   ];
 }

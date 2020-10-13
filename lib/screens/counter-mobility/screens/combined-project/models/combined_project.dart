@@ -55,11 +55,11 @@ class CombinedProject {
   }
 
   String dateTableHeaderFormat(DateTime date) {
-    return "${(date.day)}/${(date.day + 1)} ${(new DateFormat.MMM()).format(date)}";
+    return "${(date.day)}/${(date.day + 1)} ${(DateFormat.MMM()).format(date)}";
   }
 
   String dateTableHeaderFormatPw(DateTime date) {
-    return "${(date.day)}/${(date.day + 1)}-${(new DateFormat.MMM()).format(date)}";
+    return "${(date.day)}/${(date.day + 1)}-${(DateFormat.MMM()).format(date)}";
   }
 
   void taskDistributionCalculation() {
@@ -151,7 +151,7 @@ class CombinedProject {
             minefields[minefieldCounter].timeRequired.totalTimeRequired;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
-          new TaskDistribution(
+          TaskDistribution(
             name: "Minefield ${minefieldCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],
@@ -171,7 +171,7 @@ class CombinedProject {
             reserveDemolitions[reserveDemolitionCounter].totalTimeRequired;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
-          new TaskDistribution(
+          TaskDistribution(
             name: "Reserve Demolition ${reserveDemolitionCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],
@@ -190,7 +190,7 @@ class CombinedProject {
         double time = wireObstacles[wireObstacleCounter].totalTimeRequire;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
-          new TaskDistribution(
+          TaskDistribution(
             name: "Wire Obstacle ${wireObstacleCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],
@@ -209,7 +209,7 @@ class CombinedProject {
         double time = roadcraters[roadCraterCounter].totalTimeRequired;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
-          new TaskDistribution(
+          TaskDistribution(
             name: "Road Crater ${roadCraterCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],
@@ -228,7 +228,7 @@ class CombinedProject {
         double time = antiTanks[antiTankCounter].totalTimeRequired;
         double endDay = startDay + dayTaken(time);
         TaskDistribution.taskDistributions.add(
-          new TaskDistribution(
+          TaskDistribution(
             name: "Anti Tank ${antiTankCounter + 1}",
             time: time,
             force: Taskforce.taskforces[i],

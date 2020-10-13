@@ -9,7 +9,7 @@ class WireObstacleOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final WireObstacle _model = ModalRoute.of(context).settings.arguments;
-    final AppBar appbar = new AppBar(
+    final AppBar appbar = AppBar(
       title: Text('Wire Obstacle'),
       actions: <Widget>[
         IconButton(

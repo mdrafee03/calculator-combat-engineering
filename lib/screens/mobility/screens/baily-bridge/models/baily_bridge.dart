@@ -303,7 +303,7 @@ class BailyBridge {
 
   List<LaunchingCalc> get launchingCalculations {
     List<LaunchingCalc> launchingCalcs = [];
-    var row1 = new LaunchingCalc(
+    var row1 = LaunchingCalc(
       sl: 1,
       consideration: "Existing Ground Level (inch)",
       roller102: existingGroundLevels[PositionRollers.Roller102],
@@ -314,7 +314,7 @@ class BailyBridge {
       roller0: existingGroundLevels[PositionRollers.Roller0],
       farBank: existingGroundLevels[PositionRollers.FarBank],
     );
-    var row2 = new LaunchingCalc(
+    var row2 = LaunchingCalc(
       sl: 2,
       consideration: "Height of Roller (inch)",
       roller102: 8,
@@ -325,7 +325,7 @@ class BailyBridge {
       roller0: 16.5,
       farBank: 16.5,
     );
-    var row3 = new LaunchingCalc(
+    var row3 = LaunchingCalc(
       sl: 3,
       consideration: "Tip of Roller (inch)",
       roller102: row1.roller102 + row2.roller102,
@@ -344,7 +344,7 @@ class BailyBridge {
     double row4Factor =
         (row1.farBank - firstPositionGroundLevel) / (firstPosition + farBank);
 
-    var row4 = new LaunchingCalc(
+    var row4 = LaunchingCalc(
       sl: 4,
       consideration: "Height of Launching plane above tail End",
       roller102: row4Factor * (firstPosition - 102),
@@ -356,7 +356,7 @@ class BailyBridge {
       farBank: row4Factor * (firstPosition + farBank),
     );
     double row5Factor = firstPositionGroundLevel + 6;
-    var row5 = new LaunchingCalc(
+    var row5 = LaunchingCalc(
       sl: 4,
       consideration: "Height of Launching plane from datum",
       roller102: row4.roller102 + row5Factor,
@@ -367,7 +367,7 @@ class BailyBridge {
       roller0: row4.roller0 + row5Factor,
       farBank: row4.farBank + row5Factor,
     );
-    var row6 = new LaunchingCalc(
+    var row6 = LaunchingCalc(
       sl: 4,
       consideration: "Excavation/filling",
       roller102: row3.roller102 - row5.roller102,
@@ -415,7 +415,7 @@ class BailyBridge {
 
     int baseplatSum =
         part(0).fold(0, (previousValue, element) => previousValue + element);
-    var row1 = new StoreBridge(
+    var row1 = StoreBridge(
       sl: "1",
       name: "Baseplate",
       head: part(0)[0],
@@ -427,7 +427,7 @@ class BailyBridge {
       grandTotal: (baseplatSum * 1.1).ceil(),
     );
 
-    var row2 = new StoreBridge(
+    var row2 = StoreBridge(
       sl: "2",
       name: "Bearer, Footwalk",
       head: partWithFactor(1, 0),
@@ -443,7 +443,7 @@ class BailyBridge {
         typeOfConstructionOfNose[1] * 4 +
         typeOfConstructionOfNose[2] * 8;
     int panelSum = sumWithFactor(2) + panelNose;
-    var row3 = new StoreBridge(
+    var row3 = StoreBridge(
       sl: "3",
       name: "Panel",
       head: partWithFactor(2, 0),
@@ -454,7 +454,7 @@ class BailyBridge {
       percentage: (panelSum * 0.1).ceil(),
       grandTotal: (panelSum * 1.1).ceil(),
     );
-    var row4 = new StoreBridge(
+    var row4 = StoreBridge(
       sl: "4",
       name: "End post",
       head: partWithFactor(3, 0),
@@ -469,7 +469,7 @@ class BailyBridge {
     int noseForRakerAndSwayBrace =
         ((lengthOfNoseCorrected / 10).round() - 2) * 2;
     int rakerSum = sumWithFactor(4) + noseForRakerAndSwayBrace;
-    var row5 = new StoreBridge(
+    var row5 = StoreBridge(
       sl: "5",
       name: "Raker",
       head: partWithFactor(4, 0),
@@ -481,7 +481,7 @@ class BailyBridge {
       grandTotal: (rakerSum * 1.1).ceil(),
     );
     int swayBraceSum = sumWithFactor(5) + noseForRakerAndSwayBrace;
-    var row6 = new StoreBridge(
+    var row6 = StoreBridge(
       sl: "6",
       name: "Sway Brace",
       head: partWithFactor(5, 0),
@@ -492,7 +492,7 @@ class BailyBridge {
       percentage: (swayBraceSum * 0.1).ceil(),
       grandTotal: (swayBraceSum * 1.1).ceil(),
     );
-    var row7 = new StoreBridge(
+    var row7 = StoreBridge(
       sl: "7",
       name: "Stringer, button",
       head: partWithFactor(6, 0),
@@ -503,7 +503,7 @@ class BailyBridge {
       percentage: (sumWithFactor(6) * 0.1).ceil(),
       grandTotal: (sumWithFactor(6) * 1.1).ceil(),
     );
-    var row8 = new StoreBridge(
+    var row8 = StoreBridge(
       sl: "8",
       name: "Stringer, plain",
       head: partWithFactor(7, 0),
@@ -515,7 +515,7 @@ class BailyBridge {
       grandTotal: (sumWithFactor(7) * 1.1).ceil(),
     );
     int transonSum = sumWithFactor(8) + (lengthOfNoseCorrected / 10).round();
-    var row9 = new StoreBridge(
+    var row9 = StoreBridge(
       sl: "9",
       name: "Transons",
       head: partWithFactor(8, 0),

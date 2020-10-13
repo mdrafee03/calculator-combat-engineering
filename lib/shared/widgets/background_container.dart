@@ -11,7 +11,7 @@ class BackgroundContainer extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage("assets/images/background.jpg"),
           fit: BoxFit.cover,
-          colorFilter: new ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.7), BlendMode.dstATop),
         ),
       ),
