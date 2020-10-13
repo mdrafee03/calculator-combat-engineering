@@ -917,7 +917,8 @@ class BailyBridge {
     var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Baily-Bridge.pdf");
+    final file = File(
+        "$directory/Baily-Bridge${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

@@ -146,7 +146,8 @@ class RoadCrater {
     var doc = pw.Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Road-Crater.pdf");
+    final file = File(
+        "$directory/Road-Crater${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

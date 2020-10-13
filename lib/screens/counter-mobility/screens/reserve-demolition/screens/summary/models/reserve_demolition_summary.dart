@@ -121,7 +121,8 @@ class ReserveDemolitionSummary {
     var doc = pw.Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Summary-Reserve-Demolition.pdf");
+    final file = File(
+        "$directory/Summary-Reserve-Demolition${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

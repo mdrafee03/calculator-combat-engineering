@@ -871,7 +871,8 @@ class CombinedProject {
     var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Combined-Project-Engineering.pdf");
+    final file = File(
+        "$directory/Combined-Project-Engineering${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

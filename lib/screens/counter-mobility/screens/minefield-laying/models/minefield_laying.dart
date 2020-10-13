@@ -646,7 +646,8 @@ class MinefieldLaying {
     var doc = pw.Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Minefield-Laying.pdf");
+    final file = File(
+        "$directory/Minefield-Laying${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

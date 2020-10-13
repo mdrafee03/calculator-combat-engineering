@@ -574,7 +574,8 @@ class MinefieldBreaching {
     var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Minefield-Breaching.pdf");
+    final file = File(
+        "$directory/Minefield-Breaching${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

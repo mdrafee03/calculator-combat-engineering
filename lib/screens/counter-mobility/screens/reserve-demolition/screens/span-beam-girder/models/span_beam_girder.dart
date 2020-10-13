@@ -197,7 +197,8 @@ class SpanBeamGirder {
     var doc = pw.Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Span-Beam-Girder.pdf");
+    final file = File(
+        "$directory/Span-Beam-Girder${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }

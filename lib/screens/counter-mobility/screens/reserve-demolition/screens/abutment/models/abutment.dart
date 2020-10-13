@@ -240,7 +240,8 @@ class Abutment {
     var doc = pw.Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
-    final file = File("$directory/Abutment.pdf");
+    final file =
+        File("$directory/Abutment${DateTime.now().millisecondsSinceEpoch}.pdf");
     await file.writeAsBytes(doc.save());
     Utility.showPrintedToast(ctx);
   }
