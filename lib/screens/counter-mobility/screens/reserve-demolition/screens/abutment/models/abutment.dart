@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../../../shared/models/pdfTheme.dart';
@@ -59,7 +59,7 @@ class Abutment {
     return [3 * distanceFromFace(n)[0] / 2, 3 * distanceFromFace(n)[1] / 2];
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image = PdfImage.file(
       doc.document,
       bytes: (await rootBundle
@@ -68,19 +68,19 @@ class Abutment {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Summary of abutment demolition'),
-            pw.SizedBox(
+            SizedBox(
               height: 20,
             ),
-            pw.Container(
-              margin: pw.EdgeInsets.all(10),
-              child: pw.Column(
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Column(
                 children: [
-                  pw.Table.fromTextArray(
+                  Table.fromTextArray(
                     context: context,
                     data: <List<String>>[
                       <String>[
@@ -122,39 +122,39 @@ class Abutment {
                 ],
               ),
             ),
-            pw.Container(
-              margin: pw.EdgeInsets.only(left: 10),
-              child: pw.Column(
+            Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Column(
                 children: [
                   SectionHeadingPw("1. ", "Summay of Calculation"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text("a. Method of Attack = Mined Charge"),
-                        pw.Text(
+                        Text("a. Method of Attack = Mined Charge"),
+                        Text(
                           "b. Type of target = ${Abutment.typesOfTarget.firstWhere((target) => target["value"] == targetFactor)['type']}",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Total Explosive Require = ${totalChargeRequired(craterNo).toStringAsFixed(2)} lbs",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        pw.Text("d. Total no of craters = $craterNo"),
-                        pw.Text(
+                        Text("d. Total no of craters = $craterNo"),
+                        Text(
                           "e. Crater Dia = ${craterDia(craterNo).toStringAsFixed(2)} ft",
                         ),
-                        pw.Text(
+                        Text(
                           "f. Distance from face = ${distanceFromFace(craterNo)[0].toStringAsFixed(2)} - ${distanceFromFace(craterNo)[1].toStringAsFixed(2)} ft = ${((distanceFromFace(craterNo)[0] + distanceFromFace(craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
                         ),
-                        pw.Text(
+                        Text(
                           "g. Spacing of Charges = ${spacingOfCharges(craterNo).toStringAsFixed(2)} ft",
                         ),
-                        pw.Text(
+                        Text(
                           "h. Depth of Charges = ${chargesDepth(craterNo)[0].toStringAsFixed(2)} - ${chargesDepth(craterNo)[1].toStringAsFixed(2)} ft = ${((chargesDepth(craterNo)[0] + chargesDepth(craterNo)[1]) / 2.0).toStringAsFixed(2)} ft",
                         ),
                       ],
@@ -163,50 +163,50 @@ class Abutment {
                 ],
               ),
             ),
-            pw.Container(
-              margin: pw.EdgeInsets.only(left: 10),
-              child: pw.Column(
+            Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Column(
                 children: [
                   SectionHeadingPw("2. ", "Time Requirement"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. For 3 craters time Requirement 2 section hours.",
                         ),
-                        pw.Text(
+                        Text(
                           "(Auth: ERPB 1964, Chapter IV, serial 10, page 146)",
                         ),
-                        pw.SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        pw.Wrap(
+                        Wrap(
                           children: [
-                            pw.Text(
+                            Text(
                               "b. Total Time Require for $craterNo craters ",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            pw.Column(
-                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                pw.Text(
+                                Text(
                                   "= ${timeRequiredPerSection.toStringAsFixed(2)} section hours",
-                                  style: pw.TextStyle(
+                                  style: TextStyle(
                                     color: PDFTheme.color,
-                                    fontWeight: pw.FontWeight.bold,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                pw.Text(
+                                Text(
                                   "= $totalTimeRequired Platoon hours",
-                                  style: pw.TextStyle(
+                                  style: TextStyle(
                                     color: PDFTheme.color,
-                                    fontWeight: pw.FontWeight.bold,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ],
@@ -219,13 +219,13 @@ class Abutment {
                 ],
               ),
             ),
-            pw.Container(
-              margin: pw.EdgeInsets.only(left: 10),
-              child: pw.Column(
+            Container(
+              margin: EdgeInsets.only(left: 10),
+              child: Column(
                 children: [
                   SectionHeadingPw("3. ", "Placement of Charges"),
-                  pw.Container(
-                    child: pw.Image(image),
+                  Container(
+                    child: Image(image),
                   ),
                 ],
               ),
@@ -236,8 +236,8 @@ class Abutment {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file =
@@ -247,7 +247,7 @@ class Abutment {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Abutment.pdf');
   }

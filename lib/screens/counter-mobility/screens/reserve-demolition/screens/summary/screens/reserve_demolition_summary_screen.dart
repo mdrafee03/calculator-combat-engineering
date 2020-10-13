@@ -10,6 +10,7 @@ class ReserveDemolitionSummaryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ReserveDemolitionSummary _model = ReserveDemolitionSummary();
     final AppBar appbar = AppBar(
+      title: Text("Summay"),
       actions: [
         IconButton(
           icon: const Icon(Icons.list),

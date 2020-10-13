@@ -11,6 +11,7 @@ class ShapedChargeOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final ShapedCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
+      title: Text("Shaped Charge"),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

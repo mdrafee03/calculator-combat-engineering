@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:combat_engineering/shared/models/pdfTheme.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
+import '../../../../../../../shared/models/pdfTheme.dart';
 import '../../../../../../../shared/models/utility.dart';
 import '../../../../../../../shared/widgets/section_heading_pw.dart';
 import '../../../../../../../shared/widgets/top_header_pw.dart';
@@ -62,7 +62,7 @@ class SpanBeamGirder {
     return time;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image1 = PdfImage.file(
       doc.document,
       bytes: (await rootBundle
@@ -85,43 +85,43 @@ class SpanBeamGirder {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw(
                 'Demolition of Span, Beam And Girder By Pressure Charge'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("1. ", "Summay of Calculation"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Charge of each beam = ${chargeOfEachBeam.toStringAsFixed(2)} lb",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Total amount of charge require for $noOfBeams beams = ${totalChargeBeams.toStringAsFixed(2)} lb PE",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Total charge require for $noOfSpans spans = ${totalChargeRequired.toStringAsFixed(2)} lb PE",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        pw.Text(
+                        Text(
                           "d. Sand Bag Require for one span = $sanbagPerSpan Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "e. Total Sand Bag Required for demolition of spans = $totalSandbagRequired Nos",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -130,37 +130,37 @@ class SpanBeamGirder {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("2. ", "Time Requirement"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Wrap(
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Wrap(
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Total time require for demolition one $noOfSpans Spans ",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            pw.Text(
+                            Text(
                               "= $timeRequiredPerSection section hours ",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            pw.Text(
+                            Text(
                               "= ${totalTimeRequired.toStringAsFixed(2)} Platoon hours",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -171,21 +171,21 @@ class SpanBeamGirder {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("3. ", "Placement of Charges"),
-                  pw.Container(
-                    child: pw.Image(image1),
+                  Container(
+                    child: Image(image1),
                   ),
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Image(image2),
+            Container(
+              child: Image(image2),
             ),
-            pw.Container(
-              child: pw.Image(image3),
+            Container(
+              child: Image(image3),
             ),
           ];
         },
@@ -193,8 +193,8 @@ class SpanBeamGirder {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -204,7 +204,7 @@ class SpanBeamGirder {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(
         bytes: doc.save(), filename: 'Span-Beam-Girder.pdf');

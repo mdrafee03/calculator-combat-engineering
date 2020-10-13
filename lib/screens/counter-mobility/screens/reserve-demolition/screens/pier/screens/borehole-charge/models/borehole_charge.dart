@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:combat_engineering/shared/models/pdfTheme.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../../../../../shared/models/utility.dart';
@@ -120,7 +120,7 @@ class BoreholeCharge {
     return charge;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image1 = PdfImage.file(
       doc.document,
       bytes: (await rootBundle
@@ -136,71 +136,71 @@ class BoreholeCharge {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Demolition of pier by borehole charge'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("1. ", "Summay of Calculation"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. No of holes require one row = $noOfHolesPerRow Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "b. No of rows = $row Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Total no of holes = $totalNoOfholes Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "d. Depth of hole = $depthOfHole''",
                         ),
-                        pw.Text(
+                        Text(
                           "e. Distance between rows of borehole = $depthOfHole''",
                         ),
-                        pw.Text(
+                        Text(
                           "f. Depth of explosive to be filled in borehole = $depthOfExplosiveToBeFilled''",
                         ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            pw.Text(
+                            Text(
                               "g. Dia of borehole",
                             ),
-                            pw.Padding(
-                              padding: pw.EdgeInsets.only(
-                                  left: 20, top: 5, bottom: 5),
-                              child: pw.Column(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   if (chargeAndTimeCalucation.length > 1)
-                                    pw.Text(
+                                    Text(
                                         "(1) 2.0'' dia borehole will be filled with mud up to initial $depthOfExplosiveToBeFilled'' depth"),
                                   for (int i = 0;
                                       i < chargeAndTimeCalucation.length;
                                       i++)
-                                    pw.Text(
+                                    Text(
                                         "(${chargeAndTimeCalucation.length > 1 ? i + 2 : i + 1}) ${chargeAndTimeCalucation[i].dia}'' dia borehole to be filled with explosive up to initial ${chargeAndTimeCalucation[i].depth}'' depth")
                                 ],
                               ),
                             ),
                           ],
                         ),
-                        pw.Text(
+                        Text(
                           "h. Charge required in one hole = ${totalCharge.toStringAsFixed(2)} oz PE",
                         ),
-                        pw.Text(
+                        Text(
                           "h. Charge required in one hole = ${totalCharge.toStringAsFixed(2)} oz PE",
                         ),
-                        pw.Text(
+                        Text(
                           "h. Charge required in one hole = ${totalCharge.toStringAsFixed(2)} oz PE",
                         ),
                       ],
@@ -209,36 +209,36 @@ class BoreholeCharge {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("2. ", "Time Requirement"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             for (int i = 0;
                                 i < chargeAndTimeCalucation.length;
                                 i++)
-                              pw.Text(
+                              Text(
                                   "${String.fromCharCode(97 + i)}. Time require for making ${chargeAndTimeCalucation[i].timeDepth} inch borehole = ${chargeAndTimeCalucation[i].time.toStringAsFixed(2)} minute")
                           ],
                         ),
-                        pw.Text(
+                        Text(
                             "    (Auth: ERPB 1964, Section 26, Note (i) and serial 5)"),
-                        pw.SizedBox(
+                        SizedBox(
                           height: 10,
                         ),
-                        pw.Text(
+                        Text(
                           "${String.fromCharCode(97 + chargeAndTimeCalucation.length)}. Total time requirement for demolition of $noOfPier piers = ${totalTimeRequired.toStringAsFixed(2)} hr",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -247,15 +247,15 @@ class BoreholeCharge {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("3. ", "Placement of Charges"),
-                  pw.Container(
-                    child: pw.Image(image1),
+                  Container(
+                    child: Image(image1),
                   ),
-                  pw.Container(
-                    child: pw.Image(image2),
+                  Container(
+                    child: Image(image2),
                   ),
                 ],
               ),
@@ -266,8 +266,8 @@ class BoreholeCharge {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -277,7 +277,7 @@ class BoreholeCharge {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Borehole-Charge.pdf');
   }

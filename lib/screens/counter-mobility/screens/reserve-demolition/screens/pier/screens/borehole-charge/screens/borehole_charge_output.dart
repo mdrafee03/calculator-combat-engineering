@@ -13,6 +13,7 @@ class BoreholeChargeOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final BoreholeCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
+      title: Text("Abutment Charge"),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

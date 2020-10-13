@@ -12,6 +12,7 @@ class SpanBeamGirderOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final SpanBeamGirder _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
+      title: Text("Span, Beam and Girder"),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

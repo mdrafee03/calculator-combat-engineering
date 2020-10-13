@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:combat_engineering/shared/models/pdfTheme.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../shared/models/utility.dart';
@@ -45,48 +45,48 @@ class RoadCrater {
     return time;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Summary of Road Crater'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("1. ", "Summay of Calculation"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Dia of the Road crater = 20'",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Depth of the Road crater = 7'",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Explosive required in one crater = 70 lb PE",
                         ),
-                        pw.Text(
+                        Text(
                           "d. Individuals crater should be 80' apart",
                         ),
-                        pw.Text(
+                        Text(
                           "e. Line of group craters should be 10' apart",
                         ),
-                        pw.Text(
+                        Text(
                           "f. Total no of road crater along road width = $totalRoadCraterAlongRoadWidh",
                         ),
-                        pw.Text(
+                        Text(
                           "g. Total no of Line of group craters along road length = $totalLineOfGroupAlongRoadLength Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "h. Total no of Road crater = $totalRoadCrater Nos",
                         ),
-                        pw.Text(
+                        Text(
                           "j. Amount of charge required = ${totalChargeRequired.toStringAsFixed(2)} lb PE",
                         ),
                       ],
@@ -95,37 +95,37 @@ class RoadCrater {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("2. ", "Time Requirement"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Wrap(
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Wrap(
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Time require for road crater ",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            pw.Text(
+                            Text(
                               "= $totalTimeRequiredPerSection section hours ",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            pw.Text(
+                            Text(
                               "= ${totalTimeRequired.toStringAsFixed(2)} Platoon hours",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -142,8 +142,8 @@ class RoadCrater {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -153,7 +153,7 @@ class RoadCrater {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Road-Crater.pdf');
   }

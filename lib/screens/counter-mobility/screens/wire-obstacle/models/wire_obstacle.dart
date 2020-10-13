@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../shared/models/utility.dart';
@@ -45,7 +45,7 @@ class WireObstacle {
     return time <= 1 ? 1 : time;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final List<PdfImage> images = [];
     for (int i = 0; i < task.images.length; i++) {
       images.add(PdfImage.file(
@@ -55,49 +55,49 @@ class WireObstacle {
     }
 
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Summary of Wire Obstacle'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('1. ', 'Store Calculation'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "$getSerial. Barbed wire = ${getValueByFrontage(task.barbedWire)} Nos",
                         ),
                         if ([2, 3, 4, 5, 6].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Barbed wire concertina = ${getValueByFrontage(task.barbedWireConcertina)} Nos",
                           ),
-                        pw.Text(
+                        Text(
                           "$getSerial. Long Piquet = ${getValueByFrontage(task.longPicket)} Nos",
                         ),
                         if ([1, 4].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Short Picket = ${getValueByFrontage(task.shortPiquet)} Nos",
                           ),
                         if ([1, 3, 4].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Maul/Sledgehammer = ${getValueBySection(task.mauls)} Nos",
                           ),
                         if ([5, 6].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Tracing tape Roll = ${getValueByFrontage(task.tracingTapRoll)} Nos",
                           ),
                         if ([1, 3, 4, 5, 6].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Wire Cutter = ${getValueBySection(task.wireCutter)} Nos",
                           ),
                         if ([1, 3, 4, 5, 6].contains(task.id))
-                          pw.Text(
+                          Text(
                             "$getSerial. Windlassing Sticks = ${getValueBySection(task.windlassingStick)} Nos",
                           ),
                       ],
@@ -106,24 +106,24 @@ class WireObstacle {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('2. ', 'Time Calculation'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Wrap(
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Wrap(
                       children: [
-                        pw.Text(
+                        Text(
                           "Time require in ${time == PartsOfDay.Day ? "Day" : "Dark Night"} ",
                         ),
-                        pw.Column(
+                        Column(
                           children: [
-                            pw.Text(
+                            Text(
                               "= ${timeRequirePerSection.toStringAsFixed(2)} Section hours ",
                             ),
-                            pw.Text(
+                            Text(
                               "= ${totalTimeRequire.toStringAsFixed(2)} Platoon hours ",
                             ),
                           ],
@@ -134,20 +134,20 @@ class WireObstacle {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('3. ', 'Manpower Calculation'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "(1) ${section}x section each having ${task.nco} NCO and ${task.men} men",
                         ),
-                        pw.Text(
+                        Text(
                           "(2) This group will form ${task.group}",
                         ),
                       ],
@@ -156,8 +156,8 @@ class WireObstacle {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('4. ', "Layout of ${task.task}"),
                 ],
@@ -165,8 +165,8 @@ class WireObstacle {
             ),
             ...images
                 .map(
-                  (PdfImage e) => pw.Container(
-                    child: pw.Image(e),
+                  (PdfImage e) => Container(
+                    child: Image(e),
                   ),
                 )
                 .toList(),
@@ -176,8 +176,8 @@ class WireObstacle {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -187,7 +187,7 @@ class WireObstacle {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Wire-Obstacle.pdf');
   }

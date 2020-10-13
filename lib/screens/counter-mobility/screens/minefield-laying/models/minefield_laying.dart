@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:fraction/fraction.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../shared/models/utility.dart';
@@ -47,8 +47,8 @@ class MinefieldLaying {
   int noOfantiPersonnelMinePerLorry;
   OuterStrip typeOfOuterStrip;
   int dDay;
-  TimeOfDay firstLight = TimeOfDay.now();
-  TimeOfDay lastLight = TimeOfDay.now();
+  m.TimeOfDay firstLight = m.TimeOfDay.now();
+  m.TimeOfDay lastLight = m.TimeOfDay.now();
 
   int get numberOfStrips {
     return (density / standardDensity).toDouble().toDoubleAsPrecision().ceil();
@@ -439,7 +439,7 @@ class MinefieldLaying {
     }
   }
 
-  String hourFormat(TimeOfDay time) {
+  String hourFormat(m.TimeOfDay time) {
     String hour = "00" + time.hour.toString();
     String minute = "00" + time.minute.toString();
     return (hour.substring(hour.length - 2) +
@@ -452,7 +452,7 @@ class MinefieldLaying {
         : Fraction.fromString(val);
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image = PdfImage.file(
       doc.document,
       bytes: (await rootBundle.load('assets/images/minefield_layout.jpg'))
@@ -460,28 +460,28 @@ class MinefieldLaying {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Summary of the minefield laying calculation'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('1. ', 'Strips'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Number of Strips = $numberOfStrips",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Number of Anti-Tank Strips = $numberOfAntiTankStrips",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Number of Mixed Strips = $numberOfMixedStrip",
                         ),
                       ],
@@ -490,20 +490,20 @@ class MinefieldLaying {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('2. ', 'Mines'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Number of Anti-Tank Mines = $antiTankMines",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Number of Anti-Personnel Mines = $antiPersonnelMines",
                         ),
                       ],
@@ -512,29 +512,29 @@ class MinefieldLaying {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('3. ', 'Stores'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Long Pickets = $longPicket",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Short Pickets = $shortPicket",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Barbed Wire = $barbedWire",
                         ),
-                        pw.Text(
+                        Text(
                           "d. Perimeter Sign Posting = $perimeterSignPosting",
                         ),
-                        pw.Text(
+                        Text(
                           "e. Tracing Tape = $tracingTape",
                         ),
                       ],
@@ -543,54 +543,54 @@ class MinefieldLaying {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('4. ', 'Transport'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. For Anti-Tank Mines = ${totalLorryForAntiTankMine}x 3-ton lorry",
                         ),
-                        pw.Text(
+                        Text(
                           "b. For Anti-Personnel Mines = ${totalLorryForAntiPersonnelMine}x 3-ton lorry",
                         ),
-                        pw.Text(
+                        Text(
                           "c. For Perimeter Fencing = ${totalLorryForStores}x 3-ton lorry",
                         ),
-                        pw.Wrap(
+                        Wrap(
                           children: [
-                            pw.Text("d. For Personnel "),
-                            pw.Column(
-                              mainAxisAlignment: pw.MainAxisAlignment.start,
-                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            Text("d. For Personnel "),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                pw.Text(
+                                Text(
                                   "= ${totalLorryForPersonnel}x 3-ton lorry",
                                 ),
-                                pw.Text("= 1x 1/4-ton Jeep"),
-                                pw.Text("= 1x 1-ton pickup"),
-                                pw.Text("= 1x Ambulance"),
+                                Text("= 1x 1/4-ton Jeep"),
+                                Text("= 1x 1-ton pickup"),
+                                Text("= 1x Ambulance"),
                               ],
                             )
                           ],
                         ),
-                        pw.Text(
+                        Text(
                           "e. Total 3-ton Require = $totalTransportRequired",
                         ),
-                        pw.Wrap(
+                        Wrap(
                           children: [
-                            pw.Text("f. Total Other Vehicles Require"),
-                            pw.Column(
-                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            Text("f. Total Other Vehicles Require"),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                pw.Text("= 1x 1/4-ton Jeep"),
-                                pw.Text("= 1x 1-ton pickup"),
-                                pw.Text("= 1x Ambulance"),
+                                Text("= 1x 1/4-ton Jeep"),
+                                Text("= 1x 1-ton pickup"),
+                                Text("= 1x Ambulance"),
                               ],
                             )
                           ],
@@ -601,23 +601,23 @@ class MinefieldLaying {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('5. ', 'Time'),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Start Time = ${hourFormat(lastLight)} D-Day (${MoonLit.listOfMoonlit.firstWhere((option) => option.value == dDay).title})",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Completion Time = ${timeRequired.completionTime}",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Total Time Require = ${timeRequired.timeRequiredInMinutes}",
                         ),
                       ],
@@ -626,12 +626,12 @@ class MinefieldLaying {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw('6. ', 'Layout of Conventional Minefield'),
-                  pw.Container(
-                    child: pw.Image(image),
+                  Container(
+                    child: Image(image),
                   ),
                 ],
               ),
@@ -642,8 +642,8 @@ class MinefieldLaying {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -653,7 +653,7 @@ class MinefieldLaying {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(
         bytes: doc.save(), filename: 'Minefield-Laying.pdf');

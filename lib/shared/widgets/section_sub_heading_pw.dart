@@ -1,30 +1,30 @@
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 
-class SectionSubHeadingPw extends pw.StatelessWidget {
+class SectionSubHeadingPw extends StatelessWidget {
   final String sl;
   final String heading;
   SectionSubHeadingPw(this.sl, this.heading);
   @override
-  pw.Widget build(pw.Context context) {
-    return pw.Container(
-      alignment: pw.Alignment.topLeft,
-      child: pw.Container(
-        padding: pw.EdgeInsets.only(top: 8, bottom: 8),
-        child: pw.Row(
+  Widget build(Context context) {
+    return Container(
+      alignment: Alignment.topLeft,
+      child: Container(
+        padding: EdgeInsets.only(top: 8, bottom: 8),
+        child: Row(
           children: [
-            pw.Text(
+            Text(
               sl,
-              style: pw.TextStyle(
-                fontWeight: pw.FontWeight.bold,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
             ),
-            pw.Text(
+            Text(
               heading,
-              style: pw.TextStyle(
-                  fontWeight: pw.FontWeight.bold,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 14,
-                  decoration: pw.TextDecoration.underline),
+                  decoration: TextDecoration.underline),
             ),
           ],
         ),

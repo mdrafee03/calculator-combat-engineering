@@ -1,7 +1,7 @@
-import 'package:combat_engineering/shared/widgets/section_sub_heading.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../../router/route_const.dart';
+import '../../../../../../../../../shared/widgets/section_sub_heading.dart';
 import '../../../../../../../../../shared/widgets/top_header.dart';
 import '../../../../../../../widgets/placement_of_charges.dart';
 import '../../../../../../../widgets/summary_of_calculation.dart';
@@ -14,6 +14,7 @@ class PierFootingChargeOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final PierFootingCharge _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
+      title: Text("Pier Footing Charge"),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

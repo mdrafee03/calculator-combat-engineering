@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../../../shared/models/utility.dart';
@@ -48,7 +48,7 @@ class ReserveDemolitionSummary {
     return sandbag;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image = PdfImage.file(
       doc.document,
       bytes: (await rootBundle.load('assets/images/reserve-demolition/sum.png'))
@@ -56,57 +56,57 @@ class ReserveDemolitionSummary {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Summary of reserve demolition of a bridge'),
-            pw.SizedBox(
+            SizedBox(
               height: 20,
             ),
-            pw.Container(
-              alignment: pw.Alignment.topLeft,
-              child: pw.Text(
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
                 '1. Total Explosive Required = ${totalExplosiveRequired.toStringAsFixed(2)} lb PE',
-                style: pw.TextStyle(
-                  fontWeight: pw.FontWeight.bold,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
             ),
-            pw.SizedBox(
+            SizedBox(
               height: 10,
             ),
-            pw.Container(
-              alignment: pw.Alignment.topLeft,
-              child: pw.Text(
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
                 '2. Total Time Required = ${totalTimeRequired.toStringAsFixed(2)} Platoon hours',
-                style: pw.TextStyle(
-                  fontWeight: pw.FontWeight.bold,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
             ),
-            pw.SizedBox(
+            SizedBox(
               height: 10,
             ),
-            pw.Container(
-              alignment: pw.Alignment.topLeft,
-              child: pw.Text(
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
                 '3. Total Sandbag Required = ${getSandbag.toStringAsFixed(2)} Nos',
-                style: pw.TextStyle(
-                  fontWeight: pw.FontWeight.bold,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw(
                       "4. ", "Placement of various charges for demolition"),
-                  pw.Container(
-                    child: pw.Image(image),
+                  Container(
+                    child: Image(image),
                   ),
                 ],
               ),
@@ -117,8 +117,8 @@ class ReserveDemolitionSummary {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -128,7 +128,7 @@ class ReserveDemolitionSummary {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(
         bytes: doc.save(), filename: 'Summary-Reserve-Demolition.pdf');

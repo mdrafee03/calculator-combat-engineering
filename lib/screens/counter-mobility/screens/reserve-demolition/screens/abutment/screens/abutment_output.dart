@@ -12,6 +12,7 @@ class AbutmentOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final Abutment _model = ModalRoute.of(context).settings.arguments;
     final AppBar appbar = new AppBar(
+      title: Text("Abutment"),
       actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.list),

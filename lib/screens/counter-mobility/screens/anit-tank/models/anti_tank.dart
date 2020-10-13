@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../shared/models/utility.dart';
@@ -28,7 +28,7 @@ class AntiTank {
     return time <= 1 ? 1 : time;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image = PdfImage.file(
       doc.document,
       bytes: (await rootBundle.load('assets/images/anti-tank-ditch.png'))
@@ -36,68 +36,68 @@ class AntiTank {
           .asUint8List(),
     );
     doc.addPage(
-      pw.Page(
+      Page(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return pw.Container(
+        build: (Context context) {
+          return Container(
             color: PdfColors.white,
-            margin: pw.EdgeInsets.all(10),
-            child: pw.Column(
+            margin: EdgeInsets.all(10),
+            child: Column(
               children: [
                 TopHeaderPw("Calculation of Anti-tank ditch"),
                 SectionHeadingPw("1. ", "Summary of Calculation"),
-                pw.Container(
-                  padding: pw.EdgeInsets.only(left: 20),
-                  alignment: pw.Alignment.topLeft,
-                  child: pw.Column(
-                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                Container(
+                  padding: EdgeInsets.only(left: 20),
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      pw.Text(
+                      Text(
                         "a. The width of anti-tank ditch = $width yards",
                       ),
-                      pw.Text(
+                      Text(
                         "b. The height of anti-tank ditch = ${height.toStringAsFixed(2)} yards",
                       ),
-                      pw.Text(
+                      Text(
                         "c. The volume of anti-tank ditch = ${volume.toStringAsFixed(2)} yards",
                       ),
                     ],
                   ),
                 ),
                 SectionHeadingPw("2. ", "Time Requirement"),
-                pw.Container(
-                  padding: pw.EdgeInsets.only(left: 20),
-                  alignment: pw.Alignment.topLeft,
-                  child: pw.Column(
-                    crossAxisAlignment: pw.CrossAxisAlignment.start,
+                Container(
+                  padding: EdgeInsets.only(left: 20),
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      pw.Text(
+                      Text(
                         "a. Time requirement for 1 Dozon = ${timeRequiredPerDozon.toStringAsFixed(2)} hours",
                       ),
-                      pw.SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      pw.Text(
+                      Text(
                         "Note: Capacity of size ii/iv Dozer with 100' half way hauling is 55 cubic yard/hour. (Auth: GSTP-1608Figure 50 page 184)",
                       ),
-                      pw.SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      pw.Text(
+                      Text(
                         "b. Total time require for plant platoon = ${totalTimeRequired.toStringAsFixed(2)} Platoon hours",
                       ),
-                      pw.SizedBox(
+                      SizedBox(
                         height: 10,
                       ),
-                      pw.Text(
+                      Text(
                         "Note: 1x Plant Platoon has 4x Dozer (2x Size-II 2x Size IV)",
                       ),
                     ],
                   ),
                 ),
                 SectionHeadingPw("3. ", "Layout of Anti-tank Ditch"),
-                pw.Container(
-                  child: pw.Image(image),
+                Container(
+                  child: Image(image),
                 ),
               ],
             ),
@@ -107,8 +107,8 @@ class AntiTank {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -118,7 +118,7 @@ class AntiTank {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(bytes: doc.save(), filename: 'Anti-tank.pdf');
   }

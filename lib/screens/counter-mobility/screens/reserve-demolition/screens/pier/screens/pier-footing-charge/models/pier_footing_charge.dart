@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:combat_engineering/shared/models/pdfTheme.dart';
 import 'package:combat_engineering/shared/widgets/section_sub_heading_pw.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as m;
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart';
 
 import '../../../../../../../../../shared/models/utility.dart';
@@ -48,7 +48,7 @@ class PierFootingCharge {
         : 1;
   }
 
-  Future<void> generatePDF(pw.Document doc) async {
+  Future<void> generatePDF(Document doc) async {
     final PdfImage image1 = PdfImage.file(
       doc.document,
       bytes: (await rootBundle.load(
@@ -64,51 +64,50 @@ class PierFootingCharge {
           .asUint8List(),
     );
     doc.addPage(
-      pw.MultiPage(
+      MultiPage(
         pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
+        build: (Context context) {
           return [
             TopHeaderPw('Demolition of Pier By Pier Footing Charge'),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("1. ", "Summay of Calculation"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Column(
-                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Method of attack = Pier footing charge",
                         ),
-                        pw.Text(
+                        Text(
                           "b. Amount of expl in one charge = ${explosivePerCharge.toStringAsFixed(2)} lb",
                         ),
-                        pw.Text(
+                        Text(
                           "c. Amount of charge require for each pier = ${amountOfChargePerPier.toStringAsFixed(2)} lb CE TNT",
                         ),
-                        pw.Text(
+                        Text(
                           "d. Total amount of charge require for each pier = ${totalAmountOfCharge.toStringAsFixed(2)} lb PE",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         SectionSubHeadingPw("e. ", "Spacing of Charge"),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(left: 20, top: 5, bottom: 5),
-                          child: pw.Column(
-                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, top: 5, bottom: 5),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              pw.Text(
+                              Text(
                                 "(1) Dist of outer charges from edges of pier = ${outerCharges.toStringAsFixed(2)}''",
                               ),
-                              pw.Text(
+                              Text(
                                 "(2) Inner charges, charge to charge distance = ${innerCharges.toStringAsFixed(2)}''",
                               ),
-                              pw.Text('(3) Charges should be well temped.')
+                              Text('(3) Charges should be well temped.')
                             ],
                           ),
                         ),
@@ -118,37 +117,37 @@ class PierFootingCharge {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("2. ", "Time Requirement"),
-                  pw.Container(
-                    padding: pw.EdgeInsets.only(left: 20),
-                    alignment: pw.Alignment.topLeft,
-                    child: pw.Wrap(
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    alignment: Alignment.topLeft,
+                    child: Wrap(
                       children: [
-                        pw.Text(
+                        Text(
                           "a. Time requre for demolition of pier ",
-                          style: pw.TextStyle(
+                          style: TextStyle(
                             color: PDFTheme.color,
-                            fontWeight: pw.FontWeight.bold,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        pw.Column(
-                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            pw.Text(
+                            Text(
                               "= ${(totalTimeRequired * 4).toStringAsFixed(2)} section hours",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                            pw.Text(
+                            Text(
                               "= ${(totalTimeRequired).toStringAsFixed(2)} section hours",
-                              style: pw.TextStyle(
+                              style: TextStyle(
                                 color: PDFTheme.color,
-                                fontWeight: pw.FontWeight.bold,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -159,18 +158,18 @@ class PierFootingCharge {
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Column(
+            Container(
+              child: Column(
                 children: [
                   SectionHeadingPw("3. ", "Placement of Charges"),
-                  pw.Container(
-                    child: pw.Image(image1),
+                  Container(
+                    child: Image(image1),
                   ),
                 ],
               ),
             ),
-            pw.Container(
-              child: pw.Image(image2),
+            Container(
+              child: Image(image2),
             ),
           ];
         },
@@ -178,8 +177,8 @@ class PierFootingCharge {
     );
   }
 
-  void savePDF(BuildContext ctx) async {
-    var doc = pw.Document();
+  void savePDF(m.BuildContext ctx) async {
+    var doc = Document();
     await generatePDF(doc);
     final directory = '/storage/emulated/0/Download';
     final file = File(
@@ -189,7 +188,7 @@ class PierFootingCharge {
   }
 
   void sharePDF() async {
-    var doc = pw.Document();
+    var doc = Document();
     await generatePDF(doc);
     await Printing.sharePdf(
         bytes: doc.save(), filename: 'Pier-Footing-Charge.pdf');

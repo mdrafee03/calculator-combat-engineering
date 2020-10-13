@@ -12,6 +12,7 @@ class AntiTankOutput extends StatelessWidget {
   Widget build(BuildContext context) {
     final AntiTank _model = ModalRoute.of(context).settings.arguments;
     final AppBar appBar = AppBar(
+      title: Text("Anti Tank Ditch"),
       actions: [
         IconButton(
           icon: const Icon(Icons.list),
