@@ -1,8 +1,8 @@
-import 'package:combat_engineering/shared/widgets/background_container.dart';
-import 'package:combat_engineering/shared/widgets/button_with_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../router/route_const.dart';
+import '../../../shared/widgets/background_container.dart';
+import '../../../shared/widgets/button_with_image.dart';
 
 class MobilityScreen extends StatelessWidget {
   final appBar = AppBar(

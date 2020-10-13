@@ -1,5 +1,6 @@
-import 'package:combat_engineering/shared/widgets/background_container.dart';
 import 'package:flutter/material.dart';
+
+import './background_container.dart';
 
 class ListBuilder extends StatelessWidget {
   final String title;
