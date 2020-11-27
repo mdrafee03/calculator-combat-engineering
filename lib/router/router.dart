@@ -1,3 +1,4 @@
+import 'package:combat_engineering/screens/lock_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/home.dart';
@@ -44,10 +45,11 @@ import '../screens/mobility/screens/minefield-breaching/screens/minefield_breach
 
 import './route_const.dart';
 
-class Router {
+class RouterApp {
   static Map<String, WidgetBuilder> mainRouter() {
     return <String, WidgetBuilder>{
       home: (BuildContext ctx) => Home(),
+      lockScreen: (BuildContext ctx) => LockScreen(),
       // counter mobility
       counterMobilityScreen: (BuildContext ctx) => CounterMobilityScreen(),
       minefieldLayingList: (BuildContext ctx) => MinefieldLayingList(),

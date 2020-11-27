@@ -237,7 +237,7 @@ class BailyBridgeOutput extends StatelessWidget {
                       "c. Given Bearing pressure on soil  = ${_model.pressureOfSoil} ton/sq ft",
                     ),
                     Text(
-                      "d. Max Bearing Pressure on soil  = ${_model.maxPressureOnSoil.toStringAsFixed(2)} ton/sq ft",
+                      "d. Max Bearing Pressure on soil  = ${_model.maxPressureOnSoil?.toStringAsFixed(2)} ton/sq ft",
                     ),
                     _model.isGrillageRequire
                         ? Text("e. Grillage is required")
@@ -247,7 +247,7 @@ class BailyBridgeOutput extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "f. Type of Grillage = ${_model.getGrillageLoads.type}, Baseplate = ${_model.getGrillageLoads.basePlate}, template = ${_model.getGrillageLoads.template},",
+                            "f. Type of Grillage = ${_model.getGrillageLoads.type}, Baseplate = ${_model.getGrillageLoads?.basePlate}, template = ${_model.getGrillageLoads?.template},",
                           ),
                           Text(
                             "g. Total no of Grillage = ${_model.numberOfGrillage} Nos",

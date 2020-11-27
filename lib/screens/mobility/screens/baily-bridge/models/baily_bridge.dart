@@ -286,9 +286,11 @@ class BailyBridge {
   }
 
   GrillageLoad get getGrillageLoads {
-    return GrillageLoad.grillageLoads.firstWhere((element) =>
-        element.pressureOfSoil == pressureOfSoil &&
-        maxReactionOfBasePlate <= element.basePlate);
+    return GrillageLoad.grillageLoads.firstWhere(
+        (element) =>
+            element.pressureOfSoil == pressureOfSoil &&
+            maxReactionOfBasePlate <= element.basePlate,
+        orElse: () => GrillageLoad.grillageLoads[0]);
   }
 
   int get numberOfGrillage {
