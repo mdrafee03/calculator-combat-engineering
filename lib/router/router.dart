@@ -45,7 +45,7 @@ import '../screens/mobility/screens/minefield-breaching/screens/minefield_breach
 
 import './route_const.dart';
 
-class Router {
+class RouterApp {
   static Map<String, WidgetBuilder> mainRouter() {
     return <String, WidgetBuilder>{
       home: (BuildContext ctx) => Home(),

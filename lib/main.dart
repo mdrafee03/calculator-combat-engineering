@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: Router.mainRouter(),
+      routes: RouterApp.mainRouter(),
       theme: ThemeData(
         primaryColor: Color(0xFF00008B),
       ),
