@@ -1,4 +1,5 @@
-const String home = '/';
+const String lockScreen = '/';
+const String home = '/home';
 
 // counter mobility
 const String counterMobilityScreen = '/counter-mobility';
