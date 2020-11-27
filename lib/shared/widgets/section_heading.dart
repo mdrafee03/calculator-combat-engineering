@@ -13,23 +13,23 @@ class SectionHeading extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Row(
-            children: [
-              Text(
-                sl,
+          RichText(
+            text: TextSpan(style: TextStyle(color: Colors.black), children: [
+              TextSpan(
+                text: sl,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                 ),
               ),
-              Text(
-                heading,
+              TextSpan(
+                text: heading,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                     decoration: TextDecoration.underline),
               ),
-            ],
+            ]),
           ),
           SizedBox(
             height: 10,
