@@ -52,6 +52,7 @@ class _LockScreenState extends State<LockScreen> {
                   Container(
                     padding: EdgeInsets.only(top: 20, left: 40, right: 40),
                     child: TextField(
+                      autofocus: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: const BorderRadius.all(
