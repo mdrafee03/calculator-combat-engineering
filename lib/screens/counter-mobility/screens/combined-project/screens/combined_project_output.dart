@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/models/serial_manage.dart';
@@ -31,12 +33,13 @@ class CombinedProjectOutput extends StatelessWidget {
             );
           },
         ),
-        Builder(builder: (BuildContext ctx) {
-          return IconButton(
-            icon: const Icon(Icons.file_download),
-            onPressed: () => _model.savePDF(ctx),
-          );
-        }),
+        if (Platform.isAndroid)
+          Builder(builder: (BuildContext ctx) {
+            return IconButton(
+              icon: const Icon(Icons.file_download),
+              onPressed: () => _model.savePDF(ctx),
+            );
+          }),
         IconButton(
           icon: const Icon(Icons.share),
           onPressed: () => _model.sharePDF(),
